@@ -352,6 +352,14 @@ mammals[c("Cow","Goat","Human"),2] # okay to mix & match
 
 This is more typing than the other options, but is much easier to debug/reuse.
 
+# EXERCISE
+
+Create a new dataframe that contains only country names, years,  and life expepectancies. Use this new dataframe to calculate minimum & maximum expectancies.
+```{r}
+new_gapminder <- gapminder[,c(1,2,5)]
+head(new_gapminder)
+min(new_gapminder[,3])
+```
 
 #Quitting R
 
@@ -379,4 +387,6 @@ When you’re finished with RStudio;
 
 
 References:
-Lectures from Ken Rice at University of Washington, Summer Institute for Statistical Genetics
+
+    - Lectures from Ken Rice at University of Washington, Summer Institute for Statistical Genetics - http://faculty.washington.edu/kenrice/rintro/indexSEA15.shtml
+    - Scripts & Exercise from Asher Haug-Baltzell - https://github.com/asherkhb/intro_r
