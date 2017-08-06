@@ -18,9 +18,7 @@ But;
     - Gives only what you ask for!
 
 
-To help with these difficulties, we will begin with RStudio, a
-graphical user interface (front-end) for R that is slightly more
-user-friendly than ‘Classic’ R’s GUI.
+To help with these difficulties, we will begin with RStudio, a graphical user interface (front-end) for R that is slightly more user-friendly than ‘Classic’ R’s GUI.
 
 
 #Trying out the Console
@@ -250,6 +248,8 @@ For a very few jobs, e.g. changing directories, we’ll still use drop-down menu
 
 # Subsetting
 
+##Base R
+
 Suppose we were interested in the brain weight (i.e. 2nd column) for mammals (i.e. rows) 14, 55, & 61. How to select these multiple elements?
 ```{r}
 mammals[c(14,55,61),1]
@@ -351,6 +351,66 @@ mammals[c("Cow","Goat","Human"),2] # okay to mix & match
 ```
 
 This is more typing than the other options, but is much easier to debug/reuse.
+
+##Dplyr
+
+Base R gives us several ways to subset our data, which is in the online notes.  However, we are going to introduce you to an other package in the tidyverse called `dplyr` which makes manipulating datasets a little easier for beginners.
+
+If you haven't already, install dplyr
+```{r}
+#install.packages("dplyr")
+```
+
+Don't forget to load the package so we can use its functionality
+```{r}
+library(dplyr)
+```
+
+dplyr works by piping commands, like you learned to do in the command line.  Instead of the pipe `|`, we use `%>%`.
+```{r}
+mammals %>% select(body) %>% min()
+
+min(mammals$body)
+```
+
+dplyr also comes with ways to subset our data.
+
+If we only want to choose one column:
+```{r}
+mammals %>% select(body)
+```
+
+If we want to make a new column, use mutate.  Don't forget we have to assign it if we want to keep the changes
+```{r}
+mammals <- mammals %>% mutate(NewColumn = body + brain)
+mammals
+```
+
+If we want to select all columns except 1, we can do that with the `-` operator.
+```{r}
+mammals <- mammals %>% select(-NewColumn)
+mammals
+```
+
+
+Now what about rows?  For this we use te `filter` commands:
+```{r}
+mammals %>% filter(body > 1000)
+```
+
+We can pipe several commands, just like with the command line:
+```{r}
+mammals %>% select(body, Animal) %>% filter(body > 1000) %>% mutate(TwiceWeight = body * 2)
+```
+
+We can also use outside information to help subset data.
+```{r}
+Animals <- c("Cow","Goat")
+
+mammals %>% filter(Animal %in% Animals)
+```
+
+
 
 # EXERCISE
 

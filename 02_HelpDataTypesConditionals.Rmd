@@ -190,18 +190,21 @@ min(ratings)
 ```
 
 
-
-survey = data.frame(name=c("Jack", "Jill", "Mark", "Jerry", "Maria"), sex=c("M", "F","M", "M", "f"))
+```{r}
+survey = data.frame(number=c(1,2,2, 1, 2), group=c("A", "B","A", "A", "B"))
 str(survey)
+summary(survey)
+table(survey$number, survey$group)
+```
 
-barplot(table(survey$sex))
-levels(survey$sex)
-survey$sex[survey$sex == 'f'] <- "F"
-survey
-levels(survey$sex)
-survey$sex <- droplevels(survey$sex)
 
-# Exercise: Which columns in our gapminder dataset 
-# are factors?
+# EXERCISE
+
+Which columns in our gapminder dataset are factors?
 # hint: use 'str' or 'summary'
+```{r}
 str(gapminder)
+```
+
+
+
