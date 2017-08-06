@@ -160,6 +160,13 @@ max(mammals$brain)
 
 These are called FUNCTIONS, and are used to do a particular task on a set of data.  Here we are accessing columns by using the dollar sign.  We are telling R that we are only interested in one column.
 
+We can also do more sophisticated things with these commands.  Let's try a simple plot:
+
+```{r}
+plot(mammals$brain, mammals$body)
+```
+
+
 #Data Frames
 
 Individual columns in data frames are identified using the `$` symbol – just seen in the str() output.
@@ -357,9 +364,19 @@ When you’re finished with RStudio;
         - Cancel: don’t quit, go back
     - Writing about what you did (output from a script) often takes much longer than re-running that script’s analyses – so often, a ‘commented’ script is all the R you need to store
     
-**Note:** To get rid of objects in your current session, use `rm()`, e.g. `rm(is.heavy, mammals, x, y)` ... or RStudio’s ‘broom’ button.
+**Note:** To get rid of objects in your current session, use `rm()`, e.g. `rm(is.heavy, mammals, x, y)` ... or RStudio’s ‘broom’ button on the Environment tab.
+
+
+#Summary
+
+    - In RStudio, read in data from the pop-up menu in the Environment window (or Tools menu)
+    - Data frames store data; can have many of these objects – and multiple other objects, too
+    - Identify vectors with $, subsets with square brackets
+    - Many useful summary functions are available, with sensible names
+    - Scripts are an important drudgery-avoidance tool!
+
 
 
 
 References:
-Lectures from Ken Rice at University of Washington
+Lectures from Ken Rice at University of Washington, Summer Institute for Statistical Genetics
