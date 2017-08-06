@@ -3,6 +3,11 @@ title: "02 - Help, Data Types, and Conditionals"
 output: html_notebook
 ---
 
+#R Markdown
+
+
+
+
 #Help Files
 
 Let's look at importing some more data, this time from a dataset called gapminder.
