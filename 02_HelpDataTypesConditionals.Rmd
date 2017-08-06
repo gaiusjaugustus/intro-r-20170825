@@ -1,0 +1,207 @@
+---
+title: "02 - Help, Data Types, and Conditionals"
+output: html_notebook
+---
+
+#Help Files
+
+Let's look at importing some more data, this time from a dataset called gapminder.
+
+We can read in this dataset with the following command:
+```{r}
+library(readr)
+gapminder <- read_delim(file = "datasets/02_gapminder.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+```
+
+But how did I know which arguments to provide?
+
+**Help Files**
+
+We can access the help file for any function with:
+```{r}
+help(read_delim)
+```
+
+The help information shows up in the Help tab of your RStudio window.
+
+**Note:** Commonly-used arguments in commonly-used functions quickly become familiar. But because R can do so much, even expeRts refer to the help system all the time when coding; no-one learns every detail of every function
+
+#Errors & Warnings
+
+`Errors` come up when a process cannot run until the problem is fixed.
+`Warnings` come up when a process can continue running, but the output might not occur the way you expect.
+
+
+#EXERCISE ON ERRORS
+
+**Errors:** Run each line separately and try to figure out what the error means.
+```{r}
+read_excel("NonExistantFile.xlsx")
+read_delim("NonExistantFile.txt", delim"\t")
+read_delim("NonExistantFile.txt", delim="\t")
+read_delim("datasets/02_gapminder.txt", delim="\x")
+```
+
+**Warnings:** What does this warning means?
+```{r}
+cor( c( 1 , 1 ), c( 2 , 3 ) )
+```
+
+
+#Data Types
+
+## Six types of data
+### 1. Character
+
+Surround with quotes, can be any alphanumeric
+```{r}
+c <- 'Hello world! 123'
+class(c)
+typeof(c)
+```
+### 2. Numeric
+
+No quotes, can be any number, decimal, or whole numbers
+```{r}
+n <- 3.4
+class(n)
+```
+### 3. Integer
+
+No quotes, can be any whole number.  Place an `L` behind it, otherwise R will read it as a numeric
+```{r}
+i <- 2L
+class(i)
+```
+### 4. Complex
+
+Can use notation like `+` `-`, and values like `i` for imaginary units in complex numbers.
+```{r}
+comp <- 1+4i
+class(comp)
+```
+
+### 5. Logical
+
+Are equal to either `TRUE` or `FALSE` in all caps
+```{r}
+l <- TRUE
+l <- FALSE
+class(l)
+```
+
+# 6. List
+
+Holds multiple of the above data types, including other lists.  surround with `list()`
+```{r}
+mylist <- list(chars = 'c', nums = 1.4, logicals=TRUE, anotherList = list(a = 'a', b = 2))
+class(mylist)
+```
+
+
+# 4 Data Structures
+
+## 1. Atomic Vector
+
+Use `c()` notation (stands for combine).  All elements of a vector have to be of the same type.
+```{r}
+log_vector <- c(TRUE, TRUE, FALSE, TRUE)
+char_vector <- c("Uwe", "Gaius", "Liz")
+char_vector <- c(char_vector, "Helper1", NA) #NA represents empty data
+char_vector
+length(char_vector)
+class(char_vector)
+anyNA(char_vector)
+
+mixed <- c("True", TRUE) #When data is mixed, R tries to convert the data to what it thinks makes most sense
+mixed #It has converted the logical to a character
+
+as.logical(mixed) #using as.___ (data type) will make R try to force it to be the this data type.
+```
+
+## Lists
+
+Lists are like vectors except that you can use multiple data types.  Make a list using the `list()` function.
+```{r}
+my_list <- list(1, "A", TRUE)
+my_list
+my_list[2]
+
+phonebook <- list(name="Asher", phone="111-1111", age=27)
+phonebook["name"]
+```
+
+
+## Matrices
+
+Matrices are 2 dimensional structures that hold only one data type.
+```{r}
+m <- matrix(nrow=2, ncol=3)
+m
+m <- matrix(1:6, nrow=2, ncol=3)
+m
+m <- matrix(1:6, nrow=2, ncol=3, byrow=TRUE)
+m
+```
+
+
+## Data Frames 
+Data Frames are like matrices, but can hold multiple data types.  Vectors:Lists :: Matrices:Data Frames
+```{r}
+df <- data.frame(id=letters[1:10], x=1:10, y=11:20)
+df
+class(df)
+typeof(df)
+head(df)
+tail(df)
+nrow(df)
+ncol(df)
+
+str(df)
+summary(df)
+
+names(df)
+```
+
+
+#Factors
+
+Factors are very useful when running statistics, and also clog up memory less than character vectors.
+
+They do this by storing each unique value as an integer, which takes up less space in memory than characters in a string.  Then it references that integer to the corresponding string so that it is human readable.
+```{r}
+state <- factor(c("Arizona", "Colorado", "Arizona"))
+state
+nlevels(state)
+levels(state)
+
+```
+
+Factors by default don't actually have hierarchy.  That is to say, Arizona is not more or less than Colorado.  But sometimes we want factors to have hierarchy (e.g. low comes before medium comes before high).
+```{r}
+ratings <- factor(c("low", "high", "medium", "low"))
+ratings
+min(ratings) #Gives error because we have not told it that these should have an order
+
+ratings <- factor(ratings, levels=c("low", "medium", "high"), ordered=TRUE)
+levels(ratings)
+min(ratings)
+
+```
+
+
+
+survey = data.frame(name=c("Jack", "Jill", "Mark", "Jerry", "Maria"), sex=c("M", "F","M", "M", "f"))
+str(survey)
+
+barplot(table(survey$sex))
+levels(survey$sex)
+survey$sex[survey$sex == 'f'] <- "F"
+survey
+levels(survey$sex)
+survey$sex <- droplevels(survey$sex)
+
+# Exercise: Which columns in our gapminder dataset 
+# are factors?
+# hint: use 'str' or 'summary'
+str(gapminder)
