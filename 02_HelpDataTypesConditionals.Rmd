@@ -32,7 +32,7 @@ The help information shows up in the Help tab of your RStudio window.
 `Warnings` come up when a process can continue running, but the output might not occur the way you expect.
 
 
-#EXERCISE ON ERRORS
+#EXERCISE 
 
 **Errors:** Run each line separately and try to figure out what the error means.
 ```{r}
