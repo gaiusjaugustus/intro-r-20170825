@@ -2,7 +2,7 @@
 
 This repository acts as a companion for the R programming portion of the  Software Carpentry Workshop being held at University of Arizona.
 
-#Content
+# Content
 
 * Day 1 Part 1: First baby steps
     *What is R & R Studio?
