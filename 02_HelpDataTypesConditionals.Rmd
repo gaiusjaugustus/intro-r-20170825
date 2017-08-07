@@ -19,7 +19,7 @@ Every R Notebook or R Markdown file has a header called a YAML header.  This hea
 ## Output
 R Notebooks work best for outputting HTML files, but you can additionally output a PDF or other kinds of documents.  This takes some setup time, so we won't be covering it today, but if you need this functionality, Google is more than happy to help.
 
-## Links
+## Links 
 You can add links directly to the Markdown document, but if you want text to link to a URL, you need to use the following syntax (Link Description)[http://www.google.com]
 
 ## Styling

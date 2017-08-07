@@ -3,7 +3,7 @@ title: "What is R?"
 output: html_notebook
 ---
 
-#What is R?
+#What is R? 
 
 R is a ‘programming environment for statistics and graphics’
 
