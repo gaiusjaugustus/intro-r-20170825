@@ -382,7 +382,7 @@ We're going to just give you the basics of what you need to get started in R Mar
 
 ## Creating an R Notebook
 
-Luckily, you can just choose File > New File > R Notebook and R Studio will automatically give you a template to start from.  Let's go through it.
+Luckily, you can just choose **File > New File > R Notebook** and R Studio will automatically give you a template to start from.  Let's go through it.  The best thing about R Notebooks is that when you save the notebook, a formatted HTML file is automatically created for you!
 
 ## YAML Header
 Every R Notebook or R Markdown file has a header called a YAML header.  This header has information like the title, the author, & options for outputting the document.  You can change anythng you want in this header and add more options if you need to later.
