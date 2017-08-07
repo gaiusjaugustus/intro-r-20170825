@@ -1,0 +1,33 @@
+---
+title: "Resources"
+author: "Gaius Augustus"
+output: html_document
+---
+
+# R Studio Cheatsheet
+
+* https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf
+
+# Data Import Cheatsheet
+
+* https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-import-cheatsheet.pdf
+
+# Base R Cheatsheet
+
+* http://github.com/rstudio/cheatsheets/raw/master/source/pdfs/base-r.pdf
+* https://www.rstudio.com/wp-content/uploads/2016/02/advancedR.pdf
+
+# Dplyr Cheatsheet
+
+* https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf
+
+# Tidyverse Documentation
+
+* http://tidyverse.org/
+
+# R Markdown Cheatsheet
+
+* https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf
+* https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf
+* (Code Chunk Options)[http://rmarkdown.rstudio.com/authoring_rcodechunks.html]
+* (Markdown Basics)[http://rmarkdown.rstudio.com/authoring_basics.html]

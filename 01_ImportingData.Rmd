@@ -7,15 +7,15 @@ output: html_notebook
 
 R is a ‘programming environment for statistics and graphics’
 
-    - Does basically everything, can also be extended
-    - It’s the default when statisticians implement new methods
-    - Free, open-source
+* Does basically everything, can also be extended
+* It’s the default when statisticians implement new methods
+* Free, open-source
 
 But;
 
-    - Steeper learning curve than e.g. Excel, Stata
-    - Command-line driven (programming, not drop-down menus)
-    - Gives only what you ask for!
+* Steeper learning curve than e.g. Excel, Stata
+* Command-line driven (programming, not drop-down menus)
+* Gives only what you ask for!
 
 
 To help with these difficulties, we will begin with RStudio, a graphical user interface (front-end) for R that is slightly more user-friendly than ‘Classic’ R’s GUI.
@@ -45,8 +45,8 @@ log(20+pi)
 
 ```
 
-    - All common math functions are available; parentheses (round brackets) work as per high school math
-    - Try to get used to bracket matching. A ‘+’ prompt means the line isn’t finished – hit Escape to get out, then try again.
+* All common math functions are available; parentheses (round brackets) work as per high school math
+* Try to get used to bracket matching. A ‘+’ prompt means the line isn’t finished – hit Escape to get out, then try again.
 
 
 R stores data (and everything else) as objects. New objects are created when we assign them values;
@@ -68,9 +68,9 @@ x+y
 
 ```
 
-    - Anything after a hash (#) is ignored – e.g. comments
-    - Spaces don’t matter
-    - Capital letters do matter
+* Anything after a hash (#) is ignored – e.g. comments
+* Spaces don’t matter
+* Capital letters do matter
     
 
 # Reading in Data
@@ -92,12 +92,12 @@ By default, you'll see that a `library` command is set.  The `library` command a
 
 More on those options;
 
-    - Name: Name of the data frame object that will store the whole dataset
-    - file: where is the file located?  Absolute or relative path
-    - First row as names: Does your first line have the names of the columns?
-    - Delimiter: What separates column values?  Tabs, commas, white space
-    - Skip: Do you need to skip any lines at the top?
-    - Trim whitespace: If there are extra spaces, get rid of them
+* Name: Name of the data frame object that will store the whole dataset
+* file: where is the file located?  Absolute or relative path
+* First row as names: Does your first line have the names of the columns?
+* Delimiter: What separates column values?  Tabs, commas, white space
+* Skip: Do you need to skip any lines at the top?
+* Trim whitespace: If there are extra spaces, get rid of them
 
 The defaults are sensible, but R assumes you know what your data should look like – and whether it has named columns, row names etc. No software is smart enough to cope with every format that might be used by you/your colleagues to store data.
 
@@ -105,18 +105,18 @@ The defaults are sensible, but R assumes you know what your data should look lik
 
 After successfully reading in the data;
 
-    - The environment now includes a mammals object – or whatever you called the data read from file
-    - A copy of the data can be examined in the Excel-like data viewer – if it looks weird, find out why & fix it!
+* The environment now includes a mammals object – or whatever you called the data read from file
+* A copy of the data can be examined in the Excel-like data viewer – if it looks weird, find out why & fix it!
 
 
 #How to name my data
 
 What’s a good name for my new object?
 
-    - Something memorable (!) and not easily-confused with other objects, e.g. X isn’t a good choice if you already have x
-    - Names must start with a letter or period (”.”), after that any letter, number or period is okay
-    - Avoid other characters; they get interpreted as math (”-”,”*”) or are hard to read (” ”) so should not be used in names
-    - Avoid names of existing functions – e.g. summary. Some oneletter choices (c, C, F, t, T and S) are already used by R as names of functions, it’s best to avoid these too
+* Something memorable (!) and not easily-confused with other objects, e.g. X isn’t a good choice if you already have x
+* Names must start with a letter or period (”.”), after that any letter, number or period is okay
+* Avoid other characters; they get interpreted as math (”-”,”*”) or are hard to read (” ”) so should not be used in names
+* Avoid names of existing functions – e.g. summary. Some oneletter choices (c, C, F, t, T and S) are already used by R as names of functions, it’s best to avoid these too
 
 
 #What can I do with my data?
@@ -138,8 +138,8 @@ summary(mammals)
 # Max. :6654.000     Max. :5712.00
 ```
 
-    - str() tells us the structure of an object
-    - summary() summarizes the object
+* str() tells us the structure of an object
+* summary() summarizes the object
 
 We can also use these commands on any object – e.g. the single numbers we created earlier (try it!)
 
@@ -189,9 +189,9 @@ summary(mammals$brainkg)
 # 0.00014 0.00425 0.01725 0.28310 0.16600 5.71200
 ```
 
-    - Assigning values to existing columns over-writes existing values – again, with no warning
-    - With e.g. mammals$newcolumn <- 0, the new column has every entry zero; R recycles this single value, for every entry
-    - It’s unusual to delete columns... but if you must; use `mammals$brainkg <- NULL`
+* Assigning values to existing columns over-writes existing values – again, with no warning
+* With e.g. mammals$newcolumn <- 0, the new column has every entry zero; R recycles this single value, for every entry
+* It’s unusual to delete columns... but if you must; use `mammals$brainkg <- NULL`
 
 
 Other functions useful for summarizing data frames, and their columns;
@@ -232,16 +232,16 @@ median(mammals$br) # uses pattern-matching (but hard to debug later)
 
 While fine for occasional use, entering every command ‘by hand’ is error-prone, and quickly gets tedious. A much better approach is to use a Script window – open one with Ctrl-Shift-N, or the drop-down menus;
 
-    - Opens a nice editor, enables saving code (.R extension)
-    - Run current line (or selected lines) with Ctrl-Enter, or Ctrl-R
+* Opens a nice editor, enables saving code (.R extension)
+* Run current line (or selected lines) with Ctrl-Enter, or Ctrl-R
 
 **An important notice:** From now on, we assume you are using a script editor.
 
-    - First-time users tend to be reluctant to switch! – but it’s worth it, ask any experienced user
-    - Some code in slides may be formatted for cut-and-paste into scripts – it may not look exactly like what appears in the Console window
-    - Exercise ‘solutions’ given as .R files
-    - Scripts make it easy to run slightly modified code, without re-typing everything – remember to save them as you work
-    - Also remember the Escape key, if e.g. your bracket-matching goes wrong
+* First-time users tend to be reluctant to switch! – but it’s worth it, ask any experienced user
+* Some code in slides may be formatted for cut-and-paste into scripts – it may not look exactly like what appears in the Console window
+* Exercise ‘solutions’ given as .R files
+* Scripts make it easy to run slightly modified code, without re-typing everything – remember to save them as you work
+* Also remember the Escape key, if e.g. your bracket-matching goes wrong
 
 For a very few jobs, e.g. changing directories, we’ll still use drop-down menus. But commands are available, for all tasks.
 
@@ -425,28 +425,28 @@ min(new_gapminder[,3])
 
 When you’re finished with RStudio;
 
-    - Ctrl-Q, or the drop-down menus, or entering q() at the command line all start the exit process
-    - You will be asked “Save workspace image to ∼/.RData?”
-        -No/Don’t Save: nothing is saved, and is not available when you re-start. This is recommended, because you will do different things in each session
-        – Yes: Everything in memory is stored in R’s internal format (.Rdata) and will be available when you re-start RStudio
-        - Cancel: don’t quit, go back
-    - Writing about what you did (output from a script) often takes much longer than re-running that script’s analyses – so often, a ‘commented’ script is all the R you need to store
+* Ctrl-Q, or the drop-down menus, or entering q() at the command line all start the exit process
+* You will be asked “Save workspace image to ∼/.RData?”
+    + No/Don’t Save: nothing is saved, and is not available when you re-start. This is recommended, because you will do different things in each session
+    + Yes: Everything in memory is stored in R’s internal format (.Rdata) and will be available when you re-start RStudio
+    + Cancel: don’t quit, go back
+* Writing about what you did (output from a script) often takes much longer than re-running that script’s analyses – so often, a ‘commented’ script is all the R you need to store
     
 **Note:** To get rid of objects in your current session, use `rm()`, e.g. `rm(is.heavy, mammals, x, y)` ... or RStudio’s ‘broom’ button on the Environment tab.
 
 
 #Summary
 
-    - In RStudio, read in data from the pop-up menu in the Environment window (or Tools menu)
-    - Data frames store data; can have many of these objects – and multiple other objects, too
-    - Identify vectors with $, subsets with square brackets
-    - Many useful summary functions are available, with sensible names
-    - Scripts are an important drudgery-avoidance tool!
+* In RStudio, read in data from the pop-up menu in the Environment window (or Tools menu)
+* Data frames store data; can have many of these objects – and multiple other objects, too
+* Identify vectors with $, subsets with square brackets
+* Many useful summary functions are available, with sensible names
+* Scripts are an important drudgery-avoidance tool!
 
 
 
 
 References:
 
-    - Lectures from Ken Rice at University of Washington, Summer Institute for Statistical Genetics - http://faculty.washington.edu/kenrice/rintro/indexSEA15.shtml
-    - Scripts & Exercise from Asher Haug-Baltzell - https://github.com/asherkhb/intro_r
+* Lectures from Ken Rice at University of Washington, Summer Institute for Statistical Genetics - http://faculty.washington.edu/kenrice/rintro/indexSEA15.shtml
+* Scripts & Exercise from Asher Haug-Baltzell - https://github.com/asherkhb/intro_r
