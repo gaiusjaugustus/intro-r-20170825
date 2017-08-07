@@ -172,7 +172,7 @@ mixed #It has converted the logical to a character
 as.logical(mixed) #using as.___ (data type) will make R try to force it to be the this data type.
 ```
 
-## Lists
+## 2. Lists
 
 Lists are like vectors except that you can use multiple data types.  Make a list using the `list()` function.
 ```{r}
@@ -185,7 +185,7 @@ phonebook["name"]
 ```
 
 
-## Matrices
+## 3. Matrices
 
 Matrices are 2 dimensional structures that hold only one data type.
 ```{r}
@@ -198,7 +198,7 @@ m
 ```
 
 
-## Data Frames 
+## 4. Data Frames 
 Data Frames are like matrices, but can hold multiple data types.  Vectors:Lists :: Matrices:Data Frames
 ```{r}
 df <- data.frame(id=letters[1:10], x=1:10, y=11:20)
@@ -253,8 +253,8 @@ table(survey$number, survey$group)
 
 # EXERCISE
 
-Which columns in our gapminder dataset are factors?
-# hint: use 'str' or 'summary'
+Which columns in our gapminder dataset are factors?    
+hint: use 'str' or 'summary'
 ```{r}
 str(gapminder)
 ```
