@@ -25,7 +25,7 @@ for(c in unique(gapminder$continent)){
 
 # You can nest for loops as well
 for(c in unique(gapminder$continent)){
-     for(y in unique(gapminder$year)) {
+     for(y in unique(gapminder$year)){
           life.min <- min(gapminder[gapminder$continent == c & gapminder$year == y,
                                     'lifeExp'])
           life.max <- max(gapminder[gapminder$continent == c & gapminder$year == y,
@@ -57,4 +57,51 @@ for(c in unique(gapminder$continent)){
 
 # Tutorial: https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.qC44Rnc
 
-lapply(gapminder, '[', , 4)
+apply(mammals[c(2:3)],2, function(x) mean(x))
+# The second argument, 2, refers to columns; passing a 1 would reference rows
+
+# pass multiple functions using {} or c()
+apply(mammals[c(2:3)],2, function(x) { log(mean(x)) * 3})
+apply(mammals[c(2:3)],2, function(x) c(min(x), max(x), mean(x), sd(x)))
+
+# apply can even loop
+for(c in unique(gapminder$continent)){
+     for(y in unique(gapminder$year)){
+          c.y <- apply(gapminder[gapminder$continent == c & gapminder$year == y,
+                                 'lifeExp'], 2, function(x) c(min(x), max(x)))
+          print(c(c,y,c.y))
+          
+     }
+}
+
+# Let's look at how much time the apply function takes versus solely using a for loop
+# apply function
+system.time(for(c in unique(gapminder$continent)){
+     for(y in unique(gapminder$year)){
+          c.y <- apply(gapminder[gapminder$continent == c & gapminder$year == y,
+                                 'lifeExp'], 2, function(x) c(min(x), max(x)))
+          print(c(c,y,c.y))
+          
+     }
+})
+
+# for loop
+system.time(for(c in unique(gapminder$continent)){
+     for(y in unique(gapminder$year)){
+          life.min <- min(gapminder[gapminder$continent == c & gapminder$year == y,
+                                    'lifeExp'])
+          life.max <- max(gapminder[gapminder$continent == c & gapminder$year == y,
+                                    'lifeExp'])
+          print(paste0('The life expectancy in ',y,' in ',c,' is ',
+                       life.min,' to ',life.max))
+     }
+})
+
+# sapply
+sapply(1:3, function(x) x^2)
+# returns a vector
+# passing argument simplify = F; would return a list (same output as lapply)
+
+# lapply
+lapply(1:3, function(x) x^2)
+# similar to sapply, but returns a list
