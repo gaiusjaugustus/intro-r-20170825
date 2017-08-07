@@ -1,5 +1,6 @@
 ## Script created as part of Software carpentry workshop on basic R code
 ## August 26-27, 2017 at the University of Arizona
+## http://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/
 
 dat.dir <- '~/Documents/2017Fall/Software_carpentry_workshop/intro-r-20170825/datasets/'
 
@@ -46,3 +47,14 @@ for(c in unique(gapminder$continent)){
 
 #<< apply function family >>------------------------------------------------------------
 
+# apply: apply over the margins of an array (e.g. the rows or col. of a matrix)
+# lapply: apply over an object and return a list
+# sapply: apply over an object and return a simplified object 
+# vapply: similar to sapply but you specify the type of object returned by the iterations
+
+# Each of these has an argument FUN which takes a function to apply to wach element of
+# the object
+
+# Tutorial: https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.qC44Rnc
+
+lapply(gapminder, '[', , 4)
