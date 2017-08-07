@@ -15,4 +15,34 @@ gapminder <- read_delim(paste0(dat.dir, '02_gapminder.txt'),
 #<< For Loops >>------------------------------------------------------------------------
 
 # Used to apply the same function calls to a collection of objects
+# For instance, say I want the avg. life expectance for each continent
+for(c in unique(gapminder$continent)){
+     life.min <- min(gapminder[gapminder$continent == c, 'lifeExp'])
+     life.max <- max(gapminder[gapminder$continent == c, 'lifeExp'])
+     print(paste0('The life expectancy in ',c,' is ',life.min,' to ',life.max))
+}
+
+# You can nest for loops as well
+for(c in unique(gapminder$continent)){
+     for(y in unique(gapminder$year)) {
+          life.min <- min(gapminder[gapminder$continent == c & gapminder$year == y,
+                                    'lifeExp'])
+          life.max <- max(gapminder[gapminder$continent == c & gapminder$year == y,
+                                    'lifeExp'])
+          print(paste0('The life expectancy in ',y,' in ',c,' is ',
+                       life.min,' to ',life.max))
+     }
+}
+
+### Problems with for loops ----
+
+# For loops are very usefule for certain data types, but at times can become very slow
+# Below are some rules for using for loops as opposed to apply functions (which we are
+# going to talk about next)
+
+# 1. Don't use a loop when a vectorized alternative already exists
+# 2. Don't grow objects (via c, cbind, etc) during the loop 
+# 3. Allocate an object to hold the results and fill it in during the loop
+
+#<< apply function family >>------------------------------------------------------------
 
