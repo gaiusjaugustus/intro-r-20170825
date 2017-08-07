@@ -3,7 +3,7 @@ title: "02 - Help, Data Types, and Conditionals"
 output: html_notebook
 ---
 
-#R Markdown
+# R Markdown
 
 We often want to make our data presentable to bosses, collaborators, coworkers, or our future selves, and R has a way built in to do this.  An easy tool that you can implement in R Studio is something called an R Notebook.  It uses something called `Markdown` to tell the computer where to make text bigger, bold, or in a bullet list.
 
@@ -55,7 +55,7 @@ For more, check out the resources on the Github repo.
 
 
 
-#Help Files
+# Help Files
 
 Let's look at importing some more data, this time from a dataset called gapminder.
 
@@ -78,13 +78,13 @@ The help information shows up in the Help tab of your RStudio window.
 
 **Note:** Commonly-used arguments in commonly-used functions quickly become familiar. But because R can do so much, even expeRts refer to the help system all the time when coding; no-one learns every detail of every function
 
-#Errors & Warnings
+# Errors & Warnings
 
 `Errors` come up when a process cannot run until the problem is fixed.
 `Warnings` come up when a process can continue running, but the output might not occur the way you expect.
 
 
-#EXERCISE 
+# EXERCISE 
 
 **Errors:** Run each line separately and try to figure out what the error means.
 ```{r}
@@ -100,10 +100,11 @@ cor( c( 1 , 1 ), c( 2 , 3 ) )
 ```
 
 
-#Data Types
+# Data Types
 
-## Six types of data
-### 1. Character
+Six types of data
+
+## 1. Character
 
 Surround with quotes, can be any alphanumeric
 ```{r}
@@ -111,21 +112,21 @@ c <- 'Hello world! 123'
 class(c)
 typeof(c)
 ```
-### 2. Numeric
+## 2. Numeric
 
 No quotes, can be any number, decimal, or whole numbers
 ```{r}
 n <- 3.4
 class(n)
 ```
-### 3. Integer
+## 3. Integer
 
 No quotes, can be any whole number.  Place an `L` behind it, otherwise R will read it as a numeric
 ```{r}
 i <- 2L
 class(i)
 ```
-### 4. Complex
+## 4. Complex
 
 Can use notation like `+` `-`, and values like `i` for imaginary units in complex numbers.
 ```{r}
@@ -133,7 +134,7 @@ comp <- 1+4i
 class(comp)
 ```
 
-### 5. Logical
+## 5. Logical
 
 Are equal to either `TRUE` or `FALSE` in all caps
 ```{r}
@@ -142,7 +143,7 @@ l <- FALSE
 class(l)
 ```
 
-# 6. List
+## 6. List
 
 Holds multiple of the above data types, including other lists.  surround with `list()`
 ```{r}
@@ -216,7 +217,7 @@ names(df)
 ```
 
 
-#Factors
+# Factors
 
 Factors are very useful when running statistics, and also clog up memory less than character vectors.
 
