@@ -5,7 +5,7 @@ This repository acts as a companion for the R programming portion of the  Softwa
 # Content
 
 * Day 1 Part 1: First baby steps
-    *What is R & R Studio?
+    * What is R & R Studio?
     * Importing datasets into dataframes
     * Manipulating data with dplyr
 * Day 1 Part 2: Reporting and working through problems
