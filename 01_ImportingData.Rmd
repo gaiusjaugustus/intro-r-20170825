@@ -81,6 +81,7 @@ Import Dataset From CSV
 Once you've decided on your options, you'll see the code at the bottom right tells you how you can code that yourself:
 
 ```{r}
+install.packages('readr')
 library(readr)
 mammals <- read_delim(file = "~/Documents/Rdocs/r-intro-20170825/datasets/01_mammals.txt", 
     delim = "\t", escape_double = FALSE, trim_ws = TRUE)
@@ -138,8 +139,8 @@ summary(mammals)
 # Max. :6654.000     Max. :5712.00
 ```
 
-* str() tells us the structure of an object
-* summary() summarizes the object
+* str() tells us the structure of an object (i.e., it's dimensions/size and the class of the each data column)
+* summary() summarizes the object and provide basic summary statistics for each column within your data
 
 We can also use these commands on any object – e.g. the single numbers we created earlier (try it!)
 
