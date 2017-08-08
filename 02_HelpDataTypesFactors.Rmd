@@ -1,6 +1,9 @@
 ---
 title: "02 - Help, Data Types, and Factors"
-output: html_notebook
+output: 
+     html_notebook:
+          toc: true
+          toc_float: true
 ---
 
 # Help Files

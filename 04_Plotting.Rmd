@@ -1,6 +1,9 @@
 ---
 title: "Plotting"
-output: html_notebook
+output: 
+     html_notebook:
+          toc: true
+          toc_float: true
 ---
 
 Something that every researcher knows is important is communicating your findings, and we often do that with plots.  We can create fine tuned plots in R using BASE R, without using additional packages. 
