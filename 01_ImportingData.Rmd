@@ -1,6 +1,9 @@
 ---
 title: "What is R?"
-output: html_notebook
+output: 
+     html_notebook:
+          toc: true
+
 ---
 
 # What is R? 
@@ -128,7 +131,7 @@ Once you've decided on your options, you'll see the code at the bottom right tel
 
 ```{r}
 library(readr)
-mammals <- read_delim(file = "~/Documents/Rdocs/r-intro-20170825/datasets/01_mammals.txt", 
+mammals <- read_delim(file = "r-intro-20170825/datasets/01_mammals.txt", 
     delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 View(mammals)
 ```
