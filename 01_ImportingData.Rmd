@@ -48,6 +48,52 @@ log(20+pi)
 * All common math functions are available; parentheses (round brackets) work as per high school math
 * Try to get used to bracket matching. A ‘+’ prompt means the line isn’t finished – hit Escape to get out, then try again.
 
+We can also compare things in R using **operators**.
+
+We can see if things are equal by using two equal signs `==`.  To see if something is NOT equal, we use the exclamation mark `!`.
+```{r}
+3 == 2
+# [1] FALSE
+
+3-1 == 2
+# [1] TRUE
+
+TRUE == TRUE
+# [1] TRUE
+
+TRUE == FALSE
+#[1] FALSE
+
+'a' == 'a'
+# [1] TRUE
+
+'abc' != 'ABC'
+# [1] TRUE
+
+!is.na(NA)
+# [1] FALSE
+```
+**Note:** We can represent missing data with `NA`, and use a function/command called `is.na()` to ask if data is missing.  More on this later.
+
+We can use greater than `>` or less than `<` signs as you would expect.
+```{r}
+300 > 200
+# [1] TRUE
+
+0 > 999
+# [1] FALSE
+
+TRUE > FALSE
+# TRUE
+
+'a' > 'b'
+# [1] FALSE
+```
+
+**Note:** `TRUE` is greater than `FALSE` because R in the background actually uses 1 to represent `TRUE` and 0 to represent `FALSE`.  Also, `'b'` is greater than `'a'` because it's later in the alphabet. In other words, the 2nd letter is greater than the 1st letter.  This is helpful for ordering alphabetically, which we'll see later.
+
+
+# Storing Data
 
 R stores data (and everything else) as objects. New objects are created when we assign them values;
 ```{r}
@@ -247,6 +293,37 @@ While fine for occasional use, entering every command ‘by hand’ is error-pro
 For a very few jobs, e.g. changing directories, we’ll still use drop-down menus. But commands are available, for all tasks.
 
 
+# EXERCISE
+
+Import another dataframe and call it `gapminder`. This file is located in the repo, at `datasets/02_gapminder.txt`.  Use `readr`'s `read_delim` as we did above.
+
+Use `str()` to look at the structure of the dataframe and `summary()` to get information about the variables.
+
+* What are its columns?
+* How many rows and columns are there?
+* What is the earliest year in the `year` column?
+* What is the average life expectancy?
+* What is the largest population?
+
+
+```{r}
+gapminder <- read_delim("~/Documents/Rdocs/r-intro-20170825/datasets/02_gapminder.txt", 
+    "\t", escape_double = FALSE, trim_ws = TRUE)
+
+str(gapminder)
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
+# $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+# $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+# $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+# $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+# $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+# $ gdpPercap: num  779 821 853 836 740 ...
+
+dim(gapminder)
+
+```
+
+
 # Subsetting
 
 ## Base R
@@ -370,8 +447,9 @@ library(dplyr)
 dplyr works by piping commands, like you learned to do in the command line.  Instead of the pipe `|`, we use `%>%`.
 ```{r}
 mammals %>% select(body) %>% min()
-
+# [1] 0.005
 min(mammals$body)
+# [1] 0.005
 ```
 
 dplyr also comes with ways to subset our data.
@@ -379,29 +457,77 @@ dplyr also comes with ways to subset our data.
 If we only want to choose one column:
 ```{r}
 mammals %>% select(body)
+#      body
+#      <dbl>
+# 1    3.385
+# 2    0.480
+# 3    1.350
+# 4  465.000
+# 5   36.330
+# 6   27.660
+# 7   14.830
+# 8    1.040
+# 9    4.190
+# 10   0.425
+# ... with 52 more rows
 ```
 
 If we want to make a new column, use mutate.  Don't forget we have to assign it if we want to keep the changes
 ```{r}
 mammals <- mammals %>% mutate(NewColumn = body + brain)
 mammals
+
+#             Animal    body brain NewColumn
+#              <chr>   <dbl> <dbl>     <dbl>
+# 1       Arctic fox   3.385  44.5    47.885
+# 2       Owl monkey   0.480  15.5    15.980
+# 3  Mountain beaver   1.350   8.1     9.450
+# 4              Cow 465.000 423.0   888.000
+# 5        Grey wolf  36.330 119.5   155.830
+# 6             Goat  27.660 115.0   142.660
+# 7         Roe deer  14.830  98.2   113.030
+# 8       Guinea pig   1.040   5.5     6.540
+# 9           Verbet   4.190  58.0    62.190
+# 10      Chinchilla   0.425   6.4     6.825
+# ... with 52 more rows
 ```
 
 If we want to select all columns except 1, we can do that with the `-` operator.
 ```{r}
 mammals <- mammals %>% select(-NewColumn)
 mammals
+#             Animal    body brain
+#              <chr>   <dbl> <dbl>
+# 1       Arctic fox   3.385  44.5
+# 2       Owl monkey   0.480  15.5
+# 3  Mountain beaver   1.350   8.1
+# 4              Cow 465.000 423.0
+# 5        Grey wolf  36.330 119.5
+# 6             Goat  27.660 115.0
+# 7         Roe deer  14.830  98.2
+# 8       Guinea pig   1.040   5.5
+# 9           Verbet   4.190  58.0
+# 10      Chinchilla   0.425   6.4
+# ... with 52 more rows
 ```
 
 
 Now what about rows?  For this we use te `filter` commands:
 ```{r}
 mammals %>% filter(body > 1000)
+#            Animal  body brain
+#              <chr> <dbl> <dbl>
+# 1   Asian elephant  2547  4603
+# 2 African elephant  6654  5712
 ```
 
 We can pipe several commands, just like with the command line:
 ```{r}
 mammals %>% select(body, Animal) %>% filter(body > 1000) %>% mutate(TwiceWeight = body * 2)
+#    body           Animal TwiceWeight
+#   <dbl>            <chr>       <dbl>
+# 1  2547   Asian elephant        5094
+# 2  6654 African elephant       13308
 ```
 
 We can also use outside information to help subset data.
@@ -409,17 +535,34 @@ We can also use outside information to help subset data.
 Animals <- c("Cow","Goat")
 
 mammals %>% filter(Animal %in% Animals)
+#   Animal   body brain
+#    <chr>  <dbl> <dbl>
+# 1    Cow 465.00   423
+# 2   Goat  27.66   115
 ```
 
 
 
 # EXERCISE
 
+Using the `gapminder` dataframe we imported in the last exercise:
+
 Create a new dataframe that contains only country names, years,  and life expepectancies. Use this new dataframe to calculate minimum & maximum expectancies.
 ```{r}
-new_gapminder <- gapminder[,c(1,2,5)]
+new_gapminder <- gapminder %>% select(country, year, lifeExp) # BASE R solution:  gapminder[,c(1,2,5)]
+
 head(new_gapminder)
-min(new_gapminder[,3])
+#       country  year lifeExp
+#         <chr> <int>   <dbl>
+# 1 Afghanistan  1952  28.801
+# 2 Afghanistan  1957  30.332
+# 3 Afghanistan  1962  31.997
+# 4 Afghanistan  1967  34.020
+# 5 Afghanistan  1972  36.088
+# 6 Afghanistan  1977  38.438
+
+new_gapminder %>% select(lifeExp) %>% min()# BASE R solution: min(new_gapminder[,3])
+# [1] 23.599
 ```
 
 # Quitting R

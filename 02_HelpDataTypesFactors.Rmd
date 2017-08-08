@@ -1,0 +1,424 @@
+---
+title: "02 - Help, Data Types, and Factors"
+output: html_notebook
+---
+
+# Help Files
+
+Let's look at importing some more data, this time from a dataset called gapminder.
+
+We can read in this dataset with the following command:
+```{r}
+library(readr)
+gapminder <- read_delim(file = "datasets/02_gapminder.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+```
+
+But how did I know which arguments to provide?
+
+**Help Files**
+
+We can access the help file for any function with:
+```{r}
+help(read_delim)
+```
+
+The help information shows up in the Help tab of your RStudio window.
+
+**Note:** Commonly-used arguments in commonly-used functions quickly become familiar. But because R can do so much, even expeRts refer to the help system all the time when coding; no-one learns every detail of every function
+
+# Errors & Warnings
+
+`Errors` come up when a process cannot run until the problem is fixed.
+`Warnings` come up when a process can continue running, but the output might not occur the way you expect.
+
+
+# EXERCISE 
+
+**Errors:** Run each line separately and try to figure out what the error means.
+```{r}
+read_excel("NonExistantFile.xlsx")
+# Error: could not find function "read_excel"
+# This error is telling us that the readxl package has not been loaded, 
+# therefore it doesn't know this command exists
+
+read_delim("NonExistantFile.txt", delim"\t")
+# Error: unexpected string constant in "read_delim("NonExistantFile.txt", delim"\t""
+# This error is telling you that it didn't expect the string "\t"
+# On closer inspection, that is because the equal sign after delim is missing
+
+read_delim("NonExistantFile.txt", delim="\t")
+# Error: 'NonExistantFile.txt' does not exist in current working directory 
+# ('C:/Users/gaugustus/Documents/Rdocs/r-intro-20170825').
+# This error is telling you that the file doesn't exist.  Either there is a
+# typo or you're pointing to the wrong location.  Don't forget about
+# tab completion!
+
+read_delim("datasets/02_gapminder.txt", delim="\x")
+# Error: '\x' used without hex digits in character string starting ""\x"
+# This error is telling you that you've used an unacceptable option
+# for delim.
+```
+
+**Note:** Errors can sometimes be hard to understand and even harder to figure out how to fix.  Most errors have solutions somewhere on the internet, so remember that Google is your friend.  Also note that many errors are simple typing errors!  So always check that your spelling and syntax is correct first.
+
+
+# 6 Data Types
+
+
+## 1. Character
+
+Surround with quotes, can be any keyboard character
+```{r}
+c <- 'Hello world! 123'
+class(c)
+# [1] "character"
+typeof(c)
+# [1] "character"
+```
+## 2. Numeric
+
+No quotes, can be any number, decimal, or whole numbers
+```{r}
+n <- 3.4
+class(n)
+# [1] "numeric"
+```
+## 3. Integer
+
+No quotes, can be any whole number.  Place an `L` behind it, otherwise R will read it as a numeric
+```{r}
+i <- 2L
+class(i)
+# [1] "integer"
+```
+## 4. Complex
+
+Can use notation like `+` `-`, and values like `i` for imaginary units in complex numbers.
+```{r}
+comp <- 1+4i
+class(comp)
+# [1] "complex"
+```
+
+## 5. Logical
+
+Are equal to either `TRUE` or `FALSE` in all caps
+```{r}
+l <- TRUE
+l <- FALSE
+class(l)
+# [1] "logical"
+```
+
+## 6. List
+
+Holds multiple of the above data types, including other lists.  surround with `list()`
+```{r}
+mylist <- list(chars = 'c', nums = 1.4, logicals=TRUE, anotherList = list(a = 'a', b = 2))
+class(mylist)
+# [1] "list"
+```
+
+
+# 4 Data Structures
+
+## 1. Atomic Vector
+
+Use `c()` notation (stands for combine).  All elements of a vector have to be of the same type.
+```{r}
+log_vector <- c(TRUE, TRUE, FALSE, TRUE)
+char_vector <- c("Uwe", "Gaius", "Liz")
+char_vector <- c(char_vector, "Helper1", NA) #NA represents empty data
+char_vector
+# [1] "Uwe"     "Gaius"   "Liz"     "Helper1" NA       
+length(char_vector)
+# [1] 5
+class(char_vector)
+# [1] "character"
+anyNA(char_vector)
+# [1] TRUE
+```
+When data is mixed, R tries to convert the data to what it thinks makes most sense.
+```{r}
+mixed <- c("True", TRUE)
+mixed 
+# [1] "True" "TRUE"
+#It has converted the logical to a character
+```
+
+Using as.datatype (as.logical, as.character, as.factor, etc) will make R try to force it to be the this data type.
+```{r}
+as.logical(mixed) 
+# [1] TRUE TRUE
+```
+
+## 2. Lists
+
+Lists are like vectors except that you can use multiple data types.  Make a list using the `list()` function.
+```{r}
+my_list <- list(1, "A", TRUE)
+my_list
+# [[1]]
+# [1] 1
+# 
+# [[2]]
+# [1] "A"
+# 
+# [[3]]
+# [1] TRUE
+
+```
+
+We can access a value of a list by referencing the index or by using the label.
+```{r}
+my_list[1]
+# [[1]]
+# [1] 1
+
+phonebook <- list(name="Gaius", phone="111-1111", age=27)
+phonebook["name"]
+# $name
+# [1] "Gaius"
+```
+
+
+## 3. Matrices
+
+Matrices are 2 dimensional structures that hold only one data type.  Using `ncol` and `nrow`, you can define its shape.  You can fill in the matrix by assigning to `data`.  By default, it fills in by column, but you can change this using the `byrow` argument.
+```{r}
+m <- matrix(nrow=2, ncol=3)
+m
+#      [,1] [,2] [,3]
+# [1,]   NA   NA   NA
+# [2,]   NA   NA   NA
+m <- matrix(data=1:6, nrow=2, ncol=3)
+m
+#      [,1] [,2] [,3]
+# [1,]    1    3    5
+# [2,]    2    4    6
+m <- matrix(data=1:6, nrow=2, ncol=3, byrow=TRUE)
+m
+#      [,1] [,2] [,3]
+# [1,]    1    2    3
+# [2,]    4    5    6
+```
+
+
+## 4. Data Frames 
+Data Frames are like matrices, but can hold multiple data types.  
+
+* **Vectors** are to **Lists** as  **Matrices** are to **Data Frames**
+* Remember the files we imported using `read_csv` and `read_delim`?  These are data frames.
+```{r}
+df <- data.frame(id=letters[1:10], x=1:10, y=11:20)
+df
+#    id  x  y
+# 1   a  1 11
+# 2   b  2 12
+# 3   c  3 13
+# 4   d  4 14
+# 5   e  5 15
+# 6   f  6 16
+# 7   g  7 17
+# 8   h  8 18
+# 9   i  9 19
+# 10  j 10 20
+
+class(df)
+# [1] "data.frame"
+
+typeof(df)
+# [1] "list"
+
+head(df)
+#   id x  y
+# 1  a 1 11
+# 2  b 2 12
+# 3  c 3 13
+# 4  d 4 14
+# 5  e 5 15
+# 6  f 6 16
+
+tail(df)
+#    id  x  y
+# 5   e  5 15
+# 6   f  6 16
+# 7   g  7 17
+# 8   h  8 18
+# 9   i  9 19
+# 10  j 10 20
+
+nrow(df)
+# [1] 10
+
+ncol(df)
+# [1] 3
+
+str(df)
+# 'data.frame':	10 obs. of  3 variables:
+#  $ id: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
+#  $ x : int  1 2 3 4 5 6 7 8 9 10
+#  $ y : int  11 12 13 14 15 16 17 18 19 20
+
+summary(df)
+ #       id          x               y        
+ # a      :1   Min.   : 1.00   Min.   :11.00  
+ # b      :1   1st Qu.: 3.25   1st Qu.:13.25  
+ # c      :1   Median : 5.50   Median :15.50  
+ # d      :1   Mean   : 5.50   Mean   :15.50  
+ # e      :1   3rd Qu.: 7.75   3rd Qu.:17.75  
+ # f      :1   Max.   :10.00   Max.   :20.00  
+ # (Other):4                                  
+
+names(df)
+# [1] "id" "x"  "y" 
+```
+
+
+# Factors
+
+Factors are very useful when running statistics, and also clog up memory less than character vectors.
+
+They do this by storing each unique value as an integer, which takes up less space in memory than characters in a string.  Then it references that integer to the corresponding string so that it is human readable.
+```{r}
+state <- factor(c("Arizona", "Colorado", "Arizona"))
+state
+# [1] Arizona  Colorado Arizona 
+# Levels: Arizona Colorado
+
+nlevels(state)
+# [1] 2
+
+levels(state)
+# [1] "Arizona"  "Colorado"
+```
+
+Factors by default don't actually have hierarchy.  That is to say, Arizona is not more or less than Colorado.  But sometimes we want factors to have hierarchy (e.g. low comes before medium comes before high).
+```{r}
+ratings <- factor(c("low", "high", "medium", "low"))
+ratings
+# [1] low    high   medium low   
+# Levels: high low medium
+```
+
+If we look for the minimum of the factors, we get an error because they are not ordered
+```{r}
+min(ratings) 
+# Error in Summary.factor(c(2L, 1L, 3L, 2L), na.rm = FALSE) : 
+  # ‘min’ not meaningful for fact
+```
+
+We can add an order by putting `ordered=TRUE` into the arguments of the `factor()` function.  Then when we run `min()`, it understands that "low" is the minimum value.  Notice that the Levels change to less than symbols, showing there is a hierarchy.
+```{r}
+ratings <- factor(ratings, levels=c("low", "medium", "high"), ordered=TRUE)
+levels(ratings)
+# [1] "low"    "medium" "high"  
+
+min(ratings)
+# [1] low
+# Levels: low < medium < high
+```
+
+When we run the `str()` function on a dataframe with factors, notice that it lists the type as a Factor and tells us how many levels it has.  Summary lists each factor level and tells us how many are in each group.
+```{r}
+survey <- data.frame(number=c(1,2,2, 1, 2), group=c("A", "B","A", "A", "B"))
+str(survey)
+# 'data.frame':	5 obs. of  2 variables:
+#  $ number: num  1 2 2 1 2
+#  $ group : Factor w/ 2 levels "A","B": 1 2 1 1 2
+
+summary(survey)
+ #     number    group
+ # Min.   :1.0   A:3  
+ # 1st Qu.:1.0   B:2  
+ # Median :2.0        
+ # Mean   :1.6        
+ # 3rd Qu.:2.0        
+ # Max.   :2.0        
+```
+
+A useful command to count how many values overlap is the `table()` function.  Here we see that 2 rows in the table have a `1` in the `number` column and an `A` in the `group` column, but there are 0 rows that have a `B` and a `1`.
+```{r}
+table(survey$number, survey$group)
+  #   A B
+  # 1 2 0
+  # 2 1 2
+```
+
+
+# EXERCISE
+
+Let's take another look at the gapminder dataset.
+
+```{r}
+str(gapminder)
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
+#  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+#  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+#  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+#  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+#  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+#  $ gdpPercap: num  779 821 853 836 740 ...
+```
+
+The `year` column is a integer class.  Change the `year` column to a factor and give it levels, such that 1952 < 1957 < 1962 < 1967 and so on.
+```{r}
+gapminder$year <- factor(gapminder$year, levels = c(1952, 1957, 1962, 1967, 1972, 1977 ,1982 ,1987 ,1992 ,1997 ,2002 ,2007), ordered = TRUE)
+class(gapminder$year)
+# [1] "ordered" "factor" 
+
+gapminder %>% select(year) %>% table() #BASE R: table(gapminder$year)
+# 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 2002 2007 
+#  142  142  142  142  142  142  142  142  142  142  142  142 
+```
+
+
+
+# R Markdown
+
+We often want to make our data presentable to bosses, collaborators, coworkers, or our future selves, and R has a way built in to do this.  An easy tool that you can implement in R Studio is something called an R Notebook.  It uses something called `Markdown` to tell the computer where to make text bigger, bold, or in a bullet list.
+
+We're going to just give you the basics of what you need to get started in R Markdown.  You can find more in the Resources section of the GitHub.
+
+## Creating an R Notebook
+
+Luckily, you can just choose **File > New File > R Notebook** and R Studio will automatically give you a template to start from.  Let's go through it.  The best thing about R Notebooks is that when you save the notebook, a formatted HTML file is automatically created for you!
+
+## YAML Header
+Every R Notebook or R Markdown file has a header called a YAML header.  This header has information like the title, the author, & options for outputting the document.  You can change anythng you want in this header and add more options if you need to later.
+
+## Output
+R Notebooks work best for outputting HTML files, but you can additionally output a PDF or other kinds of documents.  This takes some setup time, so we won't be covering it today, but if you need this functionality, Google is more than happy to help.
+
+## Links 
+You can add links directly to the Markdown document, but if you want text to link to a URL, you need to use the following syntax [Link Description](http://www.google.com)
+
+## Styling
+You can create a header with the number/hashtag symbol.  One is an H1 tag (the biggest), and each additional `#` you use will make a subheading.
+
+You can also make things *italic* or **bold** by putting 1 asterisk `*` or 2 asterisks `**` around the phrase with no spaces between the asterisk and the letters.
+
+## Lists
+* If you want an unordered/bullet list, you can do so by putting 1 asterisk `*` at the beginning of the line.
+    + If you need to add another level, place a 4-space indent and then a `+`.
+    
+1. For ordered lists, just put the number, a period, and a space
+    + Again, a `+` can be used to add another level to the list.
+    
+## Code Chunks
+
+This is the meat of your document.  Everything else will be output as a stylish HTML document, but we still want the code!  You can do this by creating a `Code Chunk`.  You will need to use three backticks (found under the tilda at the top left of your keyboard, under the Esc key).
+
+You can also add a chunk by pressing `Ctrl+Alt+i` or by clicking Insert > R above your script window. 
+
+The beginning of an R chunk starts with ` ```{r} ` and R knows that you are done writing code when you place three backticks at the end of the chunk (You can see this in the files given in the GitHub Repo).
+
+There are additional options you can add to the code chunk, separated by commas.  The most popular are:
+
+* echo - if set to FALSE, your code will be run but the output will not shown in the document
+* eval - if set to FALSE, your code will be shown but not run in the document
+
+For more, check out the resources on the Github repo.
+
+
+
