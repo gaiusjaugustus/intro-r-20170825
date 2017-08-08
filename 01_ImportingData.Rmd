@@ -3,7 +3,7 @@ title: "What is R?"
 output: 
      html_notebook:
           toc: true
-
+          toc_float: true
 ---
 
 # What is R? 
