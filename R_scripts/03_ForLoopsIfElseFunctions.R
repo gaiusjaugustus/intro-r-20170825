@@ -137,6 +137,69 @@ sapply(1:3, function(x) x^2)
 lapply(1:3, function(x) x^2)
 # similar to sapply, but returns a list
 
+#<< If else statments >>---------------------------------------------------------------
+
+#--If statments -------------
+# When coding sometimes you want a particular function to be applied if a condition
+# is true and sometimes a different function if it is not. To do this you need to use
+# an if or if...else statment
+
+# In a simple if statment, a function is executed if the test expression is true
+# while it is ignored entirely if it is false
+
+x <- 5
+if (x > 0) {
+     print('Positive number')
+}
+
+# Lets try this with the gapminder dataset. 
+# The world mean life expectancy is 71.5 years. Lets have a 'Greater than avg.' statment
+# returned if the value within the 'lifeExp' col exceeds that.
+for(x in gapminder$lifeExp){
+     if(x > 71.5){
+          print(paste0(x, ' is greater than avg.'))
+     }
+}
+
+# [1] "72 is greater than avg."
+# [1] "71.581 is greater than avg."
+# [1] "72.95 is greater than avg."
+# [1] "75.651 is greater than avg."
+
+#--If...else statment ---------------
+
+# The basic syntax is 
+# if (test_expression) {
+# statement1
+# } else {
+#      statement2
+# }
+
+# Here the else statement2 is only used if the first test expression is false, if the 
+# first test expression is true then statement1 will be run
+
+x <- -5
+if(x > 0) {
+     print('Positive number')
+} else {
+     print('Negative number')
+}
+
+# [1] "Negative number"
+
+# You can nest as man if...else statments as you want.
+
+x <- 0
+if(x > 0) {
+     print('Positive number')
+} else if (x < 0) {
+     print('Negative number')
+} else {
+     print('Zero')
+}
+
+# [1] "Zero"
+
 #<< Functions >> ----------------------------------------------------------------------
 # Functions are a piece of code written to carry out a specified task; they allow you
 # to incorporate sets of instructions that you want to use mutliple times or, if you
