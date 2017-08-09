@@ -125,6 +125,7 @@ for(number in 1:length(Objects)){
 }
 
 ObjectMinusOne
+# [1] 0 1 2
 ```
 
 
