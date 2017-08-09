@@ -6,11 +6,8 @@ dat.dir <- '~/Documents/2017Fall/Software_carpentry_workshop/intro-r-20170825/da
 
 #--Read in mammals data frame from yesterday
 library(readr)
-mammals <- read_delim(file = paste0(dat.dir,'01_mammals.txt'), 
-                      delim = "\t", escape_double = FALSE, trim_ws = TRUE)
-
 #--Raed in gapminder data frame from yesterday
-gapminder <- read_delim(paste0(dat.dir, '02_gapminder.txt'),
+gapminder <- read_delim(paste0(dat.dir, 'gapminder.txt'),
                         delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 
 #<< For Loops >>------------------------------------------------------------------------
@@ -80,15 +77,15 @@ for(c in unique(gapminder$continent)){
 
 # Tutorial: https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.qC44Rnc
 
-apply(mammals[c(2:3)], 2, function(x) mean(x))
+apply(gapminder[c(4:5)], 2, function(x) mean(x))
 # In this function, we are applying the function mean() to the 2nd and 3rd column of
 # the mammals data frame
 # The second argument, 2, refers to columns; passing a 1 would reference rows
 # This applies the function to each column giving us a column mean
 
 # pass multiple functions using {} or c()
-apply(mammals[c(2:3)],2, function(x) { log(mean(x)) * 3})
-apply(mammals[c(2:3)],2, function(x) c(min(x), max(x), mean(x), sd(x)))
+apply(gapminder[c(4:5)],2, function(x) { log(mean(x)) * 3})
+apply(gapminder[c(4:5)],2, function(x) c(min(x), max(x), mean(x), sd(x)))
 
 # apply can even be used in conjunction with loops
 for(c in unique(gapminder$continent)){
@@ -209,11 +206,21 @@ if(x > 0) {
 # when you read your script you can immediately tell what the code will do.
 
 # Without that your code would look like this:
-sum(mammals$brain)/nrow(mammals)
-mean(mammals$brain)
+sum(gapminder['lifeExp'])/nrow(gapminder)
+mean(gapminder$lifeExp)
 
 # Let's build our own function
-# We are going to make a function that will
+# We are going to make a function that will calculate the means as above:
+
+my_mean <- function(data,col){
+     mean <- sum(data[col])/nrow(data)
+     return(mean)
+}
+
+my_mean(gapminder,'lifeExp')
+my_mean(gapminder, 'gdpPercap')
+
+# Let's build a new function that will convert a temperature in fahrenheit to kelvin:
 
 fahr_to_kelvin <- function(temp){
      kelvin <- ((temp -32) * (5/9) + 273.15)
