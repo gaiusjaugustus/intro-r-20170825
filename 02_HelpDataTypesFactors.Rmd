@@ -1,5 +1,5 @@
 ---
-title: "02 - Help, Data Types, and Factors"
+title: "02 - Your programming dreams: Help, Data Types, and Factors"
 output: 
      html_notebook:
           toc: true

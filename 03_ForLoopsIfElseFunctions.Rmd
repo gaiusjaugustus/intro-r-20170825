@@ -1,0 +1,413 @@
+---
+title: "03 - Automating the automatron: For loops, if else, and functions"
+output: 
+     html_notebook:
+          toc: true
+          toc_float: true
+---
+
+Let's get started by making sure our working directory is correct.
+```{r}
+getwd() # Are you in your Home directory?  If so, run the next line of code
+
+setwd("r-intro-20170825")
+```
+
+
+And we'll use the `mammals` and `gapminder` datasets from yesterday, so let's import that into R again.
+```{r}
+library(readr)
+
+mammals <- read_delim(file = 'datasets/01_mammals.txt', 
+                      delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+
+gapminder <- read_delim(file = 'datasets/02_gapminder.txt',
+                        delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+```
+
+
+
+# For Loops 
+
+Sometimes you'll want to apply the same function call to a collection of objects.  For instance, say you want the avg. life expectance for each continent.  To do that normally, we would do something like the following:
+
+```{r}
+library(dplyr)
+cont <- "Africa"
+# Base R
+life.min <- min(gapminder[gapminder$continent == cont, 'lifeExp'])
+life.max <- max(gapminder[gapminder$continent == cont, 'lifeExp'])
+print(paste0('The life expectancy in ',cont,' is ',life.min,' to ',life.max))
+
+# Dplyr
+life.min <- gapminder %>% filter(continent == cont) %>% select(lifeExp) %>% min()
+life.max <- gapminder %>% filter(continent == cont) %>% select(lifeExp) %>% max()
+print(paste0('The life expectancy in ',cont,' is ',life.min,' to ',life.max))
+```
+
+And we would have to run these three lines of code for each continent.
+
+We can have R do this automatically for us for a collection of objects.  Here, the collection of objects is the list of continents.
+
+We can get the list of continents with a call to `unique` or using `distinct` in dplyr, which will pick out the distinct values from a vector.
+```{r}
+# Base R
+unique(gapminder$continent)
+
+
+# dplyr
+gapminder %>% select(continent) %>% distinct()
+```
+**Note**: The dplyr way creates a data.frame whereas the base R way creates a vector.
+
+We can loop through these one at a time and do the same thing as before, using the following syntax:
+
+```
+for( placeholder in collectionOfObjects){
+     DoSomeTask
+}
+```
+
+Below, `cont` is a placeholder.  We could put anything in this placeholder that we want.  It's just something that we can refer to in the body of the for loop.  We are taking each element in `unique(gapminder$continent)` and assigning it to this placeholder, `cont`.
+```{r}
+for(cont in unique(gapminder$continent)){
+     life.min <- min(gapminder[gapminder$continent == cont, 'lifeExp'])
+     life.max <- max(gapminder[gapminder$continent == cont, 'lifeExp'])
+     print(paste0('The life expectancy in ',cont,' is ',life.min,' to ',life.max))
+}
+
+# [1] "The life expectancy in Asia is 28.801 to 82.603"
+# [1] "The life expectancy in Europe is 43.585 to 81.757"
+# [1] "The life expectancy in Africa is 23.599 to 76.442"
+```
+
+
+# Nesting for loops
+
+You can nest for loops as well!  Here for each value of `cont `(a.k.a each value of `unique(gapminder$continent)`), we will also loop through each value of `yr` (a.k.a `unique(gapminder$year)`).
+
+```{r}
+for(cont in unique(gapminder$continent)){
+     for(yr in unique(gapminder$year)){
+          life.min <- min(gapminder[gapminder$continent == cont & gapminder$year == yr,
+                                    'lifeExp'])
+          life.max <- max(gapminder[gapminder$continent == cont & gapminder$year == yr,
+                                    'lifeExp'])
+          print(paste0('The life expectancy in ',yr,' in ',cont,' is ',
+                       life.min,' to ',life.max))
+     }
+}
+
+# [1] "The life expectancy in 1952 in Asia is 28.801 to 65.39"
+# [1] "The life expectancy in 1957 in Asia is 30.332 to 67.84"
+# ...
+# [1] "The life expectancy in 1952 in Africa is 30 to 52.724"
+# [1] "The life expectancy in 1957 in Africa is 31.57 to 58.089"
+```
+
+
+
+# Limitations of for loops
+
+For loops are very usefule for certain data types, but at times can become very slow. Below are some rules for using for loops as opposed to apply functions (which we are going to talk about next).
+
+1. Don't use a loop when a vectorized alternative already exists
+2. Don't grow objects (via `c`, `cbind`, etc) during the loop
+3. Allocate an object to hold the results and fill it in during the loop
+
+An example of this:
+```{r}
+Objects <- c(1, 2, 3)
+ObjectMinusOne <- c() #you could also do ObjectMinusOne <- vector(mode="numeric", length=3)
+
+for(number in 1:length(Objects)){
+     ObjectMinusOne[number] <- Objects[number]-1
+}
+
+ObjectMinusOne
+```
+
+
+# apply function family
+
+An alternative to for loops is the apply family of functions
+
+* apply: apply over the margins of an array (e.g. the rows or col. of a matrix)
+* lapply: apply over an object and return a list
+* sapply: apply over an object and return a simplified object 
+* vapply: similar to sapply but you specify the type of object returned by the iterations
+
+Each of these has an argument `FUN` which takes a function to apply to each element of the object.
+```{r}
+apply(X = mammals[c(2:3)], MARGIN = 2, FUN = function(x) mean(x))
+```
+
+Just so you know, when we give it arguments in the order it expects, we don't need to tell it which argument is which.  So in this case, we can easily just do:
+```{r}
+apply(mammals[c(2:3)], 2, function(x) mean(x))
+
+#     body    brain 
+# 198.7900 283.1342 
+```
+
+In this function, we are applying the function mean() to the 2nd and 3rd column of the mammals data frame The second argument, 2, refers to columns; passing a 1 would reference rows This applies the function to each column giving us a column mean.
+
+The `function(x) mean(x)` call is called an anonymous function.  We'll talk about custom functions later, but an anonymous function is just a function that is called and immediately used, as opposed to a function that we save in a variable and then call later.
+
+We can also pass multiple functions using {} or c()
+```{r}
+apply(mammals[c(2:3)],2, function(x) { log(mean(x)) * 3})
+#     body    brain 
+# 15.87675 16.93776 
+
+apply(mammals[c(2:3)],2, function(x) c(min(x), max(x), mean(x), sd(x)))
+#          body     brain
+# [1,]    0.005    0.1400
+# [2,] 6654.000 5712.0000
+# [3,]  198.790  283.1342
+# [4,]  899.158  930.2789
+```
+
+
+apply can even be used in conjunction with loops.
+```{r}
+for(c in unique(gapminder$continent)){
+     for(y in unique(gapminder$year)){
+          c.y <- apply(gapminder[gapminder$continent == c & gapminder$year == y,
+                                 'lifeExp'], 2, function(x) c(min(x), max(x)))
+          print(c(c,y,c.y))
+          
+     }
+}
+
+# [1] "Asia"   "1952"   "28.801" "65.39" 
+# [1] "Asia"   "1957"   "30.332" "67.84" 
+# [1] "Asia"   "1962"   "31.997" "69.39" 
+# [1] "Asia"  "1967"  "34.02" "71.43"
+# [1] "Asia"   "1972"   "36.088" "73.42" 
+# [1] "Asia"  "1977"  "31.22" "75.38"
+# ...
+# [1] "Oceania" "1987"    "74.32"   "76.32"  
+# [1] "Oceania" "1992"    "76.33"   "77.56"  
+# [1] "Oceania" "1997"    "77.55"   "78.83"  
+# [1] "Oceania" "2002"    "79.11"   "80.37"  
+# [1] "Oceania" "2007"    "80.204"  "81.235" 
+```
+
+Let's look at how much time the apply function takes versus solely using a for loop
+
+```{r}
+# apply function
+system.time(for(c in unique(gapminder$continent)){
+     for(y in unique(gapminder$year)){
+          c.y <- apply(gapminder[gapminder$continent == c & gapminder$year == y,
+                                 'lifeExp'], 2, function(x) c(min(x), max(x)))
+          print(c(c,y,c.y))
+          
+     }
+})
+# user    system  elapsed 
+# 0.101   0.008   0.107 
+
+# for loop
+system.time(for(c in unique(gapminder$continent)){
+     for(y in unique(gapminder$year)){
+          life.min <- min(gapminder[gapminder$continent == c & gapminder$year == y,
+                                    'lifeExp'])
+          life.max <- max(gapminder[gapminder$continent == c & gapminder$year == y,
+                                    'lifeExp'])
+          print(paste0('The life expectancy in ',y,' in ',c,' is ',
+                       life.min,' to ',life.max))
+     }
+})
+# user    system  elapsed 
+# 0.159   0.012   0.169 
+```
+
+
+# The other apply functions
+
+The other apply functions work similarly, but take different inputs and change how the output looks.
+
+lapply returns a list.  Here we ask it to square each number from 1 to 3.
+```{r}
+lapply(1:3, function(x) x^2)
+# [[1]]
+# [1] 1
+# 
+# [[2]]
+# [1] 4
+# 
+# [[3]]
+# [1] 9
+```
+
+sapply is similar, but notice that it returns a vector instead of a list.
+```{r}
+sapply(1:3, function(x) x^2)
+# [1] 1 4 9
+```
+**Note:** Passing argument `simplify = F`; would return a list (same output as lapply)
+
+
+
+# If else statments
+
+## If statments  
+
+When coding sometimes you want a particular function to be applied if a condition is true and sometimes a different function if it is not. To do this you need to use an if or if...else statment
+
+In a simple if statment, a function is executed if the test expression is true while it is ignored entirely if it is false.
+
+```{r}
+x <- 5
+if (x > 0) {
+     print('Positive number')
+}
+# [1] "Positive number"
+```
+
+Here, `x > 0` is `TRUE`, so the if statement is executed, and the statement is printed.
+
+
+Let's try this with the gapminder dataset. The world mean life expectancy is 71.5 years. 
+```{r}
+gapminder %>% select(lifeExp) %>% summarize(mean = mean(lifeExp))
+
+# 59.47444
+
+meanLifeExp <- mean(gapminder$lifeExp)
+```
+
+
+Let's have a `'Greater than avg.'` statment returned if the value within the 'lifeExp' col exceeds that.
+```{r}
+for(x in gapminder$lifeExp){
+     if(x > meanLifeExp){
+          print(paste0(x, ' is greater than avg.'))
+     }
+}
+
+# [1] "72 is greater than avg."
+# [1] "71.581 is greater than avg."
+# [1] "72.95 is greater than avg."
+# [1] "75.651 is greater than avg."
+```
+
+
+
+## If...else statment 
+
+The basic syntax is 
+
+```
+if (test_expression) {
+ statement1
+ } else {
+      statement2
+ }
+```
+
+
+Here the else statement2 is only used if the first test expression is false, if the first test expression is true then statement1 will be run.
+
+```{r}
+x <- -5
+if(x > 0) {
+     print('Positive number')
+} else {
+     print('Negative number')
+}
+
+# [1] "Negative number"
+```
+
+Here, `x >0` is `FALSE`, so the if statement is not executed and instead the else statement is executed.
+
+
+You can nest as many if...else statments as you want.
+```{r}
+x <- 0
+if(x > 0) {
+     print('Positive number')
+} else if (x < 0) {
+     print('Negative number')
+} else {
+     print('Zero')
+}
+
+# [1] "Zero"
+```
+
+
+
+# Functions
+
+A functions is a piece of code written to carry out a specified task; they allow you to incorporate sets of instructions that you want to use mutliple times or, if you have a complex set of instructions, keep it together within a small program.
+
+For example, the base R function `mean()` gives you a simple way to get an average; when you read your script you can immediately tell what the code will do.
+
+Without that your code would look like this:
+```
+sum(mammals$brain)/nrow(mammals)
+mean(mammals$brain)
+```
+
+But we can also build our own functions to do things over and over again.  Generally, if you have to do a task more than 3 times, it's generally better to go ahead and create a custom function.
+
+The general syntax of a function is:
+```
+NameOfFunction <- function(Arguments){
+     body
+}
+```
+
+Let's build our own function.  We are going to make a function that will convert a temperature from Fahrenheit to Kelvin.
+
+```{r}
+fahr_to_kelvin <- function(temp){
+     kelvin <- ((temp -32) * (5/9) + 273.15)
+     return(kelvin)
+}
+```
+
+Functions can only return 1 thing.  This means that the last thing you return in a function is what is output.  In order to have the output returned, we have to use return.  This sends results outside of the function otherwise we see no output.
+
+**Note:** When you run the code above, you won't see any output.  That's because we've only saved the function.  Just like `mean()`, if you run it without any arguments, you'll get an error.
+```{r}
+mean()
+# Error in mean.default() : argument "x" is missing, with no default
+```
+
+The function we created has one argument (`temp`) and we assigned that function a name `fahr_to_kelvin`.  This name is what we can use to call the function, just like we would call `mean()`.  
+The body of the function, between the {}, is what the function actually does.
+
+When we call this function, the value we input is assigned to the object `temp` and is fed through the code within the body.
+```{r}
+fahr_to_kelvin(32)
+# [1] 273.15
+
+fahr_to_kelvin(212)
+# [1] 373.15
+```
+
+# EXERCISE
+
+Create a function called Average that calculates the average of 2 numbers.  Don't forget to check your work. 
+```{r}
+Average <- function(Number1, Number2){
+     (Number1 + Number2) / 2
+}
+
+Average(1,2)
+# [1] 1.5
+Average(50, 100)
+# [1] 75
+```
+
+
+
+# References
+
+1. Script created as part of Software carpentry workshop on basic R code. August 26-27, 2017 at the University of Arizona. http://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/
+2. Tutorial: https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.qC44Rnc
