@@ -425,3 +425,7 @@ For more, check out the resources on the Github repo.
 
 
 
+Lesson Created by:
+
+* [Gaius Augustus](http://www.gaiusjaugustus.com)
+* Elizabeth Bowman
