@@ -18,10 +18,11 @@ This repository acts as a companion for the R programming portion of the  Softwa
      * [If/Else Statements](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#if-else-statments)
      * [Writing Functions](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#functions)
 * [Day 2 Part 4: Making pretties](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd)
-     * ggplot2 basics
-     * Scatterplots
-     * Histograms
-     * Boxplots
+     * [ggplot2 basics](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#functions)
+     * [Scatterplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#scatterplots)
+     * [Histograms](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#histogram)
+     * [Boxplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#boxplot)
+     * [Barplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#barplot)
 
 
 # Let's do this!!!!
