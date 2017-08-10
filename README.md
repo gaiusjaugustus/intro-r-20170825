@@ -4,7 +4,7 @@ This repository acts as a companion for the R programming portion of the  Softwa
 
 # Start Your Exciting R Adventure Here!
 
-Please do the following to prepare for the R portion of the workshop.  
+Every adventure starts with getting the supplies you need.  To prepare for the R portion of the workshop, you'll need to get the data we'll be using and some fancy addons to R!  
 
 ## 1. Clone the repo one of 2 ways
 
@@ -22,8 +22,7 @@ There are two ways to do this, the first using the command line.
 
 ## Unzip the repo
 
-1. In your **Terminal** (Mac) or **Git Bash** (Windows), type `cd` and press `Enter`.  This takes you back to your home directory.
-2. Identify your **home directory** on the command line (`pwd` to find your present working directory) 
+1. Open **R Studio**.  You should see a box labelled `Console`, and there should be a `>` at the beginning of the line where you can type.  Type `getwd()` and `Enter` to find the directory you want to put the data into.  **Teaser:** This is the R equivalent of `pwd` in Unix.
 3. On the [main page of the repo](https://github.com/gaiusjaugustus/intro-r-20170825), press the green button that says **Clone or download**.
 4. Click the **Download Zip** link and download the file.
 5. **Unzip the downloaded archive** into your home directory (that you identified in step 2).
