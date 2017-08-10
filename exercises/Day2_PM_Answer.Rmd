@@ -3,10 +3,17 @@ title: "Gaius's Notebook"
 output: html_notebook
 ---
 
-# Read in data set
+Import necessary packages
 ```{r}
 library(readr)
-gapminder <- read_delim("datasets/02_gapminder.txt", delim="\t", trim_ws = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+
+# Read in data set
+```{r}
+gapminder <- read_delim("../datasets/gapminder.txt", delim="\t", trim_ws = TRUE)
 ```
 
 # Explore gapminder dataset
@@ -26,13 +33,61 @@ str(gapminder)
 head(gapminder)
 ```
 
-## Which country has the highest gdp per cap
+## Which country has the highest gdp per cap and in what year?
 
 ```{r}
-gapminder %>% filter(gdpPercap == max(gdpPercap))
+gapminder %>% filter(gdpPercap == max(gdpPercap)) %>% select(country, year)
 ```
 
 * Kuwait had the highest gdp per cap in 1957.
+
+## Make a new column that has the gdp   
+We need to multiply `gdpPercap` by `pop` to do this. Don't forget to save it into a new variable so we don't alter the original data (a big no-no).
+```{r}
+gapminder2 <- gapminder %>% mutate(gdp = gdpPercap * pop)
+gapminder2 %>% head()
+```
+
+
+# Loops & if else
+
+Let's use loops and if else statements to add a column to `gapminder2`.  We want to find out if each row's population (`pop`) is above the mean, below the mean, or at the mean.
+
+1. First, you'll need to initiate the column, called `RelationToMeanPop`, preferably with `NA`s.
+
+```{r}
+gapminder2$RelationToMeanPop <- NA
+```
+
+2. **for** each `row` of `1:nrow(gapminder2)`
+3. **if** `gapminder2$pop[row] > mean(gapminder2$pop)`, assign `Above` to `gapminder2$RelationToMeanPop[row]` 
+4. **else if** `gapminder2$pop[row] < mean(gapminder2$pop)`, assign `Below` to `gapminder2$RelationToMeanPop[row]`
+5. **else if** `gapminder2$pop[row] == mean(gapminder2$pop)`, assign `At` to `gapminder2$RelationToMeanPop[row]`
+6. **else** go to the next loop using `next`.
+
+```{r}
+for(row in 1:nrow(gapminder2)){
+     if (gapminder2$pop[row] > mean(gapminder2$pop)){
+          gapminder2$RelationToMeanPop[row] <- "Above"
+     } else if (gapminder2$pop[row] < mean(gapminder2$pop)){
+          gapminder2$RelationToMeanPop[row] <- "Below"
+     } else if (gapminder2$pop[row] == mean(gapminder2$pop)){
+          gapminder2$RelationToMeanPop[row] <- "At"
+     } else {
+          next
+     }
+}
+```
+
+7. Use `table(gapminder2$RelationToMeanPop)` to find out how many fit into each group.
+
+```{r}
+table(gapminder2$RelationToMeanPop)
+# Above Below 
+#   307  1397
+```
+
+
 
 # Plots
 
@@ -53,3 +108,4 @@ ggplot(gapminder, aes(x=continent, y=gdpPercap, fill=continent)) + geom_boxplot(
 * African countries have the lowest gross domestic product
 * Countries in Oceanian has the highest gdp
 * Asia in general has low gdps, but has outliers that are very high.
+

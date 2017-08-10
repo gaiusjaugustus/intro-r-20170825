@@ -8,5 +8,8 @@ For this final project, we are going:
 
 * Setup a new git repo in R
 * Sync it to a Github Repo
-* Recreate an R Markdown document where we'll do an exploratory data analysis on the gapminder dataset
+* Recreate an R Markdown document where we'll 
+    + Explore the gapminder dataset
+    + Create some data using loops and if else statements
+    + Make some pretty plots to explore the data
 * Commit changes and push to Github
