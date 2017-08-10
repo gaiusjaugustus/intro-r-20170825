@@ -6,6 +6,8 @@ This repository acts as a companion for the R programming portion of the  Softwa
 
 Every adventure starts with getting the supplies you need.  To prepare for the R portion of the workshop, you'll need to get the data we'll be using and some fancy addons to R!  
 
+![](plots/tools.jpg)
+
 ## 1. Clone the repo one of 2 ways
 
 ## Using git
@@ -60,6 +62,15 @@ install.packages(c("knitr", "scales", "ggthemes", "tidyverse", "readxl"))
      * [Histograms](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#histogram)
      * [Boxplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#boxplot)
      * [Barplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#barplot)
+* Day 2 Part 5: Sharing is caring
+    * How to start a git repo in RStudio
+    * How to push that repo to GitHub
+* Dat 2 Part 6: Become a Jedi Master (or at least get more experience in writing R code)
+    * Create an R Notebook
+    * More advanced loops
+    * More advanced plots
+    * Get it all up onto GitHub
+    * GitHub Pages so everyone can see your work
 
 # A little help from our friends...
 
@@ -68,5 +79,6 @@ If you want more help, check out the [resource list](https://github.com/gaiusjau
 
 # Your R instructors
 
-* [Gaius Augustus](http://www.gaiusjaugustus.com)
-* Elizabeth Bowman
+
+| [Gaius Augustus](http://www.gaiusjaugustus.com) | ![](plots/gaius.jpg) |
+| Elizabeth Bowman                                |                      |
