@@ -1,6 +1,9 @@
 ---
-title: "What is R?"
-output: html_notebook
+title: "01 - First baby steps: R, Importing Data, and Manipulating Data"
+output: 
+     html_notebook:
+          toc: true
+          toc_float: true
 ---
 
 # What is R? 
@@ -121,21 +124,50 @@ x+y
 
 # Reading in Data
 
+## Where are we?
+
+Before we can read data into R, we need to know where we are on our computer.  Just like the command line's `pwd` command, R has a command called `getwd()`.  Notice that it returns the absolute path to your home directory.
+```{r}
+getwd()
+# [1] "C:/Users/gaugustus/Documents/Rdocs/"
+```
+
+You can point to files from anywhere on the computer RELATIVE to your current position.  If you need to change this working directory, such as to go into the new `r-intro-20170825` folder you got from GitHub, you can do so with `setwd()`.  Let's try this.  Make sure you put the path in quotes.
+
+You can use tab complete in R Studio, so once you open the quotes, press tab to see all the files and directories listed for you.  If you type a letter, that list will shorten.
+
+```{r}
+setwd("r-intro-20170825")
+getwd()
+# [1] "C:/Users/gaugustus/Documents/Rdocs/r-intro-20170825"
+```
+
+
+
+## Read in using readr package   
+
 To import a dataset, follow pop-ups from the Environment tab;
-Import Dataset From CSV
+Import Dataset > From CSV...
 
 Once you've decided on your options, you'll see the code at the bottom right tells you how you can code that yourself:
 
 ```{r}
+<<<<<<< HEAD
 install.packages('readr')
 library(readr)
 gapminder <- read_delim(file = "~/Documents/Rdocs/r-intro-20170825/datasets/gapminder.txt", 
+=======
+#install.packages('readr') #uncomment this line if you have not installed readr
+
+library(readr)
+mammals <- read_delim(file = "datasets/01_mammals.txt", 
+>>>>>>> origin/master
     delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 View(gapminder)
 ```
 
 
-By default, you'll see that a `library` command is set.  The `library` command allows us to add on to the basic features of R.  In other words, we can add functionality to make our lives easier.  In this case, we are getting the `readr` package.  This is part of a suite of packages we'll be discussing called the `tidyverse`.
+By default, you'll see that a `library` command is set.  The `library` command allows us to add on to the basic features of R (also called base R).  In other words, we can add functionality to make our lives easier.  In this case, we are getting the `readr` package.  This is part of a suite of packages called the `tidyverse`.
 
 More on those options;
 
@@ -155,6 +187,35 @@ After successfully reading in the data;
 * The environment now includes a mammals object – or whatever you called the data read from file
 * A copy of the data can be examined in the Excel-like data viewer – if it looks weird, find out why & fix it!
 
+## Read in Data with base R 
+
+You can also read in data using base R like so:
+
+```{r}
+mammals2 <- read.csv(file = "datasets/01_mammals.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
+
+mammals == mammals2
+#       Animal body brain
+#  [1,]   TRUE TRUE  TRUE
+#  [2,]   TRUE TRUE  TRUE
+#  [3,]   TRUE TRUE  TRUE
+#  [4,]   TRUE TRUE  TRUE
+#  [5,]   TRUE TRUE  TRUE
+#  [6,]   TRUE TRUE  TRUE
+#  [7,]   TRUE TRUE  TRUE
+#  [8,]   TRUE TRUE  TRUE
+#  [9,]   TRUE TRUE  TRUE
+# [10,]   TRUE TRUE  TRUE
+# [11,]   TRUE TRUE  TRUE
+# [12,]   TRUE TRUE  TRUE
+# [13,]   TRUE TRUE  TRUE
+# [14,]   TRUE TRUE  TRUE
+# [15,]   TRUE TRUE  TRUE
+# [16,]   TRUE TRUE  TRUE
+# ...
+```
+
+We check to see if every value is equal between the dataset we read in using `readr` and the one we read in using base `R`, and see that they are the same.
 
 # How to name my data
 
@@ -313,7 +374,7 @@ Use `str()` to look at the structure of the dataframe and `summary()` to get inf
 
 
 ```{r}
-gapminder <- read_delim("~/Documents/Rdocs/r-intro-20170825/datasets/02_gapminder.txt", 
+gapminder <- read_delim("datasets/02_gapminder.txt", 
     "\t", escape_double = FALSE, trim_ws = TRUE)
 
 str(gapminder)

@@ -77,7 +77,11 @@ for(c in unique(gapminder$continent)){
 
 # Tutorial: https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.qC44Rnc
 
+<<<<<<< HEAD
 apply(gapminder[c(4:5)], 2, function(x) mean(x))
+=======
+apply(mammals[c(2:3)], 2, function(x) mean(x))
+>>>>>>> origin/master
 # In this function, we are applying the function mean() to the 2nd and 3rd column of
 # the mammals data frame
 # The second argument, 2, refers to columns; passing a 1 would reference rows
@@ -206,6 +210,7 @@ if(x > 0) {
 # when you read your script you can immediately tell what the code will do.
 
 # Without that your code would look like this:
+<<<<<<< HEAD
 sum(gapminder['lifeExp'])/nrow(gapminder)
 mean(gapminder$lifeExp)
 
@@ -221,6 +226,13 @@ my_mean(gapminder,'lifeExp')
 my_mean(gapminder, 'gdpPercap')
 
 # Let's build a new function that will convert a temperature in fahrenheit to kelvin:
+=======
+sum(mammals$brain)/nrow(mammals)
+mean(mammals$brain)
+
+# Let's build our own function
+# We are going to make a function that will
+>>>>>>> origin/master
 
 fahr_to_kelvin <- function(temp){
      kelvin <- ((temp -32) * (5/9) + 273.15)
