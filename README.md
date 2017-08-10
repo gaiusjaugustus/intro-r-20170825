@@ -79,6 +79,8 @@ If you want more help, check out the [resource list](https://github.com/gaiusjau
 
 # Your R instructors
 
+![](plots/gaius.jpg)
+[Gaius Augustus](http://www.gaiusjaugustus.com)
 
-| [Gaius Augustus](http://www.gaiusjaugustus.com) | ![](plots/gaius.jpg) |
-| Elizabeth Bowman                                |                      |
+
+Elizabeth Bowman
