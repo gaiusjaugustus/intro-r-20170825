@@ -36,7 +36,7 @@ plot(iris$Sepal.Length, iris$Petal.Length)
 
 ```
 
-![Empty Plot](plots/plot-1.png)
+![scatterplot](plots/plot-1.png)
 
 We see a scatterplot that shows there is a positive association between sepal and petal length. To add a linear regression line, you would need to use two commands abline() and lm(). lm() is used to fit linear models and uses the arguments lm(y ~ x), while abline will actually fit a line to the most recent plot. Let’s try it out.
 
@@ -53,7 +53,7 @@ Plot will default to a scatterplot, but if you want a histogram then you need to
 plot(iris$Sepal.Length, type = 'h')
 ```
 
-![](plots/plot-3.png)
+![histogram](plots/plot-3.png)
 
 To make a boxplot, you can use the function boxplot(x ~ y, data = dataframe). Let’s plot sepal length as a function of species.
 
@@ -61,6 +61,7 @@ To make a boxplot, you can use the function boxplot(x ~ y, data = dataframe). Le
 boxplot(Sepal.Length ~ Species, data = iris)
 ```
 ![boxplot](plots/plot-4.png)
+
 If you ever want to change what order the categories on the x-axis are displayed in you would need to order the factor levels of that column.
 
 Plotting in base R can be flexible and you can actually do a lot with it, but many people find ggplot more user friendly and easier to learn. Let’s move on and learn how to do these plots using the ggplot package. Whichever you decide to use, there is a lot of help online if you need it.
@@ -77,6 +78,7 @@ ggplot(data = iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point()
 ```
 ![First ggplot](plots/ggplot-1.png)
 
+
 ggplot2 works on the idea that every plot has three essential elements:
 
 | Element    | Description                            |
@@ -89,11 +91,12 @@ In other words, we have the dataset, the space onto which we will plot our data 
 
 ggplot2 makes this a little more comprehensive by adding the following:
 
-Element | Description
-Facets | Plotting small multiples.
-Statistics | Representations of our data to aid understanding.
-Coordinates | The space on which the data will be plotted.
-Themes | All non-data ink.
+| Element     | Description                                       |
+| ----------- | ------------------------------------------------- |
+| Facets      | Plotting small multiples.                         |
+| Statistics  | Representations of our data to aid understanding. |
+| Coordinates | The space on which the data will be plotted.      |
+| Themes      | All non-data ink.                                 |
 
 # Examples of Plots with these elements
 
@@ -124,13 +127,15 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width, color=Species)) +
 ggplot(iris, aes(x=Species, y=Sepal.Width, fill=Species)) +
      geom_boxplot(alpha=0.6, width=0.5) + 
      theme_dark()
-('./plots/ggplot-5.png')
+```
+![Dark theme](plots/ggplot-5.png)
 
+```{r}
 ggplot(iris, aes(x=Species, y=Sepal.Width, fill=Species)) +
      geom_boxplot(alpha=0.6, width=0.5) + 
      theme_light()
-('./plots/ggplot-6.png')
 ```
+![Light theme](plots/ggplot-6.png)
 
 
 # ggplot2 is expansive
@@ -148,8 +153,9 @@ ggplot(iris, aes(x=Species, y=Sepal.Width)) +
            plot.title = element_text(size = 24, hjust = 0.5),
            axis.text = element_text(size=13, color = "black")) +
      scale_fill_manual(values = c("#3A9276","#F14705","#4F68A1")) 
-('./plots/ggplot-7.png')
 ```
+![Advanced iris plot](plots/ggplot-7.png)
+
 
 Another example of a more traditional publication ready plot. [Reference](https://guangchuangyu.github.io/)
 ```{r}
@@ -173,9 +179,8 @@ ggplot(d, aes(V, mean, fill=V, width=.5)) +
      geom_segment(aes(x=2, y=.65, xend=2, yend=1.1)) + 
      geom_segment(aes(x=1, y=1.1, xend=2, yend=1.1)) + 
      annotate("text", x=1.5, y=1.06, label="*")
-('./plots/ggplot-8.png')
 ```
-
+![Publication Ready Plot](plots/ggplot-8.png)
 
 
 In the interest of time, we aren't going to go through all of these today, but I just want to show you that ggplot2 is very versatile.
@@ -185,10 +190,11 @@ In the interest of time, we aren't going to go through all of these today, but I
 The basic syntax of ggplot2 is to start the line with the function `ggplot()`.  In the parentheses, you want at minimum to name your dataset.
 ```{r}
 ggplot(iris)
-('./plots/ggplot-9.png')
 ```
+![Empty plot](plots/ggplot-9.png)
 
-If you run this code, you'll notice that it opens the Plot window, but nothing is there.  That's because we haven't yet told it what to do with our dataset.
+
+Notice that it opens the Plot window, but nothing is there.  That's because we haven't yet told it what to do with our dataset.
 
 Next we have to give it the aesthetics.  That is, how do we want to represent our data.
 
@@ -197,10 +203,11 @@ We do this by adding an argument called `aes()`.  Note that the aesthetics have 
 The most straightforward thing to add is the columns we want to plot on the axes.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length))
-('./plots/ggplot-10.png')
 ```
+![Plot with coordinates only](plots/ggplot-10.png)
 
-If you run this code, you'll notice it opens the Plot window, and there's even an axis, but no data has been plotted.  This is because we haven't told it what kind of plot (geometry) we want.
+
+Notice it opens the Plot window, and there's even an axis, but no data has been plotted.  This is because we haven't told it what kind of plot (geometry) we want.
 
 ggplot has several plot types, or geometries, that each start with `geom_`.  The ones you'll likely use the most are:
 
@@ -220,8 +227,11 @@ We get an error, because scatterplots need an x and a y axis.
 We can also add another layer.  We'll add one called `geom_smooth`, which allows us to add a trend line or spline.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) + geom_point() + geom_smooth()
-('./plots/ggplot-11.png')
 ```
+![Scatter plus smooth](plots/ggplot-11.png)
+
+The default for `geom_smooth()` is a spline.  We can do a trendline by adding an argument, `method = "lm"`.  Remember, you can use the `help()` function to find out all the options available for a function.  Ggplot2 also has extensive and easy to understand documentation (see [resources document](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/resources/CheatSheetsAndResources.Rmd#ggplot-cheatsheet-and-help)).
+
 **Note:** An important point is that each "layer" of complexity is drawn "in order", meaning that it renders the plot in the order that you type it.  This means that the last "layer" will lay on top of the one before it.
 
 Let's instead try a histogram.
@@ -229,8 +239,9 @@ Let's instead try a histogram.
 
 ```{r}
 ggplot(iris, aes(x=Sepal.Length)) + geom_histogram()
-('./plots/ggplot-12.png')
 ```
+![ggplot histogram](plots/ggplot-12.png)
+
 
 This one works, and you should see the histogram, which shows how many datapoints lie in each bin.
 
@@ -245,27 +256,31 @@ There are some extra options for each plot that you can use to make your data st
 Let's start with the histogram we just made and check out a few of the features we can tweak.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length)) + geom_histogram()
-('./plots/ggplot-12.png')
 ```
+![Histogram again](plots/ggplot-12.png)
+
+
 
 If we add a grouping feature, we can change the fill color of the bars based on species.  We do this using the `fill` argument.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_histogram()
-('./plots/ggplot-13.png')
 ```
+![fill argument](plots/ggplot-13.png)
+
 
 These histograms are stacked on each other, but what if instead we want them independent of each other.  We can use the `position` argument in the `geom_histogram` call to fix this.  If we change it to `identity`, it gives each species it's own histogram overlaid on each other.  It's difficult to see, so I've also added the `alpha` argument, which changes how see through each layer is.
+
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_histogram(position="identity", alpha=0.5)
-('./plots/ggplot-14.png')
 ```
+![position argument](plots/ggplot-14.png)
 
 
 Let's compare this to the original plot with the layer 50% see through.  Notice how it's all one stacked layer.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_histogram(alpha=0.5)
-('./plots/ggplot-15.png')
 ```
+![alpha argument](plots/ggplot-15.png)
 
 
 
@@ -274,49 +289,56 @@ ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_histogram(alpha=0.5)
 We can also change the appeal and readability of plots.  Let's take a look at scatterplots and how we can change things to help explore our data.  First, let's try changing the color.  If we give it a continuous variable, it creates a gradient.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Sepal.Width)) + geom_point()
-('./plots/ggplot-16.png')
 ```
+![scatterplot with color argument](plots/ggplot-16.png)
+
 
 If instead we give it a categorical variable, such as `Species`, it assigns colors.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point()
-('./plots/ggplot-17.png')
 ```
+![categorical color argument](plots/ggplot-17.png)
+
 
 We can also just assign a color that we like.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color="coral")) + geom_point()
-('./plots/ggplot-18.png')
 ```
+![assigned color](plots/ggplot-18.png)
 
 **Note:** The color option is inside the aesthetics `aes()` function!
 
 For scatterplots, we can also assign shapes.  Shapes only make sense if used with categorical data.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, shape=Species)) + geom_point()
-('./plots/ggplot-19.png')
 ```
+![shapes](plots/ggplot-19.png)
+
 
 Sometimes, points stack up on each other, and we need to spread them out a bit.  This is called overplotting, and we can address it by making the points transparent, or by "jittering" the points just a little so they aren't all stacked on top of each other.  We can do this by adding a `position` argument to the `geom_point()` layer.
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, shape=Species)) + geom_point(position="jitter")
-('./plots/ggplot-20.png')
 ```
+![jitter](plots/ggplot-20.png)
+
 
 Alternately, we can use the `geom_jitter` geometry.  It works just like the `geom_point` geometry, by moving the points a little so that you can prevent overplotting.
 
 ```{r}
 ggplot(iris, aes(x=Species, y=Sepal.Length)) + geom_point()
-('./plots/ggplot-21.png')
-ggplot(iris, aes(x=Species, y=Sepal.Length)) + geom_jitter()
-('./plots/ggplot-22.png')
 ```
+![without geom_jitter](plots/ggplot-21.png)
+
+```{r]}
+ggplot(iris, aes(x=Species, y=Sepal.Length)) + geom_jitter()
+```
+![with geom_jitter](plots/ggplot-22.png)
 
 We can control the amount of jitter with the `width` argument.
 ```{r}
 ggplot(iris, aes(x=Species, y=Sepal.Length)) + geom_jitter(width=0.25)
-('./plots/ggplot-23.png')
 ```
+![jitter width](plots/ggplot-23.png)
 
 
 You can customize all of the colors and shapes instead of leaving it default.  In the resources section of the GitHub repo, you can find information on these more advanced topics.
@@ -326,20 +348,23 @@ For a basic boxplot, you can use ‘geom_boxplot()’
 
 ```{r}
 ggplot(iris, aes(x=Species, y=Sepal.Length)) + geom_boxplot()
-('./plots/ggplot-24.png')
 ```
+![boxplot](plots/ggplot-24.png)
+
 
 We can also change the color of a boxplot.
 ```{r}
 ggplot(iris, aes(x=Species, y=Sepal.Length, color=Species)) + geom_boxplot()
-('./plots/ggplot-25.png')
 ```
+![color boxplot](plots/ggplot-25.png)
+
 
 It outlined the boxes.  But say we want to fill in the boxes instead.  For this, we need to use the `fill` option.
 ```{r}
 ggplot(iris, aes(x=Species, y=Sepal.Length, fill=Species)) + geom_boxplot()
-('./plots/ggplot-26.png')
 ```
+![fill argument](plots/ggplot-26.png)
+
 
 
 ## Barplot
@@ -347,34 +372,43 @@ ggplot(iris, aes(x=Species, y=Sepal.Length, fill=Species)) + geom_boxplot()
 There are a few additional features on barplots.  We'll start with a basic  barplot.
 ```{r}
 ggplot(iris, aes(Petal.Width)) + geom_bar()
-('./plots/ggplot-27.png')
 ```
+![bar plot](plots/ggplot-27.png)
+
 We get a bar for each plot.  Note that this probably isn't the best way to visualize this data, but I just want to give you an example of ways to customize a bar plot.
 
 Bar plots have some additional functionality.  For example, we can add an aesthetic to consider Species.  This creates a stacked barplot.
 ```{r}
 ggplot(iris, aes(Sepal.Length, fill=Species)) + geom_bar()
-('./plots/ggplot-28.png')
 ```
+![barplot with fill](plots/ggplot-28.png)
 
 Just like with the histogram, we can change how these bars lay around each other with the `position` argument, which we have to add to the `geom_bar()` statement
 ```{r}
 ggplot(iris, aes(Sepal.Length, fill=Species)) + geom_bar(position = "dodge")
-('./plots/ggplot-29.png')
-ggplot(iris, aes(Sepal.Length, fill=Species)) + geom_bar(position = "fill")
-('./plots/ggplot-30.png')
-ggplot(iris, aes(Sepal.Length, fill=Species)) + geom_bar(position = "stack")
-('./plots/ggplot-31.png')
 ```
+![dodge](plots/ggplot-29.png)
+
+```{r}
+ggplot(iris, aes(Sepal.Length, fill=Species)) + geom_bar(position = "fill")
+```
+![fill](plots/ggplot-30.png)
+
+```{r}
+ggplot(iris, aes(Sepal.Length, fill=Species)) + geom_bar(position = "stack")
+```
+![stack](plots/ggplot-31.png)
+
 Notice how the bars change as we change the position.
 
 You can continue to add elements to the graph (e.g. changing the axes and adding titles) by adding lines with ‘+’. 
 Here are some basic elements you can add:
-xlab(label) changes x-axis label
-ylab(label) changes y-axis label
-ggtitle(label, subtitle = NULL) Adds plot title and an optional subtitle
-theme() can be used to change the background, remove grid, and change the border
-facet_grid() divides a single graph into multiple graphs in a grid based on categorical data
+
+* `xlab(label)` changes x-axis label
+* `ylab(label)` changes y-axis label
+* `ggtitle(label, subtitle = NULL)` Adds plot title and an optional subtitle
+* `theme()` can be used to change the background, remove grid, and change the border
+* `facet_grid()` divides a single graph into multiple graphs in a grid based on categorical data
 	e.g. for the iris data, you could have separate graphs for each species by adding 
 ```{r}
 ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Sepal.Width)) +
@@ -383,12 +417,10 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Sepal.Width)) +
      xlab('Sepal length (mm)') +
      ylab('Sepal width (mm)') +
      theme_classic()
-('./plots/ggplot-32.png')
 ```
+![more advanced graph](plots/ggplot-32.png)
 
-**Note: Pretty much anything that you would like to change can be. You can find numerous examples by googling what you want to change (e.g. google ‘remove background grid ggplot’). Additionally there is an R graphics cookbook which has great tutorials (http://www.cookbook-r.com/).
 
-<<<<<<< HEAD
+**Note:** Pretty much anything that you would like to change can be. You can find numerous examples by googling what you want to change (e.g. google ‘remove background grid ggplot’). Additionally, there are resources to help you in our [resources document](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/resources/CheatSheetsAndResources.Rmd).
 
-=======
->>>>>>> upstream/master
+
