@@ -31,7 +31,7 @@ There are two ways to do this, the first using the command line.
 
 ## 2. Install packages
 
-Open RStudio and run the following lines of code in the box labelled `Console`.  You should see a `>` at the beginning of the line where you can type.  This installs additional functionality to R so that we can do all sorts of cool stuff!
+Open RStudio and run the following lines of code in the box labelled `Console`.  You should see a `>` at the beginning of the line where you can type.  This installs additional functionality to R so that we can do all sorts of cool stuff!  **Note:** When you press `Enter` after putting in this command, it's going to take 3-6 minutes to install everything. Your patience will be rewarded.
 
 ```
 install.packages(c("knitr", "scales", "ggthemes", "tidyverse", "readxl"))
