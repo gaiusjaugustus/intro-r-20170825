@@ -4,7 +4,6 @@ output:
   html_notebook:
     toc: yes
     toc_float: yes
-    self_contained: no
 ---
 
 # Plotting is essential and can be done in base R
@@ -37,29 +36,31 @@ plot(iris$Sepal.Length, iris$Petal.Length)
 
 ```
 
-![Empty Plot](/plots/plot-1.png)
+![Empty Plot](plots/plot-1.png)
 
 We see a scatterplot that shows there is a positive association between sepal and petal length. To add a linear regression line, you would need to use two commands abline() and lm(). lm() is used to fit linear models and uses the arguments lm(y ~ x), while abline will actually fit a line to the most recent plot. Let’s try it out.
 
 ```{r}
 plot(iris$Sepal.Length, iris$Petal.Length)
 abline(lm(iris$Petal.Length ~ iris$Sepal.Length))
-('./plots/plot-2.png')
 ```
+
+![Trendline](plots/plot-2.png)
 
 Plot will default to a scatterplot, but if you want a histogram then you need to use the type argument.
 
 ```{r}
 plot(iris$Sepal.Length, type = 'h')
-('./plots/plot-3.png')
 ```
+
+![](plots/plot-3.png)
 
 To make a boxplot, you can use the function boxplot(x ~ y, data = dataframe). Let’s plot sepal length as a function of species.
 
 ```{r}
 boxplot(Sepal.Length ~ Species, data = iris)
-('./plots/plot-4.png')
 ```
+![boxplot](plots/plot-4.png)
 If you ever want to change what order the categories on the x-axis are displayed in you would need to order the factor levels of that column.
 
 Plotting in base R can be flexible and you can actually do a lot with it, but many people find ggplot more user friendly and easier to learn. Let’s move on and learn how to do these plots using the ggplot package. Whichever you decide to use, there is a lot of help online if you need it.
@@ -73,8 +74,8 @@ Copy and paste the code below and look at the plot.
 ```{r}
 library(ggplot2)
 ggplot(data = iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point()
-('./plots/ggplot-1.png')
 ```
+![First ggplot](plots/ggplot-1.png)
 
 ggplot2 works on the idea that every plot has three essential elements:
 
@@ -99,23 +100,23 @@ Themes | All non-data ink.
 ```{r}
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
          geom_point() + facet_grid(.~Species)
-('./plots/ggplot-2.png')
 ```
+![Facets](plots/ggplot-2.png)
 
 ## Statistics
 ```{r}
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
          geom_point() + facet_grid(.~Species) + geom_smooth(method = "lm")
-('./plots/ggplot-3.png')
 ```
+![Statistics](plots/ggplot-3.png)
 
 ## Coordinates
 ```{r}
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color=Species)) + 
      geom_jitter() + 
      coord_cartesian(xlim = c(4,6), ylim=c(2.5,4))
-('./plots/ggplot-4.png')
 ```
+![Coordinates](plots/ggplot-4.png)
 
 ## Themes
 ```{r}
