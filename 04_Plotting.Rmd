@@ -64,7 +64,6 @@ I'm just going to jump in and make a scatter plot of petal length and width.
 # EXERCISE
 Copy and paste the code below and look at the plot.
 ```{r}
-#install.packages(‘ggplot2’)
 library(ggplot2)
 ggplot(data = iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point()
 ```
