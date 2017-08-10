@@ -5,30 +5,31 @@ This repository acts as a companion for the R programming portion of the  Softwa
 # Content
 
 * [Day 1 Part 1: First baby steps](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/01_ImportingData.Rmd)
-    * What is R & R Studio?
-    * Importing datasets into dataframes
-    * Manipulating data with dplyr
+    * [What is R & R Studio?](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/01_ImportingData.Rmd#what-is-r)
+    * [Importing datasets into dataframes](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/01_ImportingData.Rmd#reading-in-data)
+    * [Manipulating data with dplyr](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/01_ImportingData.Rmd#dplyr)
 * [Day 1 Part 2: Reporting and working through problems](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd)
-     * Getting Help and dealing with errors
-     * Data Types & Structures
-     * Factors
-     * R Markdown (R Notebooks) Crash Course
-* [Day 2 Part 3: Automating the automatron]()
-     * For Loops
-     * If/Else Statements
-     * Writing Functions
+     * [Getting Help and dealing with errors](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd#help-files)
+     * [Data Types & Structures](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd#6-data-types)
+     * [Factors](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd#factors)
+     * [R Markdown Crash Course](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd#r-markdown)
+* [Day 2 Part 3: Automating the automatron](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd)
+     * [For Loops](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#for-loops)
+     * [If/Else Statements](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#if-else-statments)
+     * [Writing Functions](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#functions)
 * [Day 2 Part 4: Making pretties](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd)
-     * ggplot2 basics
-     * Scatterplots
-     * Histograms
-     * Boxplots
+     * [ggplot2 basics](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#functions)
+     * [Scatterplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#scatterplots)
+     * [Histograms](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#histogram)
+     * [Boxplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#boxplot)
+     * [Barplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#barplot)
 
 
-# Setting up this repo
+# Let's do this!!!!
 
 Please do the following to prepare for the R portion of the workshop.  
 
-## Clone the repo one of 2 ways
+## 1. Clone the repo one of 2 ways
 
 ## Using git
 
@@ -52,10 +53,17 @@ There are two ways to do this, the first using the command line.
 6. **Check your work** by going to your home directory and verifying there is now a folder called `intro-r-20170825` there.
 
 
-## Install packages
+## 2. Install packages
 
 Open RStudio and run the following lines of code in the box labelled `Console`.  You should see a `>` at the beginning of the line where you can type.  This installs additional functionality to R so that we can do all sorts of cool stuff!
 
 ```
 install.packages(c("knitr", "scales", "ggthemes", "tidyverse", "readxl"))
 ```
+
+
+
+# Your R instructors
+
+* [Gaius Augustus](http://www.gaiusjaugustus.com)
+* Elizabeth Bowman
