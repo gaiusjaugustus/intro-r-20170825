@@ -1,9 +1,12 @@
 ---
 title: "Gaius's Notebook"
-output: html_notebook
+output: 
+     html_notebook:
+          toc: true
+          toc_float: true
 ---
 
-Import necessary packages
+# Import necessary packages
 ```{r}
 library(readr)
 library(dplyr)
