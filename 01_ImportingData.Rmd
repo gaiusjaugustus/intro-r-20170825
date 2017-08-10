@@ -183,12 +183,10 @@ Import Dataset > From CSV...
 Once you've decided on your options, you'll see the code at the bottom right tells you how you can code that yourself:
 
 ```{r}
-#install.packages('readr') #uncomment this line if you have not installed readr
-
 library(readr)
-mammals <- read_delim(file = "datasets/01_mammals.txt", 
-    delim = "\t", escape_double = FALSE, trim_ws = TRUE)
-View(mammals)
+gapminder <- read_delim(file = "datasets/gapminder.txt", 
+              delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+View(gapminder)
 ```
 
 
@@ -217,27 +215,9 @@ After successfully reading in the data;
 You can also read in data using base R like so:
 
 ```{r}
-mammals2 <- read.csv(file = "datasets/01_mammals.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
+gapminder2 <- read.csv(file = "datasets/02_gapminder.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
 
-mammals == mammals2
-#       Animal body brain
-#  [1,]   TRUE TRUE  TRUE
-#  [2,]   TRUE TRUE  TRUE
-#  [3,]   TRUE TRUE  TRUE
-#  [4,]   TRUE TRUE  TRUE
-#  [5,]   TRUE TRUE  TRUE
-#  [6,]   TRUE TRUE  TRUE
-#  [7,]   TRUE TRUE  TRUE
-#  [8,]   TRUE TRUE  TRUE
-#  [9,]   TRUE TRUE  TRUE
-# [10,]   TRUE TRUE  TRUE
-# [11,]   TRUE TRUE  TRUE
-# [12,]   TRUE TRUE  TRUE
-# [13,]   TRUE TRUE  TRUE
-# [14,]   TRUE TRUE  TRUE
-# [15,]   TRUE TRUE  TRUE
-# [16,]   TRUE TRUE  TRUE
-# ...
+gapminder == gapminder2
 ```
 
 We check to see if every value is equal between the dataset we read in using `readr` and the one we read in using base `R`, and see that they are the same.
@@ -256,19 +236,20 @@ What’s a good name for my new object?
 
 To operate on data, type commands in the Console window, just like our earlier calculator-style approach;
 ```{r}
-str(mammals)
-# ’data.frame’: 62 obs. of 2 variables:
-# $ body : num 3.38 0.48 1.35 465 36.33 ...
-# $ brain: num 44.5 15.5 8.1 423 119.5 ...
+str(gapminder)
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
+#  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+#  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+#  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
 
-summary(mammals)
-# body                brain
-# Min. : 0.005       Min. : 0.14
-# 1st Qu.: 0.600     1st Qu.: 4.25
-# Median : 3.150     Median : 17.25
-# Mean : 198.738     Mean : 283.13
-# 3rd Qu.: 48.203    3rd Qu.: 166.00
-# Max. :6654.000     Max. :5712.00
+summary(gapminder)
+ #   country           continent              year         lifeExp           pop           
+ # Length:1704        Length:1704        Min.   :1952   Min.   :23.60   Min.   :6.001e+04  
+ # Class :character   Class :character   1st Qu.:1966   1st Qu.:48.20   1st Qu.:2.794e+06  
+ # Mode  :character   Mode  :character   Median :1980   Median :60.71   Median :7.024e+06  
+ #                                       Mean   :1980   Mean   :59.47   Mean   :2.960e+07  
+ #                                       3rd Qu.:1993   3rd Qu.:70.85   3rd Qu.:1.959e+07  
+ #                                       Max.   :2007   Max.   :82.60   Max.   :1.319e+09 
 ```
 
 * str() tells us the structure of an object (i.e., it's dimensions/size and the class of the each data column)
@@ -279,14 +260,14 @@ We can also use these commands on any object – e.g. the single numbers we crea
 
 There are also commands to get these statistics alone:
 ```{r}
-min(mammals$brain)
-# [1] 0.14
+min(gapminder$lifeExp)
+# [1] 23.599
 
-median(mammals$brain)
-# 17.25
+median(gapminder$lifeExp)
+# [1] 60.7125
 
-max(mammals$brain)
-# 5712
+max(gapminder$lifeExp)
+# [1] 82.603
 ```
 
 These are called FUNCTIONS, and are used to do a particular task on a set of data.  Here we are accessing columns by using the dollar sign.  We are telling R that we are only interested in one column.
@@ -294,7 +275,7 @@ These are called FUNCTIONS, and are used to do a particular task on a set of dat
 We can also do more sophisticated things with these commands.  Let's try a simple plot:
 
 ```{r}
-plot(mammals$brain, mammals$body)
+plot(gapminder$lifeExp, gapminder$gdpPercap)
 ```
 
 
@@ -302,62 +283,67 @@ plot(mammals$brain, mammals$body)
 
 Individual columns in data frames are identified using the `$` symbol – just seen in the str() output.
 
-Think of $ as ‘apostrophe-S’, i.e. mammals`’S` brain.
+Think of $ as ‘apostrophe-S’, i.e. gapminder`’S` lifeExp
 
-New columns are created when you assign their values – here containing the brain weights in kilograms;
+New columns are created when you assign their values – here containing the life expectancy in months instead of years;
 
 
 ```{r}
 
-mammals$brainkg <- mammals$brain/1000
+gapminder$lifeExpMonths <- gapminder$lifeExp*12
 
-str(mammals)
-# ’data.frame’: 62 obs. of 3 variables:
-# $ body : num 3.38 0.48 1.35 465 36.33 ...
-# $ brain : num 44.5 15.5 8.1 423 119.5 ...
-# $ brainkg: num 0.0445 0.0155 0.0081 0.423 0.1195 ...
+str(gapminder)
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  7 variables:
+#  $ country      : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+#  $ continent    : chr  "Asia" "Asia" "Asia" "Asia" ...
+#  $ year         : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+#  $ lifeExp      : num  28.8 30.3 32 34 36.1 ...
+#  $ pop          : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+#  $ gdpPercap    : num  779 821 853 836 740 ...
+#  $ lifeExpMonths: num  346 364 384 408 433 ...
 
-summary(mammals$brainkg)
-# Min.     1st Qu. Median Mean    3rd Qu. Max.
-# 0.00014 0.00425 0.01725 0.28310 0.16600 5.71200
+summary(gapminder$lifeExpMonths)
+#  Min.   1st Qu.  Median    Mean    3rd Qu.    Max. 
+#  283.2  578.4    728.5     713.7   850.1      991.2 
 ```
 
 * Assigning values to existing columns over-writes existing values – again, with no warning
-* With e.g. mammals$newcolumn <- 0, the new column has every entry zero; R recycles this single value, for every entry
-* It’s unusual to delete columns... but if you must; use `mammals$brainkg <- NULL`
+* With e.g. gapminder$newcolumn <- 0, the new column has every entry zero; R recycles this single value, for every entry
+* It’s unusual to delete columns... but if you must; use `gapminder$lifeExpMonths <- NULL`
 
 
 Other functions useful for summarizing data frames, and their columns;
 ```{r}
-names(mammals)
-# [1] "body" "brain"
+names(gapminder)
+# [1] "country"       "continent"     "year"          "lifeExp"       "pop"           "gdpPercap"    
+# [7] "lifeExpMonths"
 
-dim(mammals) # dim is short for dimension
-# [1] 62 2
+dim(gapminder) # dim is short for dimension
+# [1] 1704 7
 
-length(mammals$body) # how many rows in our dataset?
-# [1] 62
+length(gapminder$lifeExp) # how many rows in our dataset?
+# [1] 1704
 
-min(mammals$body)
-# [1] 0.005
+min(gapminder$lifeExp)
+# [1] 23.599
 
-max(mammals$body)
-# [1] 6654
+max(gapminder$lifeExp)
+# [1] 82.603
 
-range(mammals$body)
-# [1] 0.005 6654.000
+range(gapminder$lifeExp)
+# [1] 23.599 82.603
 
-mean(mammals$brain)
-# [1] 283.1342
+mean(gapminder$lifeExp)
+# [1] 59.47444
 
-sd(mammals$brain) # sd is short for standard deviation
-# [1] 930.2789
+sd(gapminder$lifeExp) # sd is short for standard deviation
+# [1] 12.91711
 
-median(mammals$brain)
-# [1] 17.25
+median(gapminder$lifeExp)
+# [1] 60.7125
 
-median(mammals$br) # uses pattern-matching (but hard to debug later)
-# [1] 17.25
+median(gapminder$li) # uses pattern-matching (but hard to debug later)
+# [1] 60.7125
 ```
 
 
@@ -381,7 +367,7 @@ For a very few jobs, e.g. changing directories, we’ll still use drop-down menu
 
 # EXERCISE
 
-Import another dataframe and call it `gapminder`. This file is located in the repo, at `datasets/02_gapminder.txt`.  Use `readr`'s `read_delim` as we did above.
+Import the gapminder data frame again.
 
 Use `str()` to look at the structure of the dataframe and `summary()` to get information about the variables.
 
@@ -416,8 +402,13 @@ dim(gapminder)
 
 Suppose we were interested in the brain weight (i.e. 2nd column) for mammals (i.e. rows) 14, 55, & 61. How to select these multiple elements?
 ```{r}
-mammals[c(14,55,61),1]
-# [1] 0.005 0.048 0.104 # check these against data view
+gapminder[c(14,55,61),4]
+# [1] # A tibble: 3 x 1
+#   lifeExp
+#     <dbl>
+# 1  59.280
+# 2  69.942
+# 3  69.120 # check these against data view
 ```
 
 But what is `c(14,55,61)`? It’s a vector of numbers – `c()` is for combine;
@@ -431,11 +422,13 @@ str(c(14,55,61))
 
 We can select these rows and all the columns;
 ```{r}
-mammals[c(14,55,61),]
-#                           body  brain
-# Lesser short-tailed shrew 0.005 0.14
-# Musk shrew                0.048 0.33
-# Tree shrew                0.104 2.50
+gapminder[c(14,55,61),]
+# A tibble: 3 x 7
+#     country continent  year lifeExp      pop gdpPercap lifeExpMonths
+#       <chr>     <chr> <int>   <dbl>    <int>     <dbl>         <dbl>
+# 1   Albania    Europe  1957  59.280  1476505  1942.284       711.360
+# 2 Argentina  Americas  1982  69.942 29341374  8997.897       839.304
+# 3 Australia   Oceania  1952  69.120  8691212 10039.596       829.440
 ```
 
 
@@ -453,47 +446,71 @@ A very useful special form of vector;
 
 R expects you to know this shorthand – see e.g. its use of `1:3` in the output from `str()`, on the previous slide. For a ‘rectangular’ selection of rows and columns;
 ```{r}
-mammals[20:22, 1:2]
-#                body    brain
-# Big brown bat  0.023    0.3
-# Donkey         187.100 419.0
-# Horse          521.000 655.0
+gapminder[20:22, 3:4]
+# A tibble: 3 x 2
+#    year lifeExp
+#   <int>   <dbl>
+# 1  1987  72.000
+# 2  1992  71.581
+# 3  1997  72.950
 
 ```
 
 
 Negative values correspond to dropping those rows/columns;
 ```{r}
-mammals[-3:-62, 1:2] # everything but the first two rows, & columns 1:2
-#              body      brain
-# Arctic fox   3.385     44.5
-# Owl monkey   0.480     15.5
+gapminder[-3:-1704,] # everything but the first two rows will be dropped
+# A tibble: 2 x 7
+#       country continent  year lifeExp     pop gdpPercap lifeExpMonths
+#         <chr>     <chr> <int>   <dbl>   <int>     <dbl>         <dbl>
+# 1 Afghanistan      Asia  1952  28.801 8425333  779.4453       345.612
+# 2 Afghanistan      Asia  1957  30.332 9240934  820.8530       363.984
 ```
 
 As well as storing numbers and character strings (like "Donkey", "Big brown bat") R can also store logicals – `TRUE` and `FALSE`.
-To make a new vector, with elements that are `TRUE` if body mass is above 500kg and FALSE otherwise;
+To make a new vector, with elements that are `TRUE` if life expectancy is above 71.5 and FALSE otherwise;
 ```{r}
 
-is.heavy <- mammals$body > 500
+is.above.avg <- gapminder$lifeExp > 71.5
 
-table(is.heavy) # another useful data summary command
-# is.heavy
-# FALSE TRUE
-# 58    4
+table(is.above.avg) # another useful data summary command
+# is.above.avg
+# FALSE  TRUE 
+#  1329   375 
 ```
 
 
-Which mammals were these? (And what were their masses?)
+Which countries and during what years were these? (And what was the avg. life expectancy?)
 ```{r}
-mammals[is.heavy,] # just the rows for which is.heavy is TRUE
-#                  body brain
-# Asian elephant   2547 4603
-# Horse            521  655
-# Giraffe          529  680
-# African elephant 6654 5712
+gapminder[is.above.avg,] # just the rows for which is.above.avg is TRUE
+# A tibble: 375 x 7
+#      country continent  year lifeExp      pop gdpPercap lifeExpMonths
+#        <chr>     <chr> <int>   <dbl>    <int>     <dbl>         <dbl>
+#  1   Albania    Europe  1987  72.000  3075321  3738.933       864.000
+#  2   Albania    Europe  1992  71.581  3326498  2497.438       858.972
+#  3   Albania    Europe  1997  72.950  3428038  3193.055       875.400
+#  4   Albania    Europe  2002  75.651  3508512  4604.212       907.812
+#  5   Albania    Europe  2007  76.423  3600523  5937.030       917.076
+#  6   Algeria    Africa  2007  72.301 33333216  6223.367       867.612
+#  7 Argentina  Americas  1992  71.868 33958947  9308.419       862.416
+#  8 Argentina  Americas  1997  73.275 36203463 10967.282       879.300
+#  9 Argentina  Americas  2002  74.340 38331121  8797.641       892.080
+# 10 Argentina  Americas  2007  75.320 40301927 12779.380       903.840
 
-> mammals[is.heavy,2] # combining TRUE/FALSE (rows) and numbers (columns)
-# [1] 4603 655 680 5712
+> gapminder[is.above.avg,4] # combining TRUE/FALSE (rows) and numbers (columns)
+# A tibble: 375 x 1
+#    lifeExp
+#      <dbl>
+#  1  72.000
+#  2  71.581
+#  3  72.950
+#  4  75.651
+#  5  76.423
+#  6  72.301
+#  7  71.868
+#  8  73.275
+#  9  74.340
+# 10  75.320
 ```
 
 
@@ -501,17 +518,55 @@ One final method... for now!
 
 Instead of specifying rows/columns of interest by number, or through vectors of TRUEs/FALSEs, we can also just give the names – as character strings, or vectors of character strings.
 ```{r}
-mammals[c("Cow","Goat","Human"),"body"]
-# [1] 465.00 27.66 62.00
+gapminder[,'lifeExp']
+# A tibble: 1,704 x 1
+#    lifeExp
+#      <dbl>
+#  1  28.801
+#  2  30.332
+#  3  31.997
+#  4  34.020
+#  5  36.088
+#  6  38.438
+#  7  39.854
+#  8  40.822
+#  9  41.674
+# 10  41.763
+# # ... with 1,694 more rows
 
-mammals[c("Cow","Goat","Human"),c("body","brain")]
-#         body      brain
-# Cow     465.00    423
-# Goat    27.66     115
-# Human   62.00     1320
+gapminder[gapminder$country == 'Gabon',c("lifeExp","gdpPercap")]
+# A tibble: 12 x 2
+#    lifeExp gdpPercap
+#      <dbl>     <dbl>
+#  1  37.003  4293.476
+#  2  38.999  4976.198
+#  3  40.489  6631.459
+#  4  44.598  8358.762
+#  5  48.690 11401.948
+#  6  52.790 21745.573
+#  7  56.564 15113.362
+#  8  60.190 11864.408
+#  9  61.366 13522.158
+# 10  60.461 14722.842
+# 11  56.761 12521.714
+# 12  56.735 13206.485
 
-mammals[c("Cow","Goat","Human"),2] # okay to mix & match
-# [1] 423 115 1320
+gapminder[gapminder$country == 'Gabon',4] # okay to mix & match
+# A tibble: 12 x 1
+#    lifeExp
+#      <dbl>
+#  1  37.003
+#  2  38.999
+#  3  40.489
+#  4  44.598
+#  5  48.690
+#  6  52.790
+#  7  56.564
+#  8  60.190
+#  9  61.366
+# 10  60.461
+# 11  56.761
+# 12  56.735
 ```
 
 This is more typing than the other options, but is much easier to debug/reuse.
@@ -532,108 +587,144 @@ library(dplyr)
 
 dplyr works by piping commands, like you learned to do in the command line.  Instead of the pipe `|`, we use `%>%`.
 ```{r}
-mammals %>% select(body) %>% min()
-# [1] 0.005
-min(mammals$body)
-# [1] 0.005
+gapminder %>% select(lifeExp) %>% min()
+# [1] 23.599
+min(gapminder$lifeExp)
+# [1] 23.599
 ```
 
 dplyr also comes with ways to subset our data.
 
 If we only want to choose one column:
 ```{r}
-mammals %>% select(body)
-#      body
+gapminder %>% select(lifeExp)
+# A tibble: 1,704 x 1
+#    lifeExp
 #      <dbl>
-# 1    3.385
-# 2    0.480
-# 3    1.350
-# 4  465.000
-# 5   36.330
-# 6   27.660
-# 7   14.830
-# 8    1.040
-# 9    4.190
-# 10   0.425
-# ... with 52 more rows
+#  1  28.801
+#  2  30.332
+#  3  31.997
+#  4  34.020
+#  5  36.088
+#  6  38.438
+#  7  39.854
+#  8  40.822
+#  9  41.674
+# 10  41.763
+# # ... with 1,694 more rows
 ```
 
 If we want to make a new column, use mutate.  Don't forget we have to assign it if we want to keep the changes
 ```{r}
-mammals <- mammals %>% mutate(NewColumn = body + brain)
-mammals
+gapminder <- gapminder %>% mutate(NewColumn = lifeExp * 12)
+gapminder
 
-#             Animal    body brain NewColumn
-#              <chr>   <dbl> <dbl>     <dbl>
-# 1       Arctic fox   3.385  44.5    47.885
-# 2       Owl monkey   0.480  15.5    15.980
-# 3  Mountain beaver   1.350   8.1     9.450
-# 4              Cow 465.000 423.0   888.000
-# 5        Grey wolf  36.330 119.5   155.830
-# 6             Goat  27.660 115.0   142.660
-# 7         Roe deer  14.830  98.2   113.030
-# 8       Guinea pig   1.040   5.5     6.540
-# 9           Verbet   4.190  58.0    62.190
-# 10      Chinchilla   0.425   6.4     6.825
-# ... with 52 more rows
+# A tibble: 1,704 x 8
+#        country continent  year lifeExp      pop gdpPercap lifeExpMonths NewColumn
+#          <chr>     <chr> <int>   <dbl>    <int>     <dbl>         <dbl>     <dbl>
+#  1 Afghanistan      Asia  1952  28.801  8425333  779.4453       345.612   345.612
+#  2 Afghanistan      Asia  1957  30.332  9240934  820.8530       363.984   363.984
+#  3 Afghanistan      Asia  1962  31.997 10267083  853.1007       383.964   383.964
+#  4 Afghanistan      Asia  1967  34.020 11537966  836.1971       408.240   408.240
+#  5 Afghanistan      Asia  1972  36.088 13079460  739.9811       433.056   433.056
+#  6 Afghanistan      Asia  1977  38.438 14880372  786.1134       461.256   461.256
+#  7 Afghanistan      Asia  1982  39.854 12881816  978.0114       478.248   478.248
+#  8 Afghanistan      Asia  1987  40.822 13867957  852.3959       489.864   489.864
+#  9 Afghanistan      Asia  1992  41.674 16317921  649.3414       500.088   500.088
+# 10 Afghanistan      Asia  1997  41.763 22227415  635.3414       501.156   501.156
+# ... with 1,694 more rows
 ```
 
 If we want to select all columns except 1, we can do that with the `-` operator.
 ```{r}
-mammals <- mammals %>% select(-NewColumn)
-mammals
-#             Animal    body brain
-#              <chr>   <dbl> <dbl>
-# 1       Arctic fox   3.385  44.5
-# 2       Owl monkey   0.480  15.5
-# 3  Mountain beaver   1.350   8.1
-# 4              Cow 465.000 423.0
-# 5        Grey wolf  36.330 119.5
-# 6             Goat  27.660 115.0
-# 7         Roe deer  14.830  98.2
-# 8       Guinea pig   1.040   5.5
-# 9           Verbet   4.190  58.0
-# 10      Chinchilla   0.425   6.4
-# ... with 52 more rows
+gapminder <- gapminder %>% select(-NewColumn)
+gapminder
+# A tibble: 1,704 x 7
+#        country continent  year lifeExp      pop gdpPercap lifeExpMonths
+#          <chr>     <chr> <int>   <dbl>    <int>     <dbl>         <dbl>
+#  1 Afghanistan      Asia  1952  28.801  8425333  779.4453       345.612
+#  2 Afghanistan      Asia  1957  30.332  9240934  820.8530       363.984
+#  3 Afghanistan      Asia  1962  31.997 10267083  853.1007       383.964
+#  4 Afghanistan      Asia  1967  34.020 11537966  836.1971       408.240
+#  5 Afghanistan      Asia  1972  36.088 13079460  739.9811       433.056
+#  6 Afghanistan      Asia  1977  38.438 14880372  786.1134       461.256
+#  7 Afghanistan      Asia  1982  39.854 12881816  978.0114       478.248
+#  8 Afghanistan      Asia  1987  40.822 13867957  852.3959       489.864
+#  9 Afghanistan      Asia  1992  41.674 16317921  649.3414       500.088
+# 10 Afghanistan      Asia  1997  41.763 22227415  635.3414       501.156
+# ... with 1,694 more rows
 ```
 
 
 Now what about rows?  For this we use te `filter` commands:
 ```{r}
-mammals %>% filter(body > 1000)
-#            Animal  body brain
-#              <chr> <dbl> <dbl>
-# 1   Asian elephant  2547  4603
-# 2 African elephant  6654  5712
+gapminder %>% filter(lifeExp > 71.5)
+# A tibble: 375 x 7
+#      country continent  year lifeExp      pop gdpPercap lifeExpMonths
+#        <chr>     <chr> <int>   <dbl>    <int>     <dbl>         <dbl>
+#  1   Albania    Europe  1987  72.000  3075321  3738.933       864.000
+#  2   Albania    Europe  1992  71.581  3326498  2497.438       858.972
+#  3   Albania    Europe  1997  72.950  3428038  3193.055       875.400
+#  4   Albania    Europe  2002  75.651  3508512  4604.212       907.812
+#  5   Albania    Europe  2007  76.423  3600523  5937.030       917.076
+#  6   Algeria    Africa  2007  72.301 33333216  6223.367       867.612
+#  7 Argentina  Americas  1992  71.868 33958947  9308.419       862.416
+#  8 Argentina  Americas  1997  73.275 36203463 10967.282       879.300
+#  9 Argentina  Americas  2002  74.340 38331121  8797.641       892.080
+# 10 Argentina  Americas  2007  75.320 40301927 12779.380       903.840
+# ... with 365 more rows
 ```
 
 We can pipe several commands, just like with the command line:
 ```{r}
-mammals %>% select(body, Animal) %>% filter(body > 1000) %>% mutate(TwiceWeight = body * 2)
-#    body           Animal TwiceWeight
-#   <dbl>            <chr>       <dbl>
-# 1  2547   Asian elephant        5094
-# 2  6654 African elephant       13308
+gapminder %>% select(lifeExp, country) %>% filter(lifeExp > 71.5) %>% mutate(lifeExpdays = lifeExp * 365)
+# A tibble: 375 x 3
+#    lifeExp   country lifeExpdays
+#      <dbl>     <chr>       <dbl>
+#  1  72.000   Albania    26280.00
+#  2  71.581   Albania    26127.07
+#  3  72.950   Albania    26626.75
+#  4  75.651   Albania    27612.61
+#  5  76.423   Albania    27894.40
+#  6  72.301   Algeria    26389.87
+#  7  71.868 Argentina    26231.82
+#  8  73.275 Argentina    26745.38
+#  9  74.340 Argentina    27134.10
+# 10  75.320 Argentina    27491.80
+# ... with 365 more rows
 ```
 
 We can also use outside information to help subset data.
 ```{r}
-Animals <- c("Cow","Goat")
+Country <- c('Kenya', 'Gibon')
 
-mammals %>% filter(Animal %in% Animals)
-#   Animal   body brain
-#    <chr>  <dbl> <dbl>
-# 1    Cow 465.00   423
-# 2   Goat  27.66   115
+gapminder %>% filter(country %in% Country)
+# A tibble: 12 x 7
+#    country continent  year lifeExp      pop gdpPercap lifeExpMonths
+#      <chr>     <chr> <int>   <dbl>    <int>     <dbl>         <dbl>
+#  1   Kenya    Africa  1952  42.270  6464046  853.5409       507.240
+#  2   Kenya    Africa  1957  44.686  7454779  944.4383       536.232
+#  3   Kenya    Africa  1962  47.949  8678557  896.9664       575.388
+#  4   Kenya    Africa  1967  50.654 10191512 1056.7365       607.848
+#  5   Kenya    Africa  1972  53.559 12044785 1222.3600       642.708
+#  6   Kenya    Africa  1977  56.155 14500404 1267.6132       673.860
+#  7   Kenya    Africa  1982  58.766 17661452 1348.2258       705.192
+#  8   Kenya    Africa  1987  59.339 21198082 1361.9369       712.068
+#  9   Kenya    Africa  1992  59.285 25020539 1341.9217       711.420
+# 10   Kenya    Africa  1997  54.407 28263827 1360.4850       652.884
+# 11   Kenya    Africa  2002  50.992 31386842 1287.5147       611.904
+# 12   Kenya    Africa  2007  54.110 35610177 1463.2493       649.320
 ```
 
 
 
 # EXERCISE
 
-Using the `gapminder` dataframe we imported in the last exercise:
+Reimport the `gapminder` dataframe:
+
 
 Create a new dataframe that contains only country names, years,  and life expectancies. Use this new dataframe to calculate minimum & maximum expectancies.
+
 ```{r}
 new_gapminder <- gapminder %>% select(country, year, lifeExp) # BASE R solution:  gapminder[,c(1,2,5)]
 
@@ -675,8 +766,6 @@ When you’re finished with RStudio;
 * Identify vectors with $, subsets with square brackets
 * Many useful summary functions are available, with sensible names
 * Scripts are an important drudgery-avoidance tool!
-
-
 
 
 References:
