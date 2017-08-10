@@ -1,0 +1,12 @@
+---
+title: "Day 2 Project"
+output: html_notebook
+---
+
+
+For this final project, we are going:
+
+* Setup a new git repo in R
+* Sync it to a Github Repo
+* Recreate an R Markdown document where we'll do an exploratory data analysis on the gapminder dataset
+* Commit changes and push to Github
