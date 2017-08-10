@@ -79,10 +79,11 @@ ggplot(data = iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point()
 
 ggplot2 works on the idea that every plot has three essential elements:
 
-Element | Description
-Data | The dataset being plotted.
-Aesthetics | The scales onto which we map our data.
-Geometries | The visual elements used for our data. 
+| Element    | Description                            |
+| ---------- | -------------------------------------- |
+| Data       | The dataset being plotted.             |
+| Aesthetics | The scales onto which we map our data. |
+| Geometries | The visual elements used for our data. | 
 
 In other words, we have the dataset, the space onto which we will plot our data (axes), and the visualization we will use to plot each datapoint (scatterplot, barplot, boxplot).  These are the 3 elements we will discuss today.
 
