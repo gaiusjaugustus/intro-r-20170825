@@ -6,6 +6,8 @@ output:
           toc_float: true
 ---
 
+# Plotting is essential and can be done in base R
+
 Something that every researcher knows is important is communicating your findings, and we often do that with plots.  We can create fine tuned plots in R using BASE R, without using additional packages. 
 
 Let's read in a dataset, called `iris` and take a look at it.
@@ -55,17 +57,19 @@ If you ever want to change what order the categories on the x-axis are displayed
 
 Plotting in base R can be flexible and you can actually do a lot with it, but many people find ggplot more user friendly and easier to learn. Let’s move on and learn how to do these plots using the ggplot package. Whichever you decide to use, there is a lot of help online if you need it.
 
+# ggplot2
+
 I'm just going to jump in and make a scatter plot of petal length and width.
 
 # EXERCISE
 Copy and paste the code below and look at the plot.
 ```{r}
-install.packages(‘ggplot2’)
 library(ggplot2)
 ggplot(data = iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point()
 ```
 
 ggplot2 works on the idea that every plot has three essential elements:
+
 Element | Description
 Data | The dataset being plotted.
 Aesthetics | The scales onto which we map our data.
@@ -74,6 +78,7 @@ Geometries | The visual elements used for our data.
 In other words, we have the dataset, the space onto which we will plot our data (axes), and the visualization we will use to plot each datapoint (scatterplot, barplot, boxplot).  These are the 3 elements we will discuss today.
 
 ggplot2 makes this a little more comprehensive by adding the following:
+
 Element | Description
 Facets | Plotting small multiples.
 Statistics | Representations of our data to aid understanding.

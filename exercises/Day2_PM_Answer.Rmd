@@ -1,0 +1,55 @@
+---
+title: "Gaius's Notebook"
+output: html_notebook
+---
+
+# Read in data set
+```{r}
+library(readr)
+gapminder <- read_delim("datasets/02_gapminder.txt", delim="\t", trim_ws = TRUE)
+```
+
+# Explore gapminder dataset
+
+## Get Summary statistics for gapminder variables
+```{r}
+summary(gapminder)
+```
+
+## Get structure of gapminder dataset
+```{r}
+str(gapminder)
+```
+
+# Take a peek at the data
+```{r}
+head(gapminder)
+```
+
+## Which country has the highest gdp per cap
+
+```{r}
+gapminder %>% filter(gdpPercap == max(gdpPercap))
+```
+
+* Kuwait had the highest gdp per cap in 1957.
+
+# Plots
+
+## Life Expectancy by year
+```{r}
+ggplot(gapminder, aes(x=year, y=lifeExp, col=continent)) + geom_smooth(se=FALSE)
+```
+
+* Oceania has the highest life Expectancy
+* Africa has the lowest life Expectancy
+* Life Expectancy has been rising for all continents over the past 50 years.
+
+## Life Expectancy vs gdpPercap
+```{r}
+ggplot(gapminder, aes(x=continent, y=gdpPercap, fill=continent)) + geom_boxplot()
+```
+
+* African countries have the lowest gross domestic product
+* Countries in Oceanian has the highest gdp
+* Asia in general has low gdps, but has outliers that are very high.

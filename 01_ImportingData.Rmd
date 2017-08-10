@@ -78,6 +78,8 @@ TRUE == FALSE
 ```
 **Note:** We can represent missing data with `NA`, and use a function/command called `is.na()` to ask if data is missing.  More on this later.
 
+
+
 We can use greater than `>` or less than `<` signs as you would expect.
 ```{r}
 300 > 200
@@ -85,14 +87,29 @@ We can use greater than `>` or less than `<` signs as you would expect.
 
 0 > 999
 # [1] FALSE
+```
+
+# MULTIPLE CHOICE
+
+Which of the following will NOT return TRUE?
+A. FALSE == FALSE
+B. 10-5 == sqrt(25)
+C. TRUE > FALSE
+D. 'a' > 'b'
+
+```{r}
+FALSE == FALSE
+# [1] TRUE
+
+10-5 == sqrt(25)
+# [1] TRUE
 
 TRUE > FALSE
-# TRUE
+# [1] TRUE
 
 'a' > 'b'
 # [1] FALSE
 ```
-
 **Note:** `TRUE` is greater than `FALSE` because R in the background actually uses 1 to represent `TRUE` and 0 to represent `FALSE`.  Also, `'b'` is greater than `'a'` because it's later in the alphabet. In other words, the 2nd letter is greater than the 1st letter.  This is helpful for ordering alphabetically, which we'll see later.
 
 
@@ -106,6 +123,20 @@ y <- 2 # now check the Environment window
 x+y
 # [1] 5
 ```
+
+# MULTIPLE CHOICE
+
+What is the output when we execute the following code?
+x <- 3
+y <- 2
+y <- 17.4
+x+y
+
+A. [1] 3  2  17.4
+B. [1] 22.4
+C. [1] 20.4
+D. [1] 5
+
 
 
 Assigning new values to existing objects over-writes the old version – and be aware there is no Ctrl-Z ‘undo’;
@@ -152,17 +183,9 @@ Import Dataset > From CSV...
 Once you've decided on your options, you'll see the code at the bottom right tells you how you can code that yourself:
 
 ```{r}
-<<<<<<< HEAD
-install.packages('readr')
 library(readr)
-gapminder <- read_delim(file = "~/Documents/Rdocs/r-intro-20170825/datasets/gapminder.txt", 
-=======
-#install.packages('readr') #uncomment this line if you have not installed readr
-
-library(readr)
-mammals <- read_delim(file = "datasets/01_mammals.txt", 
->>>>>>> origin/master
-    delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+gapminder <- read_delim(file = "datasets/gapminder.txt", 
+              delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 View(gapminder)
 ```
 
@@ -192,27 +215,9 @@ After successfully reading in the data;
 You can also read in data using base R like so:
 
 ```{r}
-mammals2 <- read.csv(file = "datasets/01_mammals.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
+gapminder2 <- read.csv(file = "datasets/02_gapminder.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
 
-mammals == mammals2
-#       Animal body brain
-#  [1,]   TRUE TRUE  TRUE
-#  [2,]   TRUE TRUE  TRUE
-#  [3,]   TRUE TRUE  TRUE
-#  [4,]   TRUE TRUE  TRUE
-#  [5,]   TRUE TRUE  TRUE
-#  [6,]   TRUE TRUE  TRUE
-#  [7,]   TRUE TRUE  TRUE
-#  [8,]   TRUE TRUE  TRUE
-#  [9,]   TRUE TRUE  TRUE
-# [10,]   TRUE TRUE  TRUE
-# [11,]   TRUE TRUE  TRUE
-# [12,]   TRUE TRUE  TRUE
-# [13,]   TRUE TRUE  TRUE
-# [14,]   TRUE TRUE  TRUE
-# [15,]   TRUE TRUE  TRUE
-# [16,]   TRUE TRUE  TRUE
-# ...
+gapminder == gapminder2
 ```
 
 We check to see if every value is equal between the dataset we read in using `readr` and the one we read in using base `R`, and see that they are the same.
@@ -717,7 +722,9 @@ gapminder %>% filter(country %in% Country)
 
 Reimport the `gapminder` dataframe:
 
-Create a new dataframe that contains only country names, years, and life expepectancies. Use this new dataframe to calculate minimum & maximum expectancies.
+
+Create a new dataframe that contains only country names, years,  and life expectancies. Use this new dataframe to calculate minimum & maximum expectancies.
+
 ```{r}
 new_gapminder <- gapminder %>% select(country, year, lifeExp) # BASE R solution:  gapminder[,c(1,2,5)]
 
@@ -733,6 +740,9 @@ head(new_gapminder)
 
 new_gapminder %>% select(lifeExp) %>% min()# BASE R solution: min(new_gapminder[,3])
 # [1] 23.599
+
+max(new_gapminder$lifeExp)
+# [1] 82.603
 ```
 
 # Quitting R
