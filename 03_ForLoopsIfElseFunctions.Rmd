@@ -413,7 +413,3 @@ Average(50, 100)
 1. Script created as part of Software carpentry workshop on basic R code. August 26-27, 2017 at the University of Arizona. http://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/
 2. Tutorial: https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.qC44Rnc
 
-Lesson Created by:
-
-* [Gaius Augustus](http://www.gaiusjaugustus.com)
-* Elizabeth Bowman

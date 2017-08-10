@@ -60,3 +60,10 @@ Open RStudio and run the following lines of code in the box labelled `Console`. 
 ```
 install.packages(c("knitr", "scales", "ggthemes", "tidyverse", "readxl"))
 ```
+
+
+
+# Your R instructors
+
+* [Gaius Augustus](http://www.gaiusjaugustus.com)
+* Elizabeth Bowman

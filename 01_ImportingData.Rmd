@@ -783,7 +783,3 @@ References:
 1. Lectures from Ken Rice at University of Washington, Summer Institute for Statistical Genetics - http://faculty.washington.edu/kenrice/rintro/indexSEA15.shtml
 2. Scripts & Exercise from Asher Haug-Baltzell - https://github.com/asherkhb/intro_r
 
-Lesson Created by:
-
-* [Gaius Augustus](http://www.gaiusjaugustus.com)
-* Elizabeth Bowman

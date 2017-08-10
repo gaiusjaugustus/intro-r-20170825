@@ -347,8 +347,3 @@ facet_grid(. ~ Species)
 
 **Note: Pretty much anything that you would like to change can be. You can find numerous examples by googling what you want to change (e.g. google ‘remove background grid ggplot’). Additionally there is an R graphics cookbook which has great tutorials (http://www.cookbook-r.com/).
 
-
-Lesson Created by:
-
-* [Gaius Augustus](http://www.gaiusjaugustus.com)
-* Elizabeth Bowman
