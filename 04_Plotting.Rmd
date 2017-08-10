@@ -4,8 +4,7 @@ output:
   html_notebook:
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
+    self_contained: no
 ---
 
 # Plotting is essential and can be done in base R
@@ -35,8 +34,10 @@ Let’s plot sepal length as a function of petal length.
 
 ```{r}
 plot(iris$Sepal.Length, iris$Petal.Length)
-('./plots/plot-1.png')
+
 ```
+
+![Empty Plot](/plots/plot-1.png)
 
 We see a scatterplot that shows there is a positive association between sepal and petal length. To add a linear regression line, you would need to use two commands abline() and lm(). lm() is used to fit linear models and uses the arguments lm(y ~ x), while abline will actually fit a line to the most recent plot. Let’s try it out.
 
