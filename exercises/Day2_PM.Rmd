@@ -3,7 +3,6 @@ title: "Day 2 Project"
 output: html_notebook
 ---
 
-
 For this final project, we are going:  
 
 * Setup a new git repo in R
