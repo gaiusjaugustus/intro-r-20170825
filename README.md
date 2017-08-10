@@ -37,6 +37,8 @@ Open RStudio and run the following lines of code in the box labelled `Console`. 
 install.packages(c("knitr", "scales", "ggthemes", "tidyverse", "readxl"))
 ```
 
+**What did I just install?** You just added some great functionality to R.  These are called **packages**, and they work like addons or plugins.  `knitr` will allow you to create reports that are human readable and pretty that you can share with your boss, your parents, your dog...anyone.  `tidyverse` is a suite of packages that use more human readable code to import and manipulate data in R.  `readxl` lets you read in excel files, and while we won't cover it in this course, it's really useful and you should have it installed!  `scales` and `ggthemes` are two packages that add features to a plotting package that was downloaded as part of the `tidyverse` package, called `ggplot2`.  `ggthemes` adds color palettes and visual options, while `scales` allows us to customize a plot's axes more.
+
 # What are we going to actually cover?
 
 * [Day 1 Part 1: First baby steps](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/01_ImportingData.Rmd)
