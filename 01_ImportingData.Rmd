@@ -483,8 +483,12 @@ To make a new vector, with elements that are `TRUE` if life expectancy is above 
 ```{r}
 
 is.above.avg <- gapminder$lifeExp > 71.5
+```
 
-table(is.above.avg) # another useful data summary command
+Let's see how many of the total were TRUE and how many were FALSE using the table() function.
+The table() function will create a count table from a vector of categorical data.
+```{r}
+table(is.above.avg)
 # is.above.avg
 # FALSE  TRUE 
 #  1329   375 
@@ -604,6 +608,8 @@ min(gapminder$lifeExp)
 # [1] 23.599
 ```
 
+An important difference between dplyr and base R is when use character strings we don't need to enclose them in quotation marks as we did above (i.e. gapminder[,'lifeExp'])
+
 dplyr also comes with ways to subset our data.
 
 If we only want to choose one column:
@@ -707,9 +713,9 @@ gapminder %>% select(lifeExp, country) %>% filter(lifeExp > 71.5) %>% mutate(lif
 
 We can also use outside information to help subset data.
 ```{r}
-Country <- c('Kenya', 'Gibon')
+two.countries <- c('Kenya', 'Gibon')
 
-gapminder %>% filter(country %in% Country)
+gapminder %>% filter(country %in% two.countries)
 # A tibble: 12 x 7
 #    country continent  year lifeExp      pop gdpPercap lifeExpMonths
 #      <chr>     <chr> <int>   <dbl>    <int>     <dbl>         <dbl>
@@ -727,7 +733,7 @@ gapminder %>% filter(country %in% Country)
 # 12   Kenya    Africa  2007  54.110 35610177 1463.2493       649.320
 ```
 
-
+%in% will enable you to search all lines in the column country for all character strings in the two.countries file and will return a TRUE if it finds an one of them.
 
 # EXERCISE
 
