@@ -28,6 +28,7 @@ This dataset has information on plants of 3 types of irises.  They've measured t
 
 Let’s make three main kinds of plot using base R—a scatterplot, a histogram, and a boxplot—then we’ll make these same plots using a R package specifically designed for making plots and figures called ggplot.
 
+# Scatterplot
 The basic plot function is plot(x, y, ….) which x corresponding to your x-variable and y to the y-variable.
 Let’s plot sepal length as a function of petal length.
 
@@ -46,7 +47,7 @@ abline(lm(iris$Petal.Length ~ iris$Sepal.Length))
 ```
 
 ![Trendline](plots/plot-2.png)
-
+# Histogram
 Plot will default to a scatterplot, but if you want a histogram then you need to use the type argument.
 
 ```{r}
@@ -55,6 +56,7 @@ plot(iris$Sepal.Length, type = 'h')
 
 ![histogram](plots/plot-3.png)
 
+# Boxplot
 To make a boxplot, you can use the function boxplot(x ~ y, data = dataframe). Let’s plot sepal length as a function of species.
 
 ```{r}

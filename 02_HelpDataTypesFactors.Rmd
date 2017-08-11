@@ -27,6 +27,13 @@ help(read_delim)
 
 The help information shows up in the Help tab of your RStudio window.
 
+An additional method to search for help is using a '?' before the command you have a questions about. A double '??' will search all help pages for the characters you entered
+
+```{r}
+?read_delim
+??read_delim
+```
+
 **Note:** Commonly-used arguments in commonly-used functions quickly become familiar. But because R can do so much, even expeRts refer to the help system all the time when coding; no-one learns every detail of every function
 
 # Errors & Warnings
@@ -122,6 +129,7 @@ class(mylist)
 # [1] "list"
 ```
 
+Note: Don't forget that the command str() also lists the class of each column within a data frame. It is good to use to make sure all of your data was imported correctly.
 
 # 4 Data Structures
 
@@ -309,6 +317,8 @@ If we look for the minimum of the factors, we get an error because they are not 
 min(ratings) 
 # Error in Summary.factor(c(2L, 1L, 3L, 2L), na.rm = FALSE) : 
   # ‘min’ not meaningful for fact
+levels(ratings)
+# [1] "high"   "low"    "medium"
 ```
 
 We can add an order by putting `ordered=TRUE` into the arguments of the `factor()` function.  Then when we run `min()`, it understands that "low" is the minimum value.  Notice that the Levels change to less than symbols, showing there is a hierarchy.
