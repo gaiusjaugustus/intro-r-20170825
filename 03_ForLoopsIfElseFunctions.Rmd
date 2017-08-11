@@ -14,12 +14,9 @@ setwd("r-intro-20170825")
 ```
 
 
-And we'll use the `mammals` and `gapminder` datasets from yesterday, so let's import that into R again.
+And we'll use the `gapminder` dataset from yesterday, so let's import that into R again.
 ```{r}
 library(readr)
-
-mammals <- read_delim(file = 'datasets/01_mammals.txt', 
-                      delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 
 gapminder <- read_delim(file = 'datasets/02_gapminder.txt',
                         delim = "\t", escape_double = FALSE, trim_ws = TRUE)
@@ -139,16 +136,12 @@ An alternative to for loops is the apply family of functions
 * vapply: similar to sapply but you specify the type of object returned by the iterations
 
 Each of these has an argument `FUN` which takes a function to apply to each element of the object.
-```{r}
-apply(X = mammals[c(2:3)], MARGIN = 2, FUN = function(x) mean(x))
-```
 
 Just so you know, when we give it arguments in the order it expects, we don't need to tell it which argument is which.  So in this case, we can easily just do:
 ```{r}
-apply(mammals[c(2:3)], 2, function(x) mean(x))
-
-#     body    brain 
-# 198.7900 283.1342 
+apply(gapminder[c(4:5)], 2, function(x) mean(x))
+#      lifeExp          pop 
+# 5.947444e+01 2.960121e+07 
 ```
 
 In this function, we are applying the function mean() to the 2nd and 3rd column of the mammals data frame The second argument, 2, refers to columns; passing a 1 would reference rows This applies the function to each column giving us a column mean.
@@ -157,18 +150,17 @@ The `function(x) mean(x)` call is called an anonymous function.  We'll talk abou
 
 We can also pass multiple functions using {} or c()
 ```{r}
-apply(mammals[c(2:3)],2, function(x) { log(mean(x)) * 3})
-#     body    brain 
-# 15.87675 16.93776 
+apply(gapminder[c(4:5)],2, function(x) { log(mean(x)) * 3})
+#  lifeExp      pop 
+# 12.25664 51.60998
 
-apply(mammals[c(2:3)],2, function(x) c(min(x), max(x), mean(x), sd(x)))
-#          body     brain
-# [1,]    0.005    0.1400
-# [2,] 6654.000 5712.0000
-# [3,]  198.790  283.1342
-# [4,]  899.158  930.2789
+apply(gapminder[c(4:5)],2, function(x) c(min(x), max(x), mean(x), sd(x)))
+#       lifeExp        pop
+# [1,] 23.59900      60011
+# [2,] 82.60300 1318683096
+# [3,] 59.47444   29601212
+# [4,] 12.91711  106157897
 ```
-
 
 apply can even be used in conjunction with loops.
 ```{r}
@@ -363,7 +355,23 @@ NameOfFunction <- function(Arguments){
 }
 ```
 
-Let's build our own function.  We are going to make a function that will convert a temperature from Fahrenheit to Kelvin.
+sum(gapminder['lifeExp'])/nrow(gapminder)
+mean(gapminder$lifeExp)
+
+Let's build our own function. We are going to make a function that will calculate the mean as the base R mean() function does above:
+```{r}
+my_mean <- function(data,col){
+     mean <- sum(data[col])/nrow(data)
+     return(mean)
+}
+
+my_mean(gapminder,'lifeExp')
+# [1] 59.47444
+
+my_mean(gapminder, 'gdpPercap')
+# [1] 7215.327
+```
+Let's build a new function that will convert a temperature in fahrenheit to kelvin:
 
 ```{r}
 fahr_to_kelvin <- function(temp){
