@@ -2,12 +2,10 @@
 ## August 26-27, 2017 at the University of Arizona
 ## http://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/
 
-dat.dir <- '~/Documents/2017Fall/Software_carpentry_workshop/intro-r-20170825/datasets/'
-
-#--Read in mammals data frame from yesterday
+#--Read in gapminder data frame from yesterday
 library(readr)
 #--Raed in gapminder data frame from yesterday
-gapminder <- read_delim(paste0(dat.dir, 'gapminder.txt'),
+gapminder <- read_delim('datasets/gapminder.txt',
                         delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 
 #<< For Loops >>------------------------------------------------------------------------
@@ -77,13 +75,10 @@ for(c in unique(gapminder$continent)){
 
 # Tutorial: https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.qC44Rnc
 
-<<<<<<< HEAD
 apply(gapminder[c(4:5)], 2, function(x) mean(x))
-=======
-apply(mammals[c(2:3)], 2, function(x) mean(x))
->>>>>>> origin/master
-# In this function, we are applying the function mean() to the 2nd and 3rd column of
-# the mammals data frame
+
+# In this function, we are applying the function mean() to the 4th and 5th column of
+# the gapminder data frame
 # The second argument, 2, refers to columns; passing a 1 would reference rows
 # This applies the function to each column giving us a column mean
 
@@ -210,7 +205,7 @@ if(x > 0) {
 # when you read your script you can immediately tell what the code will do.
 
 # Without that your code would look like this:
-<<<<<<< HEAD
+
 sum(gapminder['lifeExp'])/nrow(gapminder)
 mean(gapminder$lifeExp)
 
@@ -226,13 +221,6 @@ my_mean(gapminder,'lifeExp')
 my_mean(gapminder, 'gdpPercap')
 
 # Let's build a new function that will convert a temperature in fahrenheit to kelvin:
-=======
-sum(mammals$brain)/nrow(mammals)
-mean(mammals$brain)
-
-# Let's build our own function
-# We are going to make a function that will
->>>>>>> origin/master
 
 fahr_to_kelvin <- function(temp){
      kelvin <- ((temp -32) * (5/9) + 273.15)
