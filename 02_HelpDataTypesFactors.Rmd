@@ -383,9 +383,9 @@ We often want to make our data presentable to bosses, collaborators, coworkers, 
 
 We're going to just give you the basics of what you need to get started in R Markdown.  You can find more in the Resources section of the GitHub.
 
-## Creating an R Notebook
+## Creating an R Markdown Document
 
-Luckily, you can just choose **File > New File > R Notebook** and R Studio will automatically give you a template to start from.  Let's go through it.  The best thing about R Notebooks is that when you save the notebook, a formatted HTML file is automatically created for you!
+Luckily, you can just choose **File > New File > R Markdown**.  Give it a title and choose HTML. R Studio will automatically give you a template to start from.  Let's go through it.  The best thing about R Markdown is that you can output a formatted HTML file easily!
 
 ## YAML Header
 Every R Notebook or R Markdown file has a header called a YAML header.  This header has information like the title, the author, & options for outputting the document.  You can change anythng you want in this header and add more options if you need to later.
@@ -394,19 +394,30 @@ Every R Notebook or R Markdown file has a header called a YAML header.  This hea
 R Notebooks work best for outputting HTML files, but you can additionally output a PDF or other kinds of documents.  This takes some setup time, so we won't be covering it today, but if you need this functionality, Google is more than happy to help.
 
 ## Links 
-You can add links directly to the Markdown document, but if you want text to link to a URL, you need to use the following syntax [Link Description](http://www.google.com)
+You can add links directly to the Markdown document, but if you want text to link to a URL, you need to use the following syntax `[Link Description](http://www.google.com)`
+
+
 
 ## Styling
 You can create a header with the number/hashtag symbol.  One is an H1 tag (the biggest), and each additional `#` you use will make a subheading.
 
 You can also make things *italic* or **bold** by putting 1 asterisk `*` or 2 asterisks `**` around the phrase with no spaces between the asterisk and the letters.
 
+```
+*italic*
+**bold**
+```
+
 ## Lists
+```
 * If you want an unordered/bullet list, you can do so by putting 1 asterisk `*` at the beginning of the line.
     + If you need to add another level, place a 4-space indent and then a `+`.
+```
     
+```
 1. For ordered lists, just put the number, a period, and a space
     + Again, a `+` can be used to add another level to the list.
+```
     
 ## Code Chunks
 
@@ -414,13 +425,14 @@ This is the meat of your document.  Everything else will be output as a stylish 
 
 You can also add a chunk by pressing `Ctrl+Alt+i` or by clicking Insert > R above your script window. 
 
-The beginning of an R chunk starts with ` ```{r} ` and R knows that you are done writing code when you place three backticks at the end of the chunk (You can see this in the files given in the GitHub Repo).
+The beginning of an R chunk starts with ` ```{r} ` and R knows that you are done writing code when you place three backticks ` ``` ` at the end of the chunk (You can see this in the files given in the GitHub Repo).
 
 There are additional options you can add to the code chunk, separated by commas.  The most popular are:
 
-* echo - if set to FALSE, your code will be run but the output will not shown in the document
-* eval - if set to FALSE, your code will be shown but not run in the document
+* echo - if set to `FALSE`, your code will be run but the output will not shown in the document
+* eval - if set to `FALSE`, your code will be shown but not run in the document
+* include - if set to `FALSE`, the code will not be shown, but will be run.
 
-For more, check out the resources on the Github repo.
+For more, check out the [resources](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/resources/CheatSheetsAndResources.Rmd) on the Github repo.
 
 
