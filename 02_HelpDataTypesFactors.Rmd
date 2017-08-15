@@ -398,18 +398,25 @@ We're going to just give you the basics of what you need to get started in R Mar
 Luckily, you can just choose **File > New File > R Markdown**.  Give it a title and choose HTML. R Studio will automatically give you a template to start from.  Let's go through it.  The best thing about R Markdown is that you can output a formatted HTML file easily!
 
 ## YAML Header
-Every R Notebook or R Markdown file has a header called a YAML header.  This header has information like the title, the author, & options for outputting the document.  You can change anythng you want in this header and add more options if you need to later.
+Every R Markdown file has a header called a YAML header.  This header has information like the title, the author, & options for outputting the document.  You can change anythng you want in this header and add more options if you need to later.
 
 ## Output
-R Notebooks work best for outputting HTML files, but you can additionally output a PDF or other kinds of documents.  This takes some setup time, so we won't be covering it today, but if you need this functionality, Google is more than happy to help.
+R Markdown are easy for outputting HTML files, but you can additionally output a PDF or other kinds of documents.  This takes some setup time, so we won't be covering it today, but if you need this functionality, try [this tutorial](http://rprogramming.net/create-html-or-pdf-files-with-r-knitr-miktex-and-pandoc/).
 
 ## Links 
 You can add links directly to the Markdown document, but if you want text to link to a URL, you need to use the following syntax `[Link Description](http://www.google.com)`
 
-
-
 ## Styling
 You can create a header with the number/hashtag symbol.  One is an H1 tag (the biggest), and each additional `#` you use will make a subheading.
+```
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+
+```
 
 You can also make things *italic* or **bold** by putting 1 asterisk `*` or 2 asterisks `**` around the phrase with no spaces between the asterisk and the letters.
 
