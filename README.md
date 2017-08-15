@@ -65,7 +65,7 @@ install.packages(c("knitr", "scales", "ggthemes", "tidyverse", "readxl"))
 * Day 2 Part 5: Sharing is caring
     * How to start a git repo in RStudio
     * How to push that repo to GitHub
-* Dat 2 Part 6: Become a Jedi Master (or at least get more experience in writing R code)
+* Day 2 Part 6: Become a Jedi Master (or at least get more experience in writing R code & sharing on GitHub )
     * Create an R Notebook
     * More advanced loops
     * More advanced plots
