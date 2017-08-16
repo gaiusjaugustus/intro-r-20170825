@@ -401,6 +401,7 @@ gapminder %>% select(year) %>% table() #BASE R: table(gapminder$year)
 Make ‘Day’ a numeric variable, ‘Magnification’ an ordered factor variable (2 < 5 < 10), and ‘Observation’ a character variable.
 
     Answer: 
+    
 ```
 Cells <- data.frame(Day = c(1, 2, 3, 4, 5), 
            Magnification = factor(c(2, 10, 5, 2, 5), levels = c(2, 5, 10), ordered = TRUE),
