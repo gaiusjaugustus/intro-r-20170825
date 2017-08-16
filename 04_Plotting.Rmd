@@ -68,6 +68,16 @@ If you ever want to change what order the categories on the x-axis are displayed
 
 Plotting in base R can be flexible and you can actually do a lot with it, but many people find ggplot more user friendly and easier to learn. Let’s move on and learn how to do these plots using the ggplot package. Whichever you decide to use, there is a lot of help online if you need it.
 
+# EXERCISE
+Pull up the plot help page. What arguments would you use to change the x and y axis label?
+
+Change the axes labels for the first graph we did.
+
+```{r}
+plot(iris$Sepal.Length, iris$Petal.Length)
+```
+
+
 # ggplot2
 
 I'm just going to jump in and make a scatter plot of petal length and width.
@@ -224,7 +234,7 @@ ggplot(iris, aes(x=Sepal.Length)) + geom_point()
 # Error: geom_point requires the following missing aesthetics: y
 ```
 
-We get an error, because scatterplots need an x and a y axis.  
+We get an error, because scatterplots need a x and a y axis.  
 
 We can also add another layer.  We'll add one called `geom_smooth`, which allows us to add a trend line or spline.
 ```{r}

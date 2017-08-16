@@ -12,7 +12,7 @@ gapminder <- read_delim('datasets/gapminder.txt',
 
 # For loops are used to apply the same function calls to a collection of objects
 
-# For instance, say I want the avg. life expectance for each continent
+# For instance, say I want the minimum and maximum life expectance for each continent
 for(c in unique(gapminder$continent)){
      life.min <- min(gapminder[gapminder$continent == c, 'lifeExp'])
      life.max <- max(gapminder[gapminder$continent == c, 'lifeExp'])
@@ -22,10 +22,27 @@ for(c in unique(gapminder$continent)){
 # [1] "The life expectancy in Asia is 28.801 to 82.603"
 # [1] "The life expectancy in Europe is 43.585 to 81.757"
 # [1] "The life expectancy in Africa is 23.599 to 76.442"
+# ...
 
 # Here we are taking each element in unique(gapminder$continent) and sequentially 
-# assigning it to the variable c (which is completely arbitrary). The variable c is
+# assigning it to the variable c (which is completely arbitrary; it 
+# could easibly be continent, cont, x, y, z). The variable c is
 # then used in the code to perform a function.
+
+# Let's use a different variable and see if we get the same results.
+for(blah in unique(gapminder$continent)){
+     life.min <- min(gapminder[gapminder$continent == blah, 'lifeExp'])
+     life.max <- max(gapminder[gapminder$continent == blah, 'lifeExp'])
+     print(paste0('The life expectancy in ',blah,' is ',life.min,' to ',life.max))
+}
+
+
+# [1] "The life expectancy in Asia is 28.801 to 82.603"
+# [1] "The life expectancy in Europe is 43.585 to 81.757"
+# [1] "The life expectancy in Africa is 23.599 to 76.442"
+# ...
+
+# As you see we got the same results. 
 
 #--Nesting for loops -------------------------
 
