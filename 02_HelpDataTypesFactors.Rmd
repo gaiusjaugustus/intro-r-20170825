@@ -386,6 +386,43 @@ gapminder %>% select(year) %>% table() #BASE R: table(gapminder$year)
 ```
 
 
+# EXERCISE
+
+1. Create the following data frame in R:
+
+| Day | Magnification | Observation |
+| --- | ------------- | ----------- |
+|  1  |      2        |   Growth    |
+|  2  |      10       |    Death    |
+|  3  |      5        |  No Change  |
+|  4  |      2        |    Death    |
+|  5  |      5        |   Growth    |
+
+Make ‘Day’ a numeric variable, ‘Magnification’ an ordered factor variable (2 < 5 < 10), and ‘Observation’ a character variable.
+
+    Answer: 
+```
+Cells <- data.frame(Day = c(1, 2, 3, 4, 5), 
+           Magnification = factor(c(2, 10, 5, 2, 5), levels = c(2, 5, 10), ordered = TRUE),
+           Observation = c("Growth", "Death", "No Change", "Death", "Growth"), stringsAsFactors = FALSE)
+```
+
+2. Use dplyr or base R to select only the Magnification variable. What are the dimensions of the output? 
+
+    Answer: 5 rows, 1 column
+
+3. Use dplyr or base R to filter for only rows with 5 Magnification.  How many rows are in your output? 
+
+    Answer: 2 rows
+
+4. **ADVANCED:** Use dplyr or base R to create a new column that multiplies the Magnification by the Day. 
+
+    Answer:
+```
+Cells <- Cells %>% mutate(NewColumn = Magnification * Day)
+```
+
+
 
 # R Markdown
 
