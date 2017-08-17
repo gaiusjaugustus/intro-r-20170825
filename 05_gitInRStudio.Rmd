@@ -86,9 +86,11 @@ From RStudio:
 ## Push your local changes online to GitHub
   
 Click the green "Push" button to send your local changes to GitHub. 
+
 ![PushChanges](plots/PushChanges.png)
 
 If you are challenged for username and password, provide them (but see below). You should see some message along these lines.
+
 ![Dialog](plots/GitPushDialogComplete.png)
 
 
