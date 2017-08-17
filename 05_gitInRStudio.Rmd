@@ -37,13 +37,24 @@ Copy the HTTPS clone URL to your clipboard via the green "Clone or Download" but
 
 ## Clone the new GitHub repository to your computer via RStudio
 
-In RStudio, start a new Project:
+* In RStudio, start a new Project by going to *File > New Project* or Click *New Project* from the project menu at the top right. 
+![NewProject](plots/NewProject.png)
 
-  * *File > New Project > Version Control > Git*. In the "repository URL" paste the URL of your new GitHub repository. It will be something like this `https://github.com/jennybc/myrepo.git`.
-    - Do you NOT see an option to get the Project from Version Control? Go to chapter \@ref(rstudio-see-git) for tips on how to help RStudio find Git.
-  * Take charge of -- or at least notice! -- the local directory for the Project. A common rookie mistake is to have no idea where you are saving files or what your working directory is. Pay attention. Be intentional. Personally, I would do this in `~/tmp`.
+
+* Choose *Version Control*
+![ChooseVersionControl](plots/ChooseVersionControl.png)
+
+* Choose *Git*
+![ChooseGit](plots/ChooseGIT.png)
+  
+  * In the "repository URL" paste the URL of your new GitHub repository. It will be something like this `https://github.com/jennybc/myrepo.git`.
+  * Take charge of -- or at least notice! -- the local directory for the Project. A common rookie mistake is to have no idea where you are saving files or what your working directory is. Pay attention. Be intentional.
   * I suggest you check "Open in new session", as that's what you'll usually do in real life.
   * Click "Create Project".
+  
+![CloneRepo](plots/EnterGitInfo.png)
+
+
 
 This should download the `README.md` file that we created on GitHub in the previous step. Look in RStudio's file browser pane for the `README.md` file.
 
@@ -55,22 +66,31 @@ Commit these changes to your local repo. How?
 
 From RStudio:
 
-  * Click the "Git" tab in upper right pane.
-  * Check "Staged" box for `README.md`.
-  * If you're not already in the Git pop-up, click "Commit".
-  * Type a message in "Commit message", such as "Commit from RStudio".
+  * Click the *Git > Commit...* at the top of your screen.
+  ![GitCommit](plots/GitCommit.png)
+  
+  * Check "Staged" box for your changed file.
+  ![Stage](plots/StageDocument.png)
+  * If you want a file to not be tracked by git, click the file, click the Ignore button, and click Save in the dialog box that opens (after making sure the filename is in the document, it should be added automatically)
+  ![Ignore](plots/GitIgnore.png)
+  
+
+  * Type a message in "Commit message".
   * Click "Commit".
+  ![CommitMessage](plots/CommitMessage.png)
+  
+  ![Commit](plots/Commit.png)
+  
+  ![CommitConfirms](plots/CommitConfirms.png)
 
 ## Push your local changes online to GitHub
   
-Click the green "Push" button to send your local changes to GitHub. If you are challenged for username and password, provide them (but see below). You should see some message along these lines.
+Click the green "Push" button to send your local changes to GitHub. 
+![PushChanges](plots/PushChanges.png)
 
-``` sh
-[master dc671f0] blah
- 3 files changed, 22 insertions(+)
- create mode 100644 .gitignore
- create mode 100644 myrepo.Rproj
-```
+If you are challenged for username and password, provide them (but see below). You should see some message along these lines.
+![Dialog](plots/GitPushDialogComplete.png)
+
 
 ## Confirm the local change propagated to the GitHub remote
 
@@ -78,9 +98,9 @@ Go back to the browser. I assume we're still viewing your new GitHub repo.
 
 Refresh.
 
-You should see the new "This is a line from RStudio" in the README.
+You should see the new changes in your document.
 
-If you click on "commits," you should see one with the message "Commit from RStudio".
+If you click on "commits," you should see one with the message that you entered above.
 
 If you have made it this far, you are DONE with set up. But first ...
 
@@ -95,7 +115,7 @@ Pick one:
 
 Now is the perfect time to do this, since you have a functioning test repo.
 
-## Clean up
+## Deleting a repo locally and remotely
 
 **Local** When you're ready to clean up, you can delete the local repo any way you like. It's just a regular directory on your computer.
 
