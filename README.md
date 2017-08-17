@@ -62,7 +62,7 @@ install.packages(c("knitr", "scales", "ggthemes", "tidyverse", "readxl"))
      * [Histograms](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#histogram)
      * [Boxplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#boxplot)
      * [Barplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#barplot)
-* Day 2 Part 5: Sharing is caring
+* [Day 2 Part 5: Sharing is caring](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/05_gitInRStudio.Rmd)
     * How to start a git repo in RStudio
     * How to push that repo to GitHub
 * Day 2 Part 6: Become a Jedi Master (or at least get more experience in writing R code & sharing on GitHub )
