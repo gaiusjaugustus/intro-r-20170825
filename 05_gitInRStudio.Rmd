@@ -1,6 +1,9 @@
 ---
-title: "Using Git with R"
-output: html_notebook
+title: "05 - Using Git with R"
+output: 
+     html_notebook:
+          toc: true
+          toc_float: true
 ---
 
 # Connect RStudio to Git and GitHub {#rstudio-git-github}
