@@ -1,5 +1,5 @@
 ---
-title: "05 - Using Git with R"
+title: "05 - Sharing is Caring: Using Git with R"
 output: 
      html_notebook:
           toc: true
