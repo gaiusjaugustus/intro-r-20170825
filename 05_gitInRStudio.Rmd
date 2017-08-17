@@ -6,7 +6,7 @@ output:
           toc_float: true
 ---
 
-# Connect RStudio to Git and GitHub {#rstudio-git-github}
+# Connect RStudio to Git and GitHub
 
 Here we verify that RStudio can issue Git commands on your behalf. Assuming that you've gotten local Git to talk to GitHub, this means you'll also be able to pull from and push to GitHub from RStudio.
 
@@ -18,11 +18,11 @@ If you succeed here, your set up is DONE.
 
 We assume the following: 
 
-  * You've registered a free GitHub account (chapter \@ref(github-acct)).
-  * You've installed/updated R and RStudio (chapter \@ref(install-r-rstudio)).
-  * You've installed Git (chapter \@ref(install-git)).
-  * You've introduced yourself to Git (chapter \@ref(hello-git)).
-  * You've confirmed that you can push to / pull from GitHub from the command line (chapter \@ref(push-pull-github)).
+  * You've registered a free GitHub account
+  * You've installed/updated R and RStudio.
+  * You've installed Git.
+  * You've introduced yourself to Git.
+  * You've confirmed that you can push to / pull from GitHub from the command line.
 
 ## Make a new repo on GitHub
 
