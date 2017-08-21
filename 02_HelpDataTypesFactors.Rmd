@@ -27,6 +27,13 @@ help(read_delim)
 
 The help information shows up in the Help tab of your RStudio window.
 
+An additional method to search for help is using a '?' before the command you have a questions about. A double '??' will search all help pages for the characters you entered
+
+```{r}
+?read_delim
+??read_delim
+```
+
 **Note:** Commonly-used arguments in commonly-used functions quickly become familiar. But because R can do so much, even expeRts refer to the help system all the time when coding; no-one learns every detail of every function
 
 # Errors & Warnings
@@ -122,6 +129,7 @@ class(mylist)
 # [1] "list"
 ```
 
+Note: Don't forget that the command str() also lists the class of each column within a data frame. It is good to use to make sure all of your data was imported correctly.
 
 # 4 Data Structures
 
@@ -309,6 +317,8 @@ If we look for the minimum of the factors, we get an error because they are not 
 min(ratings) 
 # Error in Summary.factor(c(2L, 1L, 3L, 2L), na.rm = FALSE) : 
   # ‘min’ not meaningful for fact
+levels(ratings)
+# [1] "high"   "low"    "medium"
 ```
 
 We can add an order by putting `ordered=TRUE` into the arguments of the `factor()` function.  Then when we run `min()`, it understands that "low" is the minimum value.  Notice that the Levels change to less than symbols, showing there is a hierarchy.
@@ -376,6 +386,44 @@ gapminder %>% select(year) %>% table() #BASE R: table(gapminder$year)
 ```
 
 
+# EXERCISE
+
+1. Create the following data frame in R:
+
+| Day | Magnification | Observation |
+| --- | ------------- | ----------- |
+|  1  |      2        |   Growth    |
+|  2  |      10       |    Death    |
+|  3  |      5        |  No Change  |
+|  4  |      2        |    Death    |
+|  5  |      5        |   Growth    |
+
+Make ‘Day’ a numeric variable, ‘Magnification’ an ordered factor variable (2 < 5 < 10), and ‘Observation’ a character variable.
+
+    Answer: 
+    
+```
+Cells <- data.frame(Day = c(1, 2, 3, 4, 5), 
+           Magnification = factor(c(2, 10, 5, 2, 5), levels = c(2, 5, 10), ordered = TRUE),
+           Observation = c("Growth", "Death", "No Change", "Death", "Growth"), stringsAsFactors = FALSE)
+```
+
+2. Use dplyr or base R to select only the Magnification variable. What are the dimensions of the output? 
+
+    Answer: 5 rows, 1 column
+
+3. Use dplyr or base R to filter for only rows with 5 Magnification.  How many rows are in your output? 
+
+    Answer: 2 rows
+
+4. **ADVANCED:** Use dplyr or base R to create a new column that multiplies the Magnification by the Day. 
+
+    Answer:
+```
+Cells <- Cells %>% mutate(NewColumn = Magnification * Day)
+```
+
+
 
 # R Markdown
 
@@ -383,30 +431,48 @@ We often want to make our data presentable to bosses, collaborators, coworkers, 
 
 We're going to just give you the basics of what you need to get started in R Markdown.  You can find more in the Resources section of the GitHub.
 
-## Creating an R Notebook
+## Creating an R Markdown Document
 
-Luckily, you can just choose **File > New File > R Notebook** and R Studio will automatically give you a template to start from.  Let's go through it.  The best thing about R Notebooks is that when you save the notebook, a formatted HTML file is automatically created for you!
+Luckily, you can just choose **File > New File > R Markdown**.  Give it a title and choose HTML. R Studio will automatically give you a template to start from.  Let's go through it.  The best thing about R Markdown is that you can output a formatted HTML file easily!
 
 ## YAML Header
-Every R Notebook or R Markdown file has a header called a YAML header.  This header has information like the title, the author, & options for outputting the document.  You can change anythng you want in this header and add more options if you need to later.
+Every R Markdown file has a header called a YAML header.  This header has information like the title, the author, & options for outputting the document.  You can change anythng you want in this header and add more options if you need to later.
 
 ## Output
-R Notebooks work best for outputting HTML files, but you can additionally output a PDF or other kinds of documents.  This takes some setup time, so we won't be covering it today, but if you need this functionality, Google is more than happy to help.
+R Markdown are easy for outputting HTML files, but you can additionally output a PDF or other kinds of documents.  This takes some setup time, so we won't be covering it today, but if you need this functionality, try [this tutorial](http://rprogramming.net/create-html-or-pdf-files-with-r-knitr-miktex-and-pandoc/).
 
 ## Links 
-You can add links directly to the Markdown document, but if you want text to link to a URL, you need to use the following syntax [Link Description](http://www.google.com)
+You can add links directly to the Markdown document, but if you want text to link to a URL, you need to use the following syntax `[Link Description](http://www.google.com)`
 
 ## Styling
 You can create a header with the number/hashtag symbol.  One is an H1 tag (the biggest), and each additional `#` you use will make a subheading.
+```
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+
+```
 
 You can also make things *italic* or **bold** by putting 1 asterisk `*` or 2 asterisks `**` around the phrase with no spaces between the asterisk and the letters.
 
+```
+*italic*
+**bold**
+```
+
 ## Lists
+```
 * If you want an unordered/bullet list, you can do so by putting 1 asterisk `*` at the beginning of the line.
     + If you need to add another level, place a 4-space indent and then a `+`.
+```
     
+```
 1. For ordered lists, just put the number, a period, and a space
     + Again, a `+` can be used to add another level to the list.
+```
     
 ## Code Chunks
 
@@ -414,13 +480,14 @@ This is the meat of your document.  Everything else will be output as a stylish 
 
 You can also add a chunk by pressing `Ctrl+Alt+i` or by clicking Insert > R above your script window. 
 
-The beginning of an R chunk starts with ` ```{r} ` and R knows that you are done writing code when you place three backticks at the end of the chunk (You can see this in the files given in the GitHub Repo).
+The beginning of an R chunk starts with ` ```{r} ` and R knows that you are done writing code when you place three backticks ` ``` ` at the end of the chunk (You can see this in the files given in the GitHub Repo).
 
 There are additional options you can add to the code chunk, separated by commas.  The most popular are:
 
-* echo - if set to FALSE, your code will be run but the output will not shown in the document
-* eval - if set to FALSE, your code will be shown but not run in the document
+* echo - if set to `FALSE`, your code will be run but the output will not shown in the document
+* eval - if set to `FALSE`, your code will be shown but not run in the document
+* include - if set to `FALSE`, the code will not be shown, but will be run.
 
-For more, check out the resources on the Github repo.
+For more, check out the [resources](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/resources/CheatSheetsAndResources.Rmd) on the Github repo.
 
 

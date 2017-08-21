@@ -2,19 +2,17 @@
 ## August 26-27, 2017 at the University of Arizona
 ## http://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/
 
-dat.dir <- '~/Documents/2017Fall/Software_carpentry_workshop/intro-r-20170825/datasets/'
-
-#--Read in mammals data frame from yesterday
+#--Read in gapminder data frame from yesterday
 library(readr)
 #--Raed in gapminder data frame from yesterday
-gapminder <- read_delim(paste0(dat.dir, 'gapminder.txt'),
+gapminder <- read_delim('datasets/gapminder.txt',
                         delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 
 #<< For Loops >>------------------------------------------------------------------------
 
 # For loops are used to apply the same function calls to a collection of objects
 
-# For instance, say I want the avg. life expectance for each continent
+# For instance, say I want the minimum and maximum life expectance for each continent
 for(c in unique(gapminder$continent)){
      life.min <- min(gapminder[gapminder$continent == c, 'lifeExp'])
      life.max <- max(gapminder[gapminder$continent == c, 'lifeExp'])
@@ -24,10 +22,27 @@ for(c in unique(gapminder$continent)){
 # [1] "The life expectancy in Asia is 28.801 to 82.603"
 # [1] "The life expectancy in Europe is 43.585 to 81.757"
 # [1] "The life expectancy in Africa is 23.599 to 76.442"
+# ...
 
 # Here we are taking each element in unique(gapminder$continent) and sequentially 
-# assigning it to the variable c (which is completely arbitrary). The variable c is
+# assigning it to the variable c (which is completely arbitrary; it 
+# could easibly be continent, cont, x, y, z). The variable c is
 # then used in the code to perform a function.
+
+# Let's use a different variable and see if we get the same results.
+for(blah in unique(gapminder$continent)){
+     life.min <- min(gapminder[gapminder$continent == blah, 'lifeExp'])
+     life.max <- max(gapminder[gapminder$continent == blah, 'lifeExp'])
+     print(paste0('The life expectancy in ',blah,' is ',life.min,' to ',life.max))
+}
+
+
+# [1] "The life expectancy in Asia is 28.801 to 82.603"
+# [1] "The life expectancy in Europe is 43.585 to 81.757"
+# [1] "The life expectancy in Africa is 23.599 to 76.442"
+# ...
+
+# As you see we got the same results. 
 
 #--Nesting for loops -------------------------
 
@@ -77,13 +92,10 @@ for(c in unique(gapminder$continent)){
 
 # Tutorial: https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.qC44Rnc
 
-<<<<<<< HEAD
 apply(gapminder[c(4:5)], 2, function(x) mean(x))
-=======
-apply(mammals[c(2:3)], 2, function(x) mean(x))
->>>>>>> origin/master
-# In this function, we are applying the function mean() to the 2nd and 3rd column of
-# the mammals data frame
+
+# In this function, we are applying the function mean() to the 4th and 5th column of
+# the gapminder data frame
 # The second argument, 2, refers to columns; passing a 1 would reference rows
 # This applies the function to each column giving us a column mean
 
@@ -210,6 +222,10 @@ if(x > 0) {
 # when you read your script you can immediately tell what the code will do.
 
 # Without that your code would look like this:
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
 sum(gapminder['lifeExp'])/nrow(gapminder)
 mean(gapminder$lifeExp)
 

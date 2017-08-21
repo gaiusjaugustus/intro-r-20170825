@@ -28,6 +28,7 @@ This dataset has information on plants of 3 types of irises.  They've measured t
 
 Let’s make three main kinds of plot using base R—a scatterplot, a histogram, and a boxplot—then we’ll make these same plots using a R package specifically designed for making plots and figures called ggplot.
 
+# Scatterplot
 The basic plot function is plot(x, y, ….) which x corresponding to your x-variable and y to the y-variable.
 Let’s plot sepal length as a function of petal length.
 
@@ -46,7 +47,7 @@ abline(lm(iris$Petal.Length ~ iris$Sepal.Length))
 ```
 
 ![Trendline](plots/plot-2.png)
-
+# Histogram
 Plot will default to a scatterplot, but if you want a histogram then you need to use the type argument.
 
 ```{r}
@@ -55,6 +56,7 @@ plot(iris$Sepal.Length, type = 'h')
 
 ![histogram](plots/plot-3.png)
 
+# Boxplot
 To make a boxplot, you can use the function boxplot(x ~ y, data = dataframe). Let’s plot sepal length as a function of species.
 
 ```{r}
@@ -65,6 +67,16 @@ boxplot(Sepal.Length ~ Species, data = iris)
 If you ever want to change what order the categories on the x-axis are displayed in you would need to order the factor levels of that column.
 
 Plotting in base R can be flexible and you can actually do a lot with it, but many people find ggplot more user friendly and easier to learn. Let’s move on and learn how to do these plots using the ggplot package. Whichever you decide to use, there is a lot of help online if you need it.
+
+# EXERCISE
+Pull up the plot help page. What arguments would you use to change the x and y axis label?
+
+Change the axes labels for the first graph we did.
+
+```{r}
+plot(iris$Sepal.Length, iris$Petal.Length)
+```
+
 
 # ggplot2
 
@@ -222,7 +234,7 @@ ggplot(iris, aes(x=Sepal.Length)) + geom_point()
 # Error: geom_point requires the following missing aesthetics: y
 ```
 
-We get an error, because scatterplots need an x and a y axis.  
+We get an error, because scatterplots need a x and a y axis.  
 
 We can also add another layer.  We'll add one called `geom_smooth`, which allows us to add a trend line or spline.
 ```{r}

@@ -1,0 +1,55 @@
+## 03_ForLoopsIfElseFunctions Exercise answers
+
+# Exercise #1
+# Let's try out a for loop and it's apply function alternative. In this exercise, we are 
+# going to be taking the square root of each integer in a vector. Either create a for loop
+# or use the sapply function to take the square root and return the output.
+
+loop.vector <- c(1,4,9,16,25,36,49,64,81,100)
+
+# For loop
+for(int in loop.vector){
+     sqrt.int <- sqrt(int)
+     print(paste0('The square root of ', int, ' is ', sqrt.int))
+}
+
+# sapply function
+sapply(c(1,4,9,16,25,36,49,64,81,100), function(x) sqrt(x))
+
+# Exercise #2
+# What would be the output of the following code:
+x <- -6
+if(x > 0){
+     print(paste0(x,' is greater than zero'))
+}
+
+#A. x is greater than zero
+#B. x is less than zero
+#C. nothing <--- CORRECT ANSWER
+#D. an error message
+
+# How could you change the code so that if x is less than 0 you get a message saying 'x is
+# less than zero'? 
+
+x <- -6
+if(x > 0){
+     print('x is greater than zero')
+} else {
+     print('x is less than zero')
+}
+
+# Exercise #3
+
+# Create a function called Average that calculates the average of 2 numbers.
+# Don't forget to check your work.
+
+# Answer: 
+Average <- function(Number1, Number2){
+     (Number1 + Number2) / 2
+}
+
+Average(1,2)
+# [1] 1.5
+
+Average(50, 100)
+# [1] 75

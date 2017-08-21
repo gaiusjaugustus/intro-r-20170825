@@ -207,7 +207,7 @@ The defaults are sensible, but R assumes you know what your data should look lik
 
 After successfully reading in the data;
 
-* The environment now includes a mammals object – or whatever you called the data read from file
+* The environment now includes a `gapminder` object – or whatever you called the data read from file
 * A copy of the data can be examined in the Excel-like data viewer – if it looks weird, find out why & fix it!
 
 ## Read in Data with base R 
@@ -247,12 +247,6 @@ What’s a good name for my new object?
 
 To operate on data, type commands in the Console window, just like our earlier calculator-style approach;
 ```{r}
-str(gapminder)
-# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
-#  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
-#  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
-#  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
-
 summary(gapminder)
  #   country           continent              year         lifeExp           pop           
  # Length:1704        Length:1704        Min.   :1952   Min.   :23.60   Min.   :6.001e+04  
@@ -261,15 +255,21 @@ summary(gapminder)
  #                                       Mean   :1980   Mean   :59.47   Mean   :2.960e+07  
  #                                       3rd Qu.:1993   3rd Qu.:70.85   3rd Qu.:1.959e+07  
  #                                       Max.   :2007   Max.   :82.60   Max.   :1.319e+09 
+
+str(gapminder)
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
+#  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+#  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+#  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
 ```
 
-* str() tells us the structure of an object (i.e., it's dimensions/size and the class of the each data column)
 * summary() summarizes the object and provide basic summary statistics for each column within your data
+* str() tells us the structure of an object (i.e., it's dimensions/size and the class of the each data column)
 
 We can also use these commands on any object – e.g. the single numbers we created earlier (try it!)
 
 
-There are also commands to get these statistics alone:
+There are also commands to get these statistics alone.  For this we use the `$` symbol to tell R which column we are interested in.
 ```{r}
 min(gapminder$lifeExp)
 # [1] 23.599
@@ -292,13 +292,13 @@ plot(gapminder$lifeExp, gapminder$gdpPercap)
 
 # Data Frames
 
-Individual columns in data frames are identified using the `$` symbol – just seen in the str() output.
+The `gapminder` data we just imported is in an object called a Data Frame.  A data frame holds data in a table format, like what you might be used to in Excel.  A "tidy" data frame has columns that each represent a variable and rows which hold one observation.
+
+As we saw before, individual columns in data frames are identified using the `$` symbol – just seen in the str() output.
 
 Think of $ as ‘apostrophe-S’, i.e. gapminder`’S` lifeExp
 
 New columns are created when you assign their values – here containing the life expectancy in months instead of years;
-
-
 ```{r}
 
 gapminder$lifeExpMonths <- gapminder$lifeExp*12
@@ -481,10 +481,13 @@ gapminder[-3:-1704,] # everything but the first two rows will be dropped
 As well as storing numbers and character strings (like "United States", "Canada") R can also store logicals – `TRUE` and `FALSE`.
 To make a new vector, with elements that are `TRUE` if life expectancy is above 71.5 and FALSE otherwise;
 ```{r}
-
 is.above.avg <- gapminder$lifeExp > 71.5
+```
 
-table(is.above.avg) # another useful data summary command
+Let's see how many of the total were TRUE and how many were FALSE using the table() function.
+The table() function will create a count table from a vector of categorical data.
+```{r}
+table(is.above.avg)
 # is.above.avg
 # FALSE  TRUE 
 #  1329   375 
@@ -584,7 +587,7 @@ This is more typing than the other options, but is much easier to debug/reuse.
 
 ## Dplyr
 
-Base R gives us several ways to subset our data, which is in the online notes.  However, we are going to introduce you to an other package in the tidyverse called `dplyr` which makes manipulating datasets a little easier for beginners.
+Remember how we mentioned earlier that data should be "tidy", that is each variable should be represented in one column and each row represents one observation.  A group of packages has been created called the `tidyverse` which can help us work with data in a tidy way.  We saw the first package earlier, the `readr` package.  It helped us read in data and avoid some headaches from base R that you didn't have to deal with.  We are now going to discuss another of these packages, which helps you to manipulate your data, a package called `dplyr`.
 
 If you haven't already, install dplyr
 ```{r}
@@ -604,9 +607,16 @@ min(gapminder$lifeExp)
 # [1] 23.599
 ```
 
+An important difference between `dplyr` and base R is when use character strings we don't need to enclose them in quotation marks as we did above (i.e. gapminder[,'lifeExp'])
+
 dplyr also comes with ways to subset our data.
 
-If we only want to choose one column:
+If we only want to choose one column, we use `select`:
+```{r}
+# select(data = gapminder, lifeExp)
+```
+The above is valud code, but because we can pipe commands, it's best practice to just pipe all functions.
+
 ```{r}
 gapminder %>% select(lifeExp)
 # A tibble: 1,704 x 1
@@ -625,7 +635,7 @@ gapminder %>% select(lifeExp)
 # # ... with 1,694 more rows
 ```
 
-If we want to make a new column, use mutate.  Don't forget we have to assign it if we want to keep the changes
+If we want to make a new column, use `mutate`.  Don't forget we have to assign it if we want to keep the changes
 ```{r}
 gapminder <- gapminder %>% mutate(NewColumn = lifeExp * 12)
 gapminder
@@ -646,7 +656,7 @@ gapminder
 # ... with 1,694 more rows
 ```
 
-If we want to select all columns except 1, we can do that with the `-` operator.
+If we want to select all columns except 1, we can do that with the `-` operator.  Remember that if we want to save anything we are doing, we must store it in a variable.
 ```{r}
 gapminder <- gapminder %>% select(-NewColumn)
 gapminder
@@ -667,7 +677,7 @@ gapminder
 ```
 
 
-Now what about rows?  For this we use te `filter` commands:
+Now what about subsetting rows?  For this we use te `filter` command:
 ```{r}
 gapminder %>% filter(lifeExp > 71.5)
 # A tibble: 375 x 7
@@ -707,9 +717,9 @@ gapminder %>% select(lifeExp, country) %>% filter(lifeExp > 71.5) %>% mutate(lif
 
 We can also use outside information to help subset data.
 ```{r}
-Country <- c('Kenya', 'Gibon')
+two.countries <- c('Kenya', 'Gibon')
 
-gapminder %>% filter(country %in% Country)
+gapminder %>% filter(country %in% two.countries)
 # A tibble: 12 x 7
 #    country continent  year lifeExp      pop gdpPercap lifeExpMonths
 #      <chr>     <chr> <int>   <dbl>    <int>     <dbl>         <dbl>
@@ -727,7 +737,7 @@ gapminder %>% filter(country %in% Country)
 # 12   Kenya    Africa  2007  54.110 35610177 1463.2493       649.320
 ```
 
-
+%in% will enable you to search all lines in the column country for all character strings in the two.countries file and will return a TRUE if it finds an one of them.
 
 # EXERCISE
 
@@ -782,4 +792,3 @@ References:
 
 1. Lectures from Ken Rice at University of Washington, Summer Institute for Statistical Genetics - http://faculty.washington.edu/kenrice/rintro/indexSEA15.shtml
 2. Scripts & Exercise from Asher Haug-Baltzell - https://github.com/asherkhb/intro_r
-
