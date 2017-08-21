@@ -82,5 +82,5 @@ If you want more help, check out the [resource list](https://github.com/gaiusjau
 ![](plots/gaius.jpg)
 [Gaius Augustus](http://www.gaiusjaugustus.com)
 
-
+![](plots/liz.jpg)
 Elizabeth Bowman
