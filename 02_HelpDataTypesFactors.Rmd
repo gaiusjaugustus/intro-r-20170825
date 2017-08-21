@@ -163,7 +163,6 @@ as.logical(mixed)
 # [1] TRUE TRUE
 ```
 
-## 2. Lists
 
 Lists are like vectors except that you can use multiple data types.  Make a list using the `list()` function.
 ```{r}
@@ -192,6 +191,35 @@ phonebook["name"]
 # [1] "Gaius"
 ```
 
+## 2. Attributes
+All objects can have arbitrary additional attributes, used to store metadata about the object. Attributes can be thought of as a named list (with unique names). Attributes can be accessed individually with attr() or all at once (as a list) with attributes().
+
+```{r}
+y <- 1:10
+attr(y, "my_attribute") <- "This is a vector"
+attr(y, "my_attribute")
+## [1] "This is a vector"
+str(attributes(y))
+## List of 1
+##  $ my_attribute: chr "This is a vector"
+```
+
+By default, most attributes are lost when modifying a vector.
+```{r}
+attributes(y[1])
+## NULL
+attributes(sum(y))
+## NULL
+```
+The only attributes not lost are the three most important:
+
+* Names, a character vector giving each element a name, described in names.
+* Dimensions, used to turn vectors into matrices and arrays, described in matrices and arrays.
+* Class, used to implement the S3 object system, described in S3.
+
+Each of these attributes has a specific accessor function to get and set values. When working with these attributes, use names(x), dim(x), and class(x), not attr(x, "names"), attr(x, "dim"), and attr(x, "class").
+
+
 
 ## 3. Matrices
 
@@ -213,6 +241,8 @@ m
 # [1,]    1    2    3
 # [2,]    4    5    6
 ```
+
+**Note:** You can also have multi-dimensional structures called arrays.  You can create this using the `array()` function, but it is outside the scope of this course.
 
 
 ## 4. Data Frames 
@@ -490,4 +520,8 @@ There are additional options you can add to the code chunk, separated by commas.
 
 For more, check out the [resources](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/resources/CheatSheetsAndResources.Rmd) on the Github repo.
 
+
+# References
+
+[Advanced R](http://adv-r.had.co.nz/Data-structures.html)
 
