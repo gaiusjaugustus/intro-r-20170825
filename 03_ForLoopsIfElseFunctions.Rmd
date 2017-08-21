@@ -350,8 +350,8 @@ For example, the base R function `mean()` gives you a simple way to get an avera
 
 Without that your code would look like this:
 ```
-sum(mammals$brain)/nrow(mammals)
-mean(mammals$brain)
+sum(gapminder['lifeExp'])/nrow(gapminder)
+mean(gapminder$lifeExp)
 ```
 
 But we can also build our own functions to do things over and over again.  Generally, if you have to do a task more than 3 times, it's generally better to go ahead and create a custom function.
@@ -363,7 +363,19 @@ NameOfFunction <- function(Arguments){
 }
 ```
 
-Let's build our own function.  We are going to make a function that will convert a temperature from Fahrenheit to Kelvin.
+Let's build our own function. We are going to make a function that will calculate the means as above:
+
+```{r}
+my_mean <- function(data,col){
+mean <- sum(data[col])/nrow(data)
+     return(mean)
+}
+
+my_mean(gapminder,'lifeExp')
+my_mean(gapminder, 'gdpPercap')
+```
+
+We are going to make a function that will convert a temperature from Fahrenheit to Kelvin.
 
 ```{r}
 fahr_to_kelvin <- function(temp){

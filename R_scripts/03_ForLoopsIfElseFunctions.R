@@ -210,7 +210,6 @@ if(x > 0) {
 # when you read your script you can immediately tell what the code will do.
 
 # Without that your code would look like this:
-<<<<<<< HEAD
 sum(gapminder['lifeExp'])/nrow(gapminder)
 mean(gapminder$lifeExp)
 
@@ -226,13 +225,6 @@ my_mean(gapminder,'lifeExp')
 my_mean(gapminder, 'gdpPercap')
 
 # Let's build a new function that will convert a temperature in fahrenheit to kelvin:
-=======
-sum(mammals$brain)/nrow(mammals)
-mean(mammals$brain)
-
-# Let's build our own function
-# We are going to make a function that will
->>>>>>> origin/master
 
 fahr_to_kelvin <- function(temp){
      kelvin <- ((temp -32) * (5/9) + 273.15)
