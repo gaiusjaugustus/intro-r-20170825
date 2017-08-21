@@ -222,7 +222,10 @@ if(x > 0) {
 # when you read your script you can immediately tell what the code will do.
 
 # Without that your code would look like this:
+<<<<<<< HEAD
+=======
 
+>>>>>>> upstream/master
 sum(gapminder['lifeExp'])/nrow(gapminder)
 mean(gapminder$lifeExp)
 
