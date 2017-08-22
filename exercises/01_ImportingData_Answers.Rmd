@@ -1,14 +1,15 @@
 ## 01 Importing data exercise answers
 
-# Multiple choice -----------------------------------------------------------------
+# 1. Multiple choice
 
-# Which of the following will NOT return TRUE?
-# A. FALSE == FALSE
-# B. 10-5 == sqrt(25)
-# C. TRUE > FALSE
-# D. 'a' > 'b'
+##Which of the following will NOT return TRUE?
 
+A. FALSE == FALSE   
+B. 10-5 == sqrt(25)   
+C. TRUE > FALSE  
+D. 'a' > 'b'  
 
+```{r}
 FALSE == FALSE
 # [1] TRUE
 
@@ -20,28 +21,32 @@ TRUE > FALSE
 
 'a' > 'b'
 # [1] FALSE
-
-# `TRUE` is greater than `FALSE` because R in the background actually uses 1 to represent
-# `TRUE` and 0 to represent `FALSE`.  Also, `'b'` is greater than `'a'` because it's later
-# in the alphabet. In other words, the 2nd letter is greater than the 1st letter.  This
-# is helpful for ordering alphabetically, which we'll see later.
+```
 
 
-# Multiple choice -----------------------------------------------------------------
 
-# What is the output when we execute the following code?
-x <- 3
+* `TRUE` is greater than `FALSE` because R in the background actually uses 1 to represent `TRUE` and 0 to represent `FALSE`.  * `'b'` is greater than `'a'` because it's later in the alphabet. In other words, the 2nd letter is greater than the 1st letter.  This is helpful for ordering alphabetically, which we'll see later.
+
+
+# 2. Multiple choice
+
+## What is the output when we execute the following code?
+
+```{r, eval=FALSE}
+x <- 3   
 y <- 2
 y <- 17.4
 
 x+y
+```
 
-# A. [1] 3  2  17.4
-# B. [1] 22.4
-# C. [1] 20.4 <- Answer
-# D. [1] 5 
 
-# Exercise 1 -----------------------------------------------------------------
+A. [1] 3  2  17.4  
+B. [1] 22.4   
+C. [1] 20.4 <- Answer   
+D. [1] 5   
+
+# 3. Exercise 1
 
 # Import the gapminder data frame again.
 # 
@@ -96,7 +101,7 @@ max(gapminder$pop)
 
 
 
-# Exercise 2 -----------------------------------------------------------------
+# Exercise 2
 
 # Reimport the `gapminder` dataframe:
      
