@@ -6,6 +6,7 @@ output:
           toc_float: true
 ---
 
+# Before we begin...
 Let's get started by making sure our working directory is correct.
 ```{r}
 getwd() # Are you in your Home directory?  If so, run the next line of code
