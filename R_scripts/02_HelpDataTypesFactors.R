@@ -10,8 +10,9 @@
 # We can read in this dataset with the following command:
 
 library(readr)
-gapminder <- read_delim(file = "datasets/02_gapminder.txt", 
+gapminder <- read_delim(file = "datasets/gapminder.txt", 
                         delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+
 # But how did I know which arguments to provide?
 # We can access the help file for any function with:
 help(read_delim)
@@ -28,6 +29,15 @@ help(read_delim)
 # Note: Commonly-used arguments in commonly-used functions quickly become familiar. But
 # because R can do so much, even experts refer to the help system all the time when
 # coding; no-one learns every detail of every function
+
+#----------------------------------------------------------------------------------------
+# Errors-----
+#----------------------------------------------------------------------------------------
+
+# `Errors` come up when a process cannot run until the problem is fixed.
+
+# `Warnings` come up when a process can continue running, but the output might not occur
+# the way you expect.
 
 #----------------------------------------------------------------------------------------
 # Data types-----

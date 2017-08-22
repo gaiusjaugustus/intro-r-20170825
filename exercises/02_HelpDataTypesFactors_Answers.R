@@ -1,0 +1,113 @@
+## Lesson 2 Help, data types, and factors answers
+
+# Exercise  -----------------------------------------------------------------
+#Run each line separately and try to figure out what the error means.
+
+read_excel("NonExistantFile.xlsx")
+# Error: could not find function "read_excel"
+# This error is telling us that the readxl package has not been loaded, 
+# therefore it doesn't know this command exists
+
+read_delim("NonExistantFile.txt", delim"\t")
+# Error: unexpected string constant in "read_delim("NonExistantFile.txt", delim"\t""
+# This error is telling you that it didn't expect the string "\t"
+# On closer inspection, that is because the equal sign after delim is missing
+
+read_delim("NonExistantFile.txt", delim="\t")
+# Error: 'NonExistantFile.txt' does not exist in current working directory 
+# ('C:/Users/gaugustus/Documents/Rdocs/r-intro-20170825').
+# This error is telling you that the file doesn't exist.  Either there is a
+# typo or you're pointing to the wrong location.  Don't forget about
+# tab completion!
+
+read_delim("datasets/gapminder.txt", delim="\x")
+# Error: '\x' used without hex digits in character string starting ""\x"
+# This error is telling you that you've used an unacceptable option
+# for delim.
+
+# Exercise  -----------------------------------------------------------------
+
+# Let's take another look at the gapminder dataset.
+
+str(gapminder)
+# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
+#  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+#  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+#  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+#  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+#  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+#  $ gdpPercap: num  779 821 853 836 740 ...
+
+
+# The `year` column is a integer class. Change the `year` column to a factor and give it
+# levels, such that 1952 < 1957 < 1962 < 1967 and so on.
+
+gapminder$year <- factor(gapminder$year,
+                         levels = c(1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992,
+                                    1997, 2002, 2007), ordered = TRUE)
+class(gapminder$year)
+# [1] "ordered" "factor" 
+
+gapminder %>% select(year) %>% table() #BASE R: table(gapminder$year)
+# 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 2002 2007 
+#  142  142  142  142  142  142  142  142  142  142  142  142 
+
+
+# Exercise  -----------------------------------------------------------------
+
+# 1. Create the following data frame in R:
+
+# | Day | Magnification | Observation |
+# | --- | ------------- | ----------- |
+# |  1  |      2        |   Growth    |
+# |  2  |      10       |    Death    |
+# |  3  |      5        |  No Change  |
+# |  4  |      2        |    Death    |
+# |  5  |      5        |   Growth    |
+
+# Make ‘Day’ a numeric variable
+# ‘Magnification’ an ordered factor variable (2 < 5 < 10)
+# ‘Observation’ a character variable
+
+Cells <- data.frame(Day = c(1, 2, 3, 4, 5),
+                    Magnification = factor(c(2, 10, 5, 2, 5),
+                                           levels = c(2, 5, 10), ordered = TRUE),
+                    Observation = c("Growth", "Death", "No Change", "Death", "Growth"),
+                    stringsAsFactors = FALSE)
+
+# 2. Use dplyr or base R to select only the Magnification variable.
+# What are the dimensions of the output? 
+
+# dplyr
+Cells %>%
+     select(Magnification) %>%
+     dim()
+# base R
+dim(Cells['Magnification'])
+
+# Answer: 5 rows, 1 column
+
+# 3. Use dplyr or base R to filter for only rows with 5 Magnification.
+# How many rows are in your output? 
+
+# dplyr
+Cells %>%
+     filter(Magnification == 5)
+# base R
+Cells[Cells$Magnification == 5, ]
+
+# Answer: 2 rows
+
+# 4. **ADVANCED:** 
+# Use dplyr or base R to create a new column that multiplies the Day by 24 giving us
+# hours. 
+
+# Answer:
+
+# dplyr
+Cells %>% 
+     mutate(hours = 24 * Day) -> Cells
+
+# base R
+Cells$hours <- 24 * Cells$Day
+
