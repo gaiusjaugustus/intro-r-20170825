@@ -84,7 +84,7 @@ Cells <- data.frame(Day = c(1, 2, 3, 4, 5),
 
 
 
-2. **Use dplyr or base R to select only the Magnification variable. What are the dimensions of the output? **
+2. **Use dplyr or base R to select only the Magnification variable. What are the dimensions of the output?**
 ```{r}
 # dplyr
 Cells %>%
@@ -96,7 +96,7 @@ dim(Cells['Magnification'])
 
 Answer: 5 rows, 1 column
 
-3. **Use dplyr or base R to filter for only rows with 5 Magnification. How many rows are in your output? **
+3. **Use dplyr or base R to filter for only rows with 5 Magnification. How many rows are in your output?**
 ```{r}
 # dplyr
 Cells %>%
@@ -107,7 +107,7 @@ Cells[Cells$Magnification == 5, ]
 
 Answer: 2 rows
 
-4. **ADVANCED: Use dplyr or base R to create a new column that multiplies the Day by 24 giving us hours. **
+4. **ADVANCED: Use dplyr or base R to create a new column that multiplies the Day by 24 giving us hours.**
 ```{r}
 # dplyr
 Cells %>% 
