@@ -266,6 +266,7 @@ loop.vector <- c(1,4,9,16,25,36,49,64,81,100)
 
 ```
 
+[Answer]('exercise/03_ForLoopsIfElseFunctions_Answers.R')
 
 # If else statments
 
@@ -373,6 +374,8 @@ D. an error message
 How could you change the code so that if x is less than 0 you get a message saying 'x is
 less than zero'? 
 
+[Answer]('exercise/03_ForLoopsIfElseFunctions_Answers.R')
+
 # Functions
 
 A functions is a piece of code written to carry out a specified task; they allow you to incorporate sets of instructions that you want to use mutliple times or, if you have a complex set of instructions, keep it together within a small program.
@@ -394,39 +397,19 @@ NameOfFunction <- function(Arguments){
 }
 ```
 
-<<<<<<< HEAD
-Let's build our own function. We are going to make a function that will calculate the means as above:
-
-```{r}
-my_mean <- function(data,col){
-mean <- sum(data[col])/nrow(data)
-=======
-sum(gapminder['lifeExp'])/nrow(gapminder)
-mean(gapminder$lifeExp)
-
 Let's build our own function. We are going to make a function that will calculate the mean as the base R mean() function does above:
 ```{r}
 my_mean <- function(data,col){
      mean <- sum(data[col])/nrow(data)
->>>>>>> upstream/master
      return(mean)
 }
 
 my_mean(gapminder,'lifeExp')
-<<<<<<< HEAD
-my_mean(gapminder, 'gdpPercap')
-```
-
-We are going to make a function that will convert a temperature from Fahrenheit to Kelvin.
-=======
-# [1] 59.47444
 
 my_mean(gapminder, 'gdpPercap')
-# [1] 7215.327
 ```
 
 Let's build a new function that will convert a temperature in fahrenheit to kelvin:
->>>>>>> upstream/master
 
 ```{r}
 fahr_to_kelvin <- function(temp){
@@ -459,6 +442,7 @@ fahr_to_kelvin(212)
 
 Create a function called Average that calculates the average of 2 numbers.  Don't forget to check your work.
 
+[Answer]('exercise/03_ForLoopsIfElseFunctions_Answers.R')
 
 # References
 

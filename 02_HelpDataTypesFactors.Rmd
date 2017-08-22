@@ -13,7 +13,7 @@ Let's look at importing some more data, this time from a dataset called gapminde
 We can read in this dataset with the following command:
 ```{r}
 library(readr)
-gapminder <- read_delim(file = "datasets/02_gapminder.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+gapminder <- read_delim(file = "datasets/gapminder.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 ```
 
 But how did I know which arguments to provide?
@@ -393,28 +393,9 @@ table(survey$number, survey$group)
 
 Let's take another look at the gapminder dataset.
 
-```{r}
-str(gapminder)
-# Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
-#  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
-#  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
-#  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
-#  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
-#  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
-#  $ gdpPercap: num  779 821 853 836 740 ...
-```
-
 The `year` column is a integer class.  Change the `year` column to a factor and give it levels, such that 1952 < 1957 < 1962 < 1967 and so on.
-```{r}
-gapminder$year <- factor(gapminder$year, levels = c(1952, 1957, 1962, 1967, 1972, 1977 ,1982 ,1987 ,1992 ,1997 ,2002 ,2007), ordered = TRUE)
-class(gapminder$year)
-# [1] "ordered" "factor" 
 
-gapminder %>% select(year) %>% table() #BASE R: table(gapminder$year)
-# 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 2002 2007 
-#  142  142  142  142  142  142  142  142  142  142  142  142 
-```
-
+[Answer]('exercises/02_HelpDataTypesFactors_Answers.R')
 
 # EXERCISE
 
@@ -430,30 +411,16 @@ gapminder %>% select(year) %>% table() #BASE R: table(gapminder$year)
 
 Make ‘Day’ a numeric variable, ‘Magnification’ an ordered factor variable (2 < 5 < 10), and ‘Observation’ a character variable.
 
-    Answer: 
-    
-```
-Cells <- data.frame(Day = c(1, 2, 3, 4, 5), 
-           Magnification = factor(c(2, 10, 5, 2, 5), levels = c(2, 5, 10), ordered = TRUE),
-           Observation = c("Growth", "Death", "No Change", "Death", "Growth"), stringsAsFactors = FALSE)
-```
 
 2. Use dplyr or base R to select only the Magnification variable. What are the dimensions of the output? 
 
-    Answer: 5 rows, 1 column
 
 3. Use dplyr or base R to filter for only rows with 5 Magnification.  How many rows are in your output? 
 
-    Answer: 2 rows
 
-4. **ADVANCED:** Use dplyr or base R to create a new column that multiplies the Magnification by the Day. 
+4. **ADVANCED:** Use dplyr or base R to create a new column that multiplies the Day by 24 giving us hours. 
 
-    Answer:
-```
-Cells <- Cells %>% mutate(NewColumn = Magnification * Day)
-```
-
-
+[Answer]('exercises/02_HelpDataTypesFactors_Answers.R')
 
 # R Markdown
 

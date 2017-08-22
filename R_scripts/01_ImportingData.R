@@ -17,11 +17,11 @@ View(gapminder)
 #--Read in data using function read.csv available with base R
 # Default for this function is for comma separated files, but we are modifying it to 
 # read a tab separate text file
-gapminder2 <- read.csv(file = "datasets/gapminder.txt", header=TRUE, sep = "\t",
+gapminder.base <- read.csv(file = "datasets/gapminder.txt", header=TRUE, sep = "\t",
                        stringsAsFactors = FALSE)
 
 # Are the two files the same? Let's check.
-gapminder == gapminder2
+gapminder == gapminder.base
 #      country continent year lifeExp  pop gdpPercap
 # [1,]    TRUE      TRUE TRUE    TRUE TRUE      TRUE
 # [2,]    TRUE      TRUE TRUE    TRUE TRUE      TRUE
