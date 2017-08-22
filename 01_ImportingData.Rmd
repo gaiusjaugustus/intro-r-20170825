@@ -97,21 +97,7 @@ B. 10-5 == sqrt(25)
 C. TRUE > FALSE
 D. 'a' > 'b'
 
-```{r}
-FALSE == FALSE
-# [1] TRUE
-
-10-5 == sqrt(25)
-# [1] TRUE
-
-TRUE > FALSE
-# [1] TRUE
-
-'a' > 'b'
-# [1] FALSE
-```
-**Note:** `TRUE` is greater than `FALSE` because R in the background actually uses 1 to represent `TRUE` and 0 to represent `FALSE`.  Also, `'b'` is greater than `'a'` because it's later in the alphabet. In other words, the 2nd letter is greater than the 1st letter.  This is helpful for ordering alphabetically, which we'll see later.
-
+[Answer]('exercises/01_ImportingData_Answers.R')
 
 # Storing Data
 
@@ -132,11 +118,7 @@ y <- 2
 y <- 17.4
 x+y
 
-A. [1] 3  2  17.4
-B. [1] 22.4
-C. [1] 20.4
-D. [1] 5
-
+[Answer]('exercises/01_ImportingData_Answers.R')
 
 
 Assigning new values to existing objects over-writes the old version – and be aware there is no Ctrl-Z ‘undo’;
@@ -172,7 +154,6 @@ setwd("r-intro-20170825")
 getwd()
 # [1] "C:/Users/gaugustus/Documents/Rdocs/r-intro-20170825"
 ```
-
 
 
 ## Read in using readr package   
@@ -215,9 +196,9 @@ After successfully reading in the data;
 You can also read in data using base R like so:
 
 ```{r}
-gapminder2 <- read.csv(file = "datasets/gapminder.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
+gapminder.base <- read.csv(file = "datasets/gapminder.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
 
-gapminder == gapminder2
+gapminder == gapminder.base
    #      country continent year lifeExp  pop gdpPercap
    # [1,]    TRUE      TRUE TRUE    TRUE TRUE      TRUE
    # [2,]    TRUE      TRUE TRUE    TRUE TRUE      TRUE
@@ -387,6 +368,8 @@ Use `str()` to look at the structure of the dataframe and `summary()` to get inf
 * What is the earliest year in the `year` column?
 * What is the average life expectancy?
 * What is the largest population?
+
+[Answers]('exercises/01_ImportingData_Answers.R')
 
 
 ```{r}
