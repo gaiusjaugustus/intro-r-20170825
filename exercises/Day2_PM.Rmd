@@ -16,7 +16,7 @@ For this final project, we are going:
 * Commit changes and push to Github
 
 
-#Specifics of R Notebook
+# Specifics of R Notebook Exercise
 
 Do the following inside the R Notebook:
 
