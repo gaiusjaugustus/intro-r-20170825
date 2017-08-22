@@ -1,6 +1,6 @@
 ## 03_ForLoopsIfElseFunctions Exercise answers
 
-# Exercise #1
+# Exercise  -----------------------------------------------------------------
 # Let's try out a for loop and it's apply function alternative. In this exercise, we are 
 # going to be taking the square root of each integer in a vector. Either create a for loop
 # or use the sapply function to take the square root and return the output.
@@ -16,7 +16,7 @@ for(int in loop.vector){
 # sapply function
 sapply(c(1,4,9,16,25,36,49,64,81,100), function(x) sqrt(x))
 
-# Exercise #2
+# Exercise  -----------------------------------------------------------------
 # What would be the output of the following code:
 x <- -6
 if(x > 0){
@@ -38,7 +38,7 @@ if(x > 0){
      print('x is less than zero')
 }
 
-# Exercise #3
+# Exercise  -----------------------------------------------------------------
 
 # Create a function called Average that calculates the average of 2 numbers.
 # Don't forget to check your work.
