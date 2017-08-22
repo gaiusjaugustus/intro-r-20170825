@@ -2,7 +2,7 @@
 
 # 1. Multiple choice
 
-##Which of the following will NOT return TRUE?
+## Which of the following will NOT return TRUE?
 
 A. FALSE == FALSE   
 B. 10-5 == sqrt(25)   
@@ -48,19 +48,19 @@ D. [1] 5
 
 # 3. Exercise 1
 
-# Import the gapminder data frame again.
-# 
-# Use `str()` to look at the structure of the dataframe and `summary()` to get information about the variables.
-# 
-# * What are its columns?
-# * How many rows and columns are there?
-# * What is the earliest year in the `year` column?
-# * What is the average life expectancy?
-# * What is the largest population?
+## Import the gapminder data frame again.
+```{r}
+gapminder <- read_delim("datasets/gapminder.txt", "\t", escape_double = FALSE, trim_ws = TRUE)
+```
+## Use `str()` to look at the structure of the dataframe and `summary()` to answer the following questions.
 
-gapminder <- read_delim("datasets/gapminder.txt", 
-                        "\t", escape_double = FALSE, trim_ws = TRUE)
+* What are its columns?
+* How many rows and columns are there?
+* What is the earliest year in the `year` column?
+* What is the average life expectancy?
+* What is the largest population?
 
+```{r}
 str(gapminder)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
 # $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
@@ -98,19 +98,22 @@ mean(gapminder$lifeExp)
 
 max(gapminder$pop)
 # [1] 1318683096
+```
 
 
 
-# Exercise 2
+# 4. Exercise 2
 
-# Reimport the `gapminder` dataframe:
-     
-# Create a new dataframe that contains only country names, years, and life expectancies of
-# the `gapminder` dataset. Use this new dataframe to calculate minimum & maximum
-# expectancies.
-
+## Reimport the gapminder dataframe:
+```{r}
 gapminder <- read_delim("datasets/gapminder.txt", 
                         "\t", escape_double = FALSE, trim_ws = TRUE)
+```
+
+     
+## Create a new dataframe that contains only country names, years, and life expectancies of the gapminder dataset. Use this new dataframe to calculate minimum & maximum expectancies.
+
+```{r}
 
 # dplyr
 new.gapminder <- gapminder %>% select(country, year, lifeExp)
@@ -130,3 +133,6 @@ min(new.gapminder$lifeExp)
 
 max(new.gapminder$lifeExp)
 # [1] 82.603
+```
+
+
