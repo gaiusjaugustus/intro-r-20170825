@@ -1,6 +1,6 @@
 ## 04_Plotting Exercise answers
 
-# Exercise #1
+# Exercise  -----------------------------------------------------------------
 # Pull up the plot help page.
 # What arguments would you use to change the x and y axis label?
 
