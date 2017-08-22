@@ -31,10 +31,12 @@ summary(gapminder)
 str(gapminder)
 ```
 
-# Take a peek at the data
+## Take a peek at the data
 ```{r}
 head(gapminder)
 ```
+
+# Manipulate the data to answer questions about it
 
 ## Which country has the highest gdp per cap and in what year?
 
@@ -43,6 +45,30 @@ gapminder %>% filter(gdpPercap == max(gdpPercap)) %>% select(country, year)
 ```
 
 * Kuwait had the highest gdp per cap in 1957.
+
+## What is the lowest life expectancy in the gapminder data set and what country had it?
+
+```{r}
+gapminder %>% filter(lifeExp == min(lifeExp)) %>% select(country, lifeExp)
+```
+
+* Rwanda had the lowest life expectancy of 23.6.
+
+## ADVANCED: How many countries have ever had a life expectancy lower than 50
+
+```{r}
+gapminder %>% filter(lifeExp < 50) %>% distinct(country) %>% count()
+```
+
+* 82 countries have had a life expectancy below 50.
+
+## ADVANCED: How many total countries are there listed in Asia?
+
+```{r}
+gapminder %>% filter(continent == "Asia") %>% distinct(country) %>% count()
+```
+
+* There are 33 countries in Asia from the gapminder dataset.
 
 ## Make a new column that has the gdp   
 We need to multiply `gdpPercap` by `pop` to do this. Don't forget to save it into a new variable so we don't alter the original data (a big no-no).

@@ -3,6 +3,8 @@ title: "Day 2 Project"
 output: html_notebook
 ---
 
+# Overview 
+
 For this final project, we are going:  
 
 * Setup a new git repo in R
@@ -12,3 +14,52 @@ For this final project, we are going:
     + Create some data using loops and if else statements
     + Make some pretty plots to explore the data
 * Commit changes and push to Github
+
+
+#Specifics of R Notebook
+
+Do the following inside the R Notebook:
+
+1. Import necessary packages
+    + Import `readr`, `dplyr`, and `ggplot2`
+2. Read in data set
+     + Use base R or `readr` to import gapminder
+3. Explore `gapminder` dataset
+     + Get summary statistics for `gapminder` variables
+     + Get the structure of the `gapminder` dataset
+     + Peek at the first 6 rows of `gapminder`
+4. Manipulate `gapminder` to answer questions
+     + Which country has the highest gdp per capita, and in what year?
+     + What is the lowest life expectancy in the gapminder data set and what country had it?
+     + ADVANCED: How many countries have ever had a life expectancy lower than 50
+     + ADVANCED: How many total countries are there listed in Asia?
+     + Make a new column that has the gdp (instead of `gdpPercap`) **Hint:** multiply `gdpPercap` by `pop` to get `gdp`.
+5. Loops & if else
+     + Create a loop that goes through each row and evaluates whether the population is above, below, or at the mean population.
+          + Initialize a column, called `RelationToMeanPop` with `NA` values (syntax: `df$newColumnName <- NA`)
+          + **for** each `row` of `1:nrow(gapminder2)`
+          + **if** `gapminder2$pop[row] > mean(gapminder2$pop)`, assign `Above` to `gapminder2$RelationToMeanPop[row]` 
+          + **else if** `gapminder2$pop[row] < mean(gapminder2$pop)`, assign `Below` to `gapminder2$RelationToMeanPop[row]`
+          + **else if** `gapminder2$pop[row] == mean(gapminder2$pop)`, assign `At` to `gapminder2$RelationToMeanPop[row]`
+          + **else** go to the next loop using `next`.
+     + Run this for loop.  Don't forget to check your work by looking at the `RelationToMeanPop` column
+     + Use `table(gapminder2$RelationToMeanPop)` to find out how many fit into each group.
+6. Plots
+     + Create a plot with `x=year`, `y=lifeExp`, and color by `continent`.  Use `geom_smooth()` to create a line to view life expectancy by year. Answer the following questions using the plot (you can verify by running some code).
+          + What continent has the highest life expectancy?
+          + What continent has the lowest life expectancy?
+          + On what continents has the life expectancy been increasing or decreasing over time?
+     + Create a plot with `x=continent`, `y=gdpPercap`, and fill by `continent`.  Use `geom_boxplot()` to create a boxplot for each continent. Use the plot to answer the following questions
+          + Which continent tends to have the lowest gross domestic product (`gdp`)?
+          + Which continent tends to have the highest gdp?
+          + Which continent has the country with the highest gdp?
+          
+          
+# Congratulations!!!
+
+After completing this exercise, you're well on your way to becoming an **R Master**!  Remember, practice makes perfect.  Go back to look at some analysis you did in another program (like Excel) and see if you can figure out how to do it in R.
+
+If you're ready to take the next steps, remember that we have a [resource list](../resources/CheatSheetsAndResources.Rmd) that can help you out.  Good luck on your R journey!  You've just taken some of the first steps, and there's a long road ahead, but we hope we've given you the essential tools to help you succeed!
+
+
+
