@@ -20,8 +20,23 @@ But;
 * Command-line driven (programming, not drop-down menus)
 * Gives only what you ask for!
 
+# Base R vs tidyverse
 
-To help with these difficulties, we will begin with RStudio, a graphical user interface (front-end) for R that is slightly more user-friendly than ‘Classic’ R’s GUI.
+You know how when you get a new smartphone, it comes with an email and calendar app...but they're not the greatest?  I usually download the Google Calendar and Gmail apps on my phone because, even though they technically do the same thing, they do it better.  R is similar in this way.
+
+When you downloaded R, it came with capabilities to import, analyze, and export data.  
+But since R's creation, users have created `packages` which act like plug-ins or addons or apps.  These add or improve the functionality of R.  We'll be using a suite of packages called the `tidyverse` that tries to make R more straightforward for beginners.
+
+The tidyverse has two main goals:
+
+* Work with tidy (not messy) data
+* Make code more human readable
+
+Each package within the tidyverse is meant to do a particular thing, but each ultimately goes back to those two goals.  We'll be using three packages in the tidyverse, called `readr` (for reading in data into R), `dplyr` (for manipulating tidy data in R), and `ggplot2` (for visualizing tidy data in R).
+
+# What is RStudio?
+
+Often, learning a programming language is made worse by an unintuitive and unhelpful user interface.  For our workshop, we will be using RStudio, a graphical user interface (front-end) for R that is slightly more user-friendly than ‘Classic’ R’s GUI.
 
 # The console window  
 
@@ -215,7 +230,6 @@ What’s a good name for my new object?
 # Reading in Data
 
 ## Base R 
-As we already mentioned, R comes with capabilities to import, analyze, and export data.  But since R's creation, users have created `packages` which act like plug-ins or addons.  These add or improve the functionality of R.  We'll be using a package suite called `tidyverse` that tries to make R more straightforward for beginners.
 
 First, let's see how we can read in data using base R, using the `read.csv()` command:
 
@@ -606,7 +620,7 @@ This is more typing than the other options, but is much easier to debug/reuse.
 
 ## Dplyr
 
-Remember how we mentioned earlier that data should be "tidy", that is each variable should be represented in one column and each row represents one observation.  A group of packages has been created called the `tidyverse` which can help us work with data in a tidy way.  We saw the first package earlier, the `readr` package.  It helped us read in data and avoid some headaches from base R that you didn't have to deal with.  We are now going to discuss another of these packages, which helps you to manipulate your data, a package called `dplyr`.
+Remember how we mentioned earlier that data should be "tidy", that is each variable should be represented in one column and each row represents one observation.  The `tidyverse` has a package to help us work with data in a tidy way.  We are now going to discuss a package that helps you to manipulate your data, `dplyr`.
 
 If you haven't already, install dplyr
 ```{r}
