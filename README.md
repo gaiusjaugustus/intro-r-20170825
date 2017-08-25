@@ -19,7 +19,7 @@ There are two ways to do this, the first using the command line.
 3. On the [main page of the repo](https://github.com/gaiusjaugustus/intro-r-20170825), press the green button that says **Clone or download**.
 4. Click the **copy to clipboard** button that is next to the URL
 5. Back in your **terminal**, type `git clone URL` where the URL is the what is in your clipboard.
-6. **Check your work** by using `ls` to verify that there is now a folder called `intro-r-20170825` in your home directory.
+6. **Check your work** by using `ls` to verify that there is now a folder called `intro-r-20170825-master` in your home directory.
 
 
 ## Unzip the repo
@@ -28,7 +28,7 @@ There are two ways to do this, the first using the command line.
 3. On the [main page of the repo](https://github.com/gaiusjaugustus/intro-r-20170825), press the green button that says **Clone or download**.
 4. Click the **Download Zip** link and download the file.
 5. **Unzip the downloaded archive** into your home directory (that you identified in step 2).
-6. **Check your work** by going to your home directory and verifying there is now a folder called `intro-r-20170825` there.
+6. **Check your work** by going to your home directory and verifying there is now a folder called `intro-r-20170825-master` there.
 
 
 ## 2. Install packages
