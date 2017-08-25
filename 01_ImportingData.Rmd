@@ -23,7 +23,7 @@ But;
 
 To help with these difficulties, we will begin with RStudio, a graphical user interface (front-end) for R that is slightly more user-friendly than ‘Classic’ R’s GUI.
 
-# The console vs the script window   
+# The console window  
 
 There are some useful features available in the console:
 
@@ -32,25 +32,6 @@ There are some useful features available in the console:
 * Tab autocomplete
     + When just typing, use tab autocomplete to fill in object names for you
     + When inside quotes `'  '`, you can press tab to help you spell folder names correctly
-
-The console is most useful for quick calculations or code chunks.  But what happens when you want to remember what you coded yesterday, a year ago, or a decade ago?
-
-## Using the script window
-
-While fine for occasional use, entering every command ‘by hand’ is error-prone, and quickly gets tedious. A much better approach is to use a Script window – open one with Ctrl-Shift-N, or the drop-down menus;
-
-* Opens a nice editor, enables saving code (.R extension)
-* Run current line (or selected lines) with Ctrl-Enter, or Ctrl-R
-
-**An important notice:** From now on, we assume you are using a script editor.
-
-* First-time users tend to be reluctant to switch! – but it’s worth it, ask any experienced user
-* Some code in slides may be formatted for cut-and-paste into scripts – it may not look exactly like what appears in the Console window
-* Exercise ‘solutions’ given as .R files
-* Scripts make it easy to run slightly modified code, without re-typing everything – remember to save them as you work
-* Also remember the Escape key, if e.g. your bracket-matching goes wrong
-
-For a very few jobs, e.g. changing directories, we’ll still use drop-down menus. But commands are available, for all tasks.
 
 
 # Trying out the Console
@@ -130,6 +111,59 @@ D. 'a' > 'b'
 
 # Storing Data
 
+We can quickly make comparisons, but we usually want to do things more sophisticated than that. For example, instead of typing `"This is an important string that we want to do analysis on."` into the console over and over again, we might want to give it a shorter name and then reference it later.
+
+```{r}
+x <- "This is an important string that we want to do analysis on."
+```
+
+This shows up in the Environment tab in R Studio.  This is very useful, because now when we want to print out this string, we can just type `x` into the Console.
+```{r}
+x
+# [1] "This is an important string that we want to do analysis on."
+```
+
+The console is most useful for quick calculations or code chunks.  But what happens when you want to remember what you coded yesterday, a year ago, or a decade ago?  R won't necessarily save everything you've done forever in the Environment tab (and we wouldn't want it to!).
+
+## Using the script window
+
+While fine for occasional use, entering every command ‘by hand’ is error-prone, and quickly gets tedious. A much better approach is to use a Script window – open one with Ctrl-Shift-N, or the drop-down menus;
+
+* Opens a nice editor, enables saving code (.R extension)
+* Run current line (or selected lines) with Ctrl-Enter, or Ctrl-R
+
+**An important notice:** From now on, we assume you are using a script editor.
+
+* First-time users tend to be reluctant to switch! – but it’s worth it, ask any experienced user
+* Some code in slides may be formatted for cut-and-paste into scripts – it may not look exactly like what appears in the Console window
+* Exercise ‘solutions’ given as .R files
+* Scripts make it easy to run slightly modified code, without re-typing everything – remember to save them as you work
+* Also remember the Escape key, if e.g. your bracket-matching goes wrong
+
+For a very few jobs, e.g. changing directories, we’ll still use drop-down menus. But commands are available, for all tasks.
+
+## Where are we?
+
+We can save our scripts wherever we want, but it makes it easier if we set a working directory in R.  This makes it easier to find files, and also can make research more reproducible because it gives you the ability to share data structure with a collaborator.
+
+Before we can set the working directory, we need to know where we are on our computer right now.  Just like the command line's `pwd` command, R has a command called `getwd()`.  Notice that it returns the absolute path to your home directory.
+```{r}
+getwd()
+# [1] "C:/Users/gaugustus/Documents/Rdocs/"
+```
+
+You can point to files from anywhere on the computer RELATIVE to your current position.  If you need to change this working directory, such as to go into the new `r-intro-20170825-master` folder you got from GitHub, you can do so with `setwd()`.  Let's try this.  Make sure you put the path in quotes.
+
+You can use tab complete in R Studio, so once you open the quotes, press tab to see all the files and directories listed for you.  If you type a letter, that list will shorten. **Note:** You can also use the Files tab in R Studio.  Your home directory can be found by clicking the `Home` button.
+
+```{r}
+setwd("r-intro-20170825-master")
+getwd()
+# [1] "C:/Users/gaugustus/Documents/Rdocs/r-intro-20170825-master"
+```
+
+# Storing Data (cont'd)
+
 R stores data (and everything else) as objects. New objects are created when we assign them values;
 ```{r}
 x <- 3
@@ -165,32 +199,35 @@ x+y
 ```
 
 * Anything after a hash (#) is ignored – e.g. comments
-* Spaces don’t matter
+* Spaces don’t matter outside of quotes (except for the `<-` symbol)
 * Capital letters do matter
+
+# How to name my data
+
+What’s a good name for my new object?
+
+* Something memorable (!) and not easily-confused with other objects, e.g. X isn’t a good choice if you already have x
+* Names must start with a letter or period (”.”), after that any letter, number or period is okay
+* Avoid other characters; they get interpreted as math (”-”,”*”) or are hard to read (” ”) so should not be used in names
+* Avoid names of existing functions – e.g. summary. Some oneletter choices (c, C, F, t, T and S) are already used by R as names of functions, it’s best to avoid these too
     
 
 # Reading in Data
 
-## Where are we?
+## Base R 
+As we already mentioned, R comes with capabilities to import, analyze, and export data.  But since R's creation, users have created `packages` which act like plug-ins or addons.  These add or improve the functionality of R.  We'll be using a package suite called `tidyverse` that tries to make R more straightforward for beginners.
 
-Before we can read data into R, we need to know where we are on our computer.  Just like the command line's `pwd` command, R has a command called `getwd()`.  Notice that it returns the absolute path to your home directory.
-```{r}
-getwd()
-# [1] "C:/Users/gaugustus/Documents/Rdocs/"
-```
-
-You can point to files from anywhere on the computer RELATIVE to your current position.  If you need to change this working directory, such as to go into the new `r-intro-20170825` folder you got from GitHub, you can do so with `setwd()`.  Let's try this.  Make sure you put the path in quotes.
-
-You can use tab complete in R Studio, so once you open the quotes, press tab to see all the files and directories listed for you.  If you type a letter, that list will shorten.
+First, let's see how we can read in data using base R, using the `read.csv()` command:
 
 ```{r}
-setwd("r-intro-20170825")
-getwd()
-# [1] "C:/Users/gaugustus/Documents/Rdocs/r-intro-20170825"
+gapminder.base <- read.csv(file = "datasets/gapminder.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
 ```
 
 
-## Read in using readr package   
+
+## readr package   
+
+The package within `tidyverse` for reading in data is called `readr`.  It solves some of the issues with `read.csv` that are beyond the scope of this course.  Let's give it a try!  Because this package has been developed by R Studio staff, it's integrated into your R Studio installation.
 
 To import a dataset, follow pop-ups from the Environment tab;
 Import Dataset > From CSV...
@@ -201,10 +238,7 @@ Once you've decided on your options, you'll see the code at the bottom right tel
 library(readr)
 gapminder <- read_delim(file = "datasets/gapminder.txt", 
               delim = "\t", escape_double = FALSE, trim_ws = TRUE)
-View(gapminder)
 ```
-
-
 By default, you'll see that a `library` command is set.  The `library` command allows us to add on to the basic features of R (also called base R).  In other words, we can add functionality to make our lives easier.  In this case, we are getting the `readr` package.  This is part of a suite of packages called the `tidyverse`.
 
 More on those options;
@@ -225,13 +259,10 @@ After successfully reading in the data;
 * The environment now includes a `gapminder` object – or whatever you called the data read from file
 * A copy of the data can be examined in the Excel-like data viewer – if it looks weird, find out why & fix it!
 
-## Read in Data with base R 
+## Are these really the same?
 
-You can also read in data using base R like so:
-
+We check to see if every value is equal between the dataset we read in using `readr` and the one we read in using base `R`, and see that they are the same.
 ```{r}
-gapminder.base <- read.csv(file = "datasets/gapminder.txt", header=TRUE, sep = "\t", stringsAsFactors = FALSE)
-
 gapminder == gapminder.base
    #      country continent year lifeExp  pop gdpPercap
    # [1,]    TRUE      TRUE TRUE    TRUE TRUE      TRUE
@@ -243,19 +274,7 @@ gapminder == gapminder.base
    # [7,]    TRUE      TRUE TRUE    TRUE TRUE      TRUE
    # [8,]    TRUE      TRUE TRUE    TRUE TRUE      TRUE
    # [ reached getOption("max.print") -- omitted #### rows ]
-        
 ```
-
-We check to see if every value is equal between the dataset we read in using `readr` and the one we read in using base `R`, and see that they are the same.
-
-# How to name my data
-
-What’s a good name for my new object?
-
-* Something memorable (!) and not easily-confused with other objects, e.g. X isn’t a good choice if you already have x
-* Names must start with a letter or period (”.”), after that any letter, number or period is okay
-* Avoid other characters; they get interpreted as math (”-”,”*”) or are hard to read (” ”) so should not be used in names
-* Avoid names of existing functions – e.g. summary. Some oneletter choices (c, C, F, t, T and S) are already used by R as names of functions, it’s best to avoid these too
 
 
 # What can I do with my data?
