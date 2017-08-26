@@ -97,7 +97,7 @@ B. 10-5 == sqrt(25)
 C. TRUE > FALSE
 D. 'a' > 'b'
 
-[Answer]('exercises/01_ImportingData_Answers.R')
+[Answer](exercises/01_ImportingData_Answers.R)
 
 # Storing Data
 
