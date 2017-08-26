@@ -37,3 +37,7 @@ output: html_document
 * https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
 * http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/
 * [R Cookbook](http://www.cookbook-r.com/).  Has great and easy to understand examples.
+
+# Small day workshops on the University of Arizona campus
+
+* [iSpace](http://new.library.arizona.edu/ispace) has awesome R workshops taught weekly by Jeff Oliver, see [calendar](https://calendar.google.com/calendar/embed?src=email.arizona.edu_9d06njmr5jr0rsnf2f0hclg7ag@group.calendar.google.com&ctz=America/Phoenix) 

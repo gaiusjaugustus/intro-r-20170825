@@ -339,7 +339,7 @@ levels(ratings)
 # [1] "high"   "low"    "medium"
 ```
 
-We can add an order by putting `ordered=TRUE` into the arguments of the `factor()` function.  Then when we run `min()`, it understands that "low" is the minimum value.  Notice that the Levels change to less than symbols, showing there is a hierarchy.
+We can add an order by putting `ordered=TRUE` into the arguments of the `factor()` function.  Then when we run `min()`, it understands that "low" is the minimum value. Notice that the Levels change to less than symbols, showing there is a hierarchy.
 ```{r}
 ratings <- factor(ratings, levels=c("low", "medium", "high"), ordered=TRUE)
 levels(ratings)
@@ -383,7 +383,7 @@ Let's take another look at the gapminder dataset.
 
 The `year` column is a integer class.  Change the `year` column to a factor and give it levels, such that 1952 < 1957 < 1962 < 1967 and so on.
 
-[Answer](exercises/02_HelpDataTypesFactors_Answers.R)
+[Answer](exercises/02_HelpDataTypesFactors_Answers.Rmd)
 
 # EXERCISE
 
@@ -408,7 +408,7 @@ Make ‘Day’ a numeric variable, ‘Magnification’ an ordered factor variabl
 
 4. **ADVANCED:** Use dplyr or base R to create a new column that multiplies the Day by 24 giving us hours. 
 
-[Answer](exercises/02_HelpDataTypesFactors_Answers.R)
+[Answer](exercises/02_HelpDataTypesFactors_Answers.Rmd)
 
 # R Markdown
 
