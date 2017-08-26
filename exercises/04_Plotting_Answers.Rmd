@@ -1,0 +1,15 @@
+## 04 Plotting Exercise answers
+
+# 1. Exercise
+**Pull up the plot help page. What arguments would you use to change the x and y axis label?**
+
+**Answer: xlab = and y lab =**
+
+**Change the axes labels for the first graph we did.**
+```{r}
+plot(iris$Sepal.Length, iris$Petal.Length,
+     xlab = 'Sepal length',
+     ylab = 'Petal length')
+
+```
+

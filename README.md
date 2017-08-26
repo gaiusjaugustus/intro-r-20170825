@@ -19,7 +19,7 @@ There are two ways to do this, the first using the command line.
 3. On the [main page of the repo](https://github.com/gaiusjaugustus/intro-r-20170825), press the green button that says **Clone or download**.
 4. Click the **copy to clipboard** button that is next to the URL
 5. Back in your **terminal**, type `git clone URL` where the URL is the what is in your clipboard.
-6. **Check your work** by using `ls` to verify that there is now a folder called `intro-r-20170825` in your home directory.
+6. **Check your work** by using `ls` to verify that there is now a folder called `intro-r-20170825-master` in your home directory.
 
 
 ## Unzip the repo
@@ -28,7 +28,7 @@ There are two ways to do this, the first using the command line.
 3. On the [main page of the repo](https://github.com/gaiusjaugustus/intro-r-20170825), press the green button that says **Clone or download**.
 4. Click the **Download Zip** link and download the file.
 5. **Unzip the downloaded archive** into your home directory (that you identified in step 2).
-6. **Check your work** by going to your home directory and verifying there is now a folder called `intro-r-20170825` there.
+6. **Check your work** by going to your home directory and verifying there is now a folder called `intro-r-20170825-master` there.
 
 
 ## 2. Install packages
@@ -43,29 +43,32 @@ install.packages(c("knitr", "scales", "ggthemes", "tidyverse", "readxl"))
 
 # What are we going to actually cover?
 
-* [Day 1 Part 1: First baby steps](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/01_ImportingData.Rmd)
-    * [What is R & R Studio?](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/01_ImportingData.Rmd#what-is-r)
-    * [Importing datasets into dataframes](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/01_ImportingData.Rmd#reading-in-data)
-    * [Manipulating data with dplyr](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/01_ImportingData.Rmd#dplyr)
-* [Day 1 Part 2: Reporting and working through problems](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd)
-     * [Getting Help and dealing with errors](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd#help-files)
-     * [Data Types & Structures](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd#6-data-types)
-     * [Factors](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd#factors)
-     * [R Markdown Crash Course](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/02_HelpDataTypesFactors.Rmd#r-markdown)
-* [Day 2 Part 3: Automating the automatron](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd)
-     * [For Loops](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#for-loops)
-     * [If/Else Statements](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#if-else-statments)
-     * [Writing Functions](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#functions)
-* [Day 2 Part 4: Making pretties](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd)
-     * [ggplot2 basics](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/03_ForLoopsIfElseFunctions.Rmd#functions)
-     * [Scatterplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#scatterplots)
-     * [Histograms](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#histogram)
-     * [Boxplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#boxplot)
-     * [Barplots](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/04_Plotting.Rmd#barplot)
-* [Day 2 Part 5: Sharing is caring](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/05_gitInRStudio.Rmd)
+* [Day 1 Part 1: First baby steps](01_ImportingData.Rmd)
+    * [What is R & R Studio?](01_ImportingData.Rmd#what-is-r)
+    * [Importing datasets into dataframes](01_ImportingData.Rmd#reading-in-data)
+    * [Manipulating data with dplyr](01_ImportingData.Rmd#dplyr)
+* [Day 1 Part 2: Reporting and working through problems](02_HelpDataTypesFactors.Rmd)
+     * [Getting Help and dealing with errors](02_HelpDataTypesFactors.Rmd#help-files)
+     * [Data Types & Structures](02_HelpDataTypesFactors.Rmd#6-data-types)
+     * [Factors](02_HelpDataTypesFactors.Rmd#factors)
+     * [R Markdown Crash Course](02_HelpDataTypesFactors.Rmd#r-markdown)
+* [Day 2 Part 3: Automating the automatron](03_ForLoopsIfElseFunctions.Rmd)
+     * [For Loops](03_ForLoopsIfElseFunctions.Rmd#for-loops)
+     * [If/Else Statements](03_ForLoopsIfElseFunctions.Rmd#if-else-statments)
+     * [Writing Functions](03_ForLoopsIfElseFunctions.Rmd#functions)
+* [Day 2 Part 4: Making pretties](04_Plotting.Rmd)
+     * [base R plotting, a quick intro](04_Plotting.Rmd#plotting-is-essential-and-can-be-done-in-base-r)
+     * [ggplot2 basics](04_Plotting.Rmd#ggplot2)
+     * [Syntax of ggplot2](04_Plotting.Rmd#syntax-of-ggplot)
+     * [Histograms](04_Plotting.Rmd#histogram-1)
+     * [Scatterplots](04_Plotting.Rmd#scatterplots)
+     * [Boxplots](04_Plotting.Rmd#boxplot-1)
+     * [Barplots](04_Plotting.Rmd#barplot)
+* [Day 2 Part 5: Sharing is caring](05_gitInRStudio.Rmd)
     * How to start a git repo in RStudio
     * How to push that repo to GitHub
-* Day 2 Part 6: Become a Jedi Master (or at least get more experience in writing R code & sharing on GitHub )
+    * The magic of R Notebooks
+* [Day 2 Part 6: Become a Jedi Master (or at least get more experience in writing R code & sharing on GitHub )](exercises/Day2_PM.Rmd)
     * Create an R Notebook
     * More advanced loops
     * More advanced plots
@@ -74,7 +77,7 @@ install.packages(c("knitr", "scales", "ggthemes", "tidyverse", "readxl"))
 
 # A little help from our friends...
 
-If you want more help, check out the [resource list](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/resources/CheatSheetsAndResources.Rmd).
+If you want more help, check out the [resource list](resources/CheatSheetsAndResources.Rmd).
 
 
 # Your R instructors

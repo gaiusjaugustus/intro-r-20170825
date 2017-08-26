@@ -1,8 +1,9 @@
-## Lesson 2 Help, data types, and factors answers
+## 02 Help, data types, and factors answers
 
-# Exercise  -----------------------------------------------------------------
-#Run each line separately and try to figure out what the error means.
+# 1. Exercise
 
+**Run each line separately and try to figure out what the error means.**
+```{r}
 read_excel("NonExistantFile.xlsx")
 # Error: could not find function "read_excel"
 # This error is telling us that the readxl package has not been loaded, 
@@ -24,11 +25,14 @@ read_delim("datasets/gapminder.txt", delim="\x")
 # Error: '\x' used without hex digits in character string starting ""\x"
 # This error is telling you that you've used an unacceptable option
 # for delim.
+```
 
-# Exercise  -----------------------------------------------------------------
 
-# Let's take another look at the gapminder dataset.
 
+# 2. Exercise
+
+**Let's take another look at the gapminder dataset.**
+```{r}
 str(gapminder)
 # Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
 #  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
@@ -37,11 +41,11 @@ str(gapminder)
 #  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
 #  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
 #  $ gdpPercap: num  779 821 853 836 740 ...
+```
 
 
-# The `year` column is a integer class. Change the `year` column to a factor and give it
-# levels, such that 1952 < 1957 < 1962 < 1967 and so on.
-
+**The `year` column is a integer class. Change the `year` column to a factor and give it levels, such that 1952 < 1957 < 1962 < 1967 and so on.**
+```{r}
 gapminder$year <- factor(gapminder$year,
                          levels = c(1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992,
                                     1997, 2002, 2007), ordered = TRUE)
@@ -51,63 +55,67 @@ class(gapminder$year)
 gapminder %>% select(year) %>% table() #BASE R: table(gapminder$year)
 # 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 2002 2007 
 #  142  142  142  142  142  142  142  142  142  142  142  142 
+```
 
 
-# Exercise  -----------------------------------------------------------------
 
-# 1. Create the following data frame in R:
 
-# | Day | Magnification | Observation |
-# | --- | ------------- | ----------- |
-# |  1  |      2        |   Growth    |
-# |  2  |      10       |    Death    |
-# |  3  |      5        |  No Change  |
-# |  4  |      2        |    Death    |
-# |  5  |      5        |   Growth    |
+# 3. Exercise
 
-# Make ‘Day’ a numeric variable
-# ‘Magnification’ an ordered factor variable (2 < 5 < 10)
-# ‘Observation’ a character variable
+1. **Create the following data frame in R:**
 
+| Day | Magnification | Observation |
+| --- | ------------- | ----------- |
+|  1  |      2        |   Growth    |
+|  2  |      10       |    Death    |
+|  3  |      5        |  No Change  |
+|  4  |      2        |    Death    |
+|  5  |      5        |   Growth    |
+
+**Make ‘Day’ a numeric variable ‘Magnification’ an ordered factor variable (2 < 5 < 10) ‘Observation’ a character variable**
+
+```{r}
 Cells <- data.frame(Day = c(1, 2, 3, 4, 5),
                     Magnification = factor(c(2, 10, 5, 2, 5),
                                            levels = c(2, 5, 10), ordered = TRUE),
                     Observation = c("Growth", "Death", "No Change", "Death", "Growth"),
                     stringsAsFactors = FALSE)
+```
 
-# 2. Use dplyr or base R to select only the Magnification variable.
-# What are the dimensions of the output? 
 
+
+2. **Use dplyr or base R to select only the Magnification variable. What are the dimensions of the output?**
+```{r}
 # dplyr
 Cells %>%
      select(Magnification) %>%
      dim()
 # base R
 dim(Cells['Magnification'])
+```
 
-# Answer: 5 rows, 1 column
+Answer: 5 rows, 1 column
 
-# 3. Use dplyr or base R to filter for only rows with 5 Magnification.
-# How many rows are in your output? 
-
+3. **Use dplyr or base R to filter for only rows with 5 Magnification. How many rows are in your output?**
+```{r}
 # dplyr
 Cells %>%
      filter(Magnification == 5)
 # base R
 Cells[Cells$Magnification == 5, ]
+```
 
-# Answer: 2 rows
+Answer: 2 rows
 
-# 4. **ADVANCED:** 
-# Use dplyr or base R to create a new column that multiplies the Day by 24 giving us
-# hours. 
-
-# Answer:
-
+4. **ADVANCED: Use dplyr or base R to create a new column that multiplies the Day by 24 giving us hours.**
+```{r}
 # dplyr
 Cells %>% 
      mutate(hours = 24 * Day) -> Cells
 
 # base R
 Cells$hours <- 24 * Cells$Day
+```
+
+
 

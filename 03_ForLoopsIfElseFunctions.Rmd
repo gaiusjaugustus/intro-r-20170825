@@ -6,6 +6,7 @@ output:
           toc_float: true
 ---
 
+# Before we begin...
 Let's get started by making sure our working directory is correct.
 ```{r}
 getwd() # Are you in your Home directory?  If so, run the next line of code
@@ -268,13 +269,13 @@ loop.vector <- c(1,4,9,16,25,36,49,64,81,100)
 
 [Answer]('exercise/03_ForLoopsIfElseFunctions_Answers.R')
 
-# If else statments
+# If else statements
 
-## If statments  
+## If statements  
 
-When coding sometimes you want a particular function to be applied if a condition is true and sometimes a different function if it is not. To do this you need to use an if or if...else statment
+When coding sometimes you want a particular function to be applied if a condition is true and sometimes a different function if it is not. To do this you need to use an if or if...else statement
 
-In a simple if statment, a function is executed if the test expression is true while it is ignored entirely if it is false.
+In a simple if statement, a function is executed if the test expression is true while it is ignored entirely if it is false.
 
 ```{r}
 x <- 5
@@ -297,7 +298,7 @@ meanLifeExp <- mean(gapminder$lifeExp)
 ```
 
 
-Let's have a `'Greater than avg.'` statment returned if the value within the 'lifeExp' col exceeds that.
+Let's have a `'Greater than avg.'` statement returned if the value within the 'lifeExp' col exceeds that.
 ```{r}
 for(x in gapminder$lifeExp){
      if(x > meanLifeExp){
@@ -313,7 +314,7 @@ for(x in gapminder$lifeExp){
 
 
 
-## If...else statment 
+## If...else statement 
 
 The basic syntax is 
 
@@ -326,7 +327,7 @@ if (test_expression) {
 ```
 
 
-Here the else statement2 is only used if the first test expression is false, if the first test expression is true then statement1 will be run.
+Here the else statement is only used if the first test expression is false, if the first test expression is true then statement1 will be run.
 
 ```{r}
 x <- -5
@@ -339,10 +340,10 @@ if(x > 0) {
 # [1] "Negative number"
 ```
 
-Here, `x >0` is `FALSE`, so the if statement is not executed and instead the else statement is executed.
+Here, `x > 0` is `FALSE`, so the if statement is not executed and instead the else statement is executed.
 
 
-You can nest as many if...else statments as you want.
+You can nest as many if...else statements as you want.
 ```{r}
 x <- 0
 if(x > 0) {
