@@ -15,19 +15,23 @@ Every adventure starts with getting the supplies you need.  To prepare for the R
 There are two ways to do this, the first using the command line.
 
 1. In your **Terminal** (Mac) or **Git Bash** (Windows), type `cd` and press `Enter`.  This takes you back to your home directory, then `cd` (change directory) into the `SDC_workshop_20170826` directory.
-3. On the [main page of the repo](https://github.com/gaiusjaugustus/intro-r-20170825), press the green button that says **Clone or download**.
+2. On the [main page of the repo](https://github.com/gaiusjaugustus/intro-r-20170825), click the word **Fork** at the top right of the page.  This will copy the repo into your GitHub account.
+3. You should now be in your own `intro-r-20170825` repo.  Click the green button that says **Clone or download**.
 4. Click the **copy to clipboard** button that is next to the URL
 5. Back in your **terminal**, type `git clone URL` where the URL is the what is in your clipboard.
 6. **Check your work** by using `ls` to verify that there is now a folder called `intro-r-20170825` in your home directory.
+7. Copy the `gapminder.txt` file you created into `intro-r-20180825/datasets/`.  If you have any trouble, there is a backup for this, called `gapminder_backup.txt`.
 
 
 ## Unzip the repo
 
-1. Open **R Studio**.  You should see a box labelled `Console`, and there should be a `>` at the beginning of the line where you can type.  Type `getwd()` and `Enter` to find the directory you want to put the data into.  **Teaser:** This is the R equivalent of `pwd` in Unix.
-3. On the [main page of the repo](https://github.com/gaiusjaugustus/intro-r-20170825), press the green button that says **Clone or download**.
+1. Open **R Studio**.  You should see a box labelled `Console`, and there should be a `>` at the beginning of the line where you can type.  Type `getwd()` and `Enter` to find your HOME directory.  **Teaser:** This is the R equivalent of `pwd` in Unix.
+2. On the [main page of the repo](https://github.com/gaiusjaugustus/intro-r-20170825), click the word **Fork** at the top right of the page.  This will copy the repo into your GitHub account.
+3. You should now be in your own `intro-r-20170825` repo.  Click the green button that says **Clone or download**.
 4. Click the **Download Zip** link and download the file.
-5. **Unzip the downloaded archive** into `HOME/SDC_workshop_20170826` (you identified HOME in step 2).
+5. **Unzip the downloaded archive** into `HOME/SDC_workshop_20170826` (you identified HOME in step 1).
 6. **Check your work** by going to `HOME/SDC_workshop_20170826` and verifying there is now a folder called `intro-r-20170825-master` there.  You may want to rename it `intro-r-20170825`.  Inside this folder, you should see multiple folders.
+7. Copy the `gapminder.txt` file you created into `intro-r-20180825/datasets/`.  If you have any trouble, there is a backup for this, called `gapminder_backup.txt`.
 
 ![](plots/Repo.PNG)
 
