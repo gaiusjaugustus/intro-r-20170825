@@ -77,7 +77,7 @@ Change the axes labels for the first graph we did.
 plot(iris$Sepal.Length, iris$Petal.Length)
 ```
 
-[Answer](exercises/04_Plotting_Answers.R)
+[Answer](exercises/04_Plotting_Answers.Rmd)
 
 # ggplot2
 
