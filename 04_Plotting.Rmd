@@ -77,7 +77,7 @@ Change the axes labels for the first graph we did.
 plot(iris$Sepal.Length, iris$Petal.Length)
 ```
 
-[Answer]('exercises/04_Plotting_Answers.R')
+[Answer](exercises/04_Plotting_Answers.R)
 
 # ggplot2
 
@@ -101,54 +101,6 @@ ggplot2 works on the idea that every plot has three essential elements:
 | Geometries | The visual elements used for our data. | 
 
 In other words, we have the dataset, the space onto which we will plot our data (axes), and the visualization we will use to plot each datapoint (scatterplot, barplot, boxplot).  These are the 3 elements we will discuss today.
-
-ggplot2 makes this a little more comprehensive by adding the following:
-
-| Element     | Description                                       |
-| ----------- | ------------------------------------------------- |
-| Facets      | Plotting small multiples.                         |
-| Statistics  | Representations of our data to aid understanding. |
-| Coordinates | The space on which the data will be plotted.      |
-| Themes      | All non-data ink.                                 |
-
-# Examples of Plots with these elements
-
-## Facets
-```{r}
-ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-         geom_point() + facet_grid(.~Species)
-```
-![Facets](plots/ggplot-2.png)
-
-## Statistics
-```{r}
-ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-         geom_point() + facet_grid(.~Species) + geom_smooth(method = "lm")
-```
-![Statistics](plots/ggplot-3.png)
-
-## Coordinates
-```{r}
-ggplot(iris, aes(Sepal.Length, Sepal.Width, color=Species)) + 
-     geom_jitter() + 
-     coord_cartesian(xlim = c(4,6), ylim=c(2.5,4))
-```
-![Coordinates](plots/ggplot-4.png)
-
-## Themes
-```{r}
-ggplot(iris, aes(x=Species, y=Sepal.Width, fill=Species)) +
-     geom_boxplot(alpha=0.6, width=0.5) + 
-     theme_dark()
-```
-![Dark theme](plots/ggplot-5.png)
-
-```{r}
-ggplot(iris, aes(x=Species, y=Sepal.Width, fill=Species)) +
-     geom_boxplot(alpha=0.6, width=0.5) + 
-     theme_light()
-```
-![Light theme](plots/ggplot-6.png)
 
 
 # ggplot2 is expansive
@@ -434,6 +386,54 @@ ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Sepal.Width)) +
 ![more advanced graph](plots/ggplot-32.png)
 
 
+# More advanced options
+
+ggplot2 makes this a little more comprehensive by adding the following:
+
+| Element     | Description                                       |
+| ----------- | ------------------------------------------------- |
+| Facets      | Plotting small multiples.                         |
+| Statistics  | Representations of our data to aid understanding. |
+| Coordinates | The space on which the data will be plotted.      |
+| Themes      | All non-data ink.                                 |
+
+# Examples of Plots with these elements
+
+## Facets
+```{r}
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
+         geom_point() + facet_grid(.~Species)
+```
+![Facets](plots/ggplot-2.png)
+
+## Statistics
+```{r}
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
+         geom_point() + facet_grid(.~Species) + geom_smooth(method = "lm")
+```
+![Statistics](plots/ggplot-3.png)
+
+## Coordinates
+```{r}
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color=Species)) + 
+     geom_jitter() + 
+     coord_cartesian(xlim = c(4,6), ylim=c(2.5,4))
+```
+![Coordinates](plots/ggplot-4.png)
+
+## Themes
+```{r}
+ggplot(iris, aes(x=Species, y=Sepal.Width, fill=Species)) +
+     geom_boxplot(alpha=0.6, width=0.5) + 
+     theme_dark()
+```
+![Dark theme](plots/ggplot-5.png)
+
+```{r}
+ggplot(iris, aes(x=Species, y=Sepal.Width, fill=Species)) +
+     geom_boxplot(alpha=0.6, width=0.5) + 
+     theme_light()
+```
+![Light theme](plots/ggplot-6.png)
+
 **Note:** Pretty much anything that you would like to change can be. You can find numerous examples by googling what you want to change (e.g. google ‘remove background grid ggplot’). Additionally, there are resources to help you in our [resources document](https://github.com/gaiusjaugustus/intro-r-20170825/blob/master/resources/CheatSheetsAndResources.Rmd).
-
-
