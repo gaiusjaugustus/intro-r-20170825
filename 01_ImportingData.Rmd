@@ -776,25 +776,7 @@ Reimport the `gapminder` dataframe:
 
 Create a new dataframe that contains only country names, years, and life expectancies of the `gapminder` dataset. Use this new dataframe to calculate minimum & maximum expectancies.
 
-```{r}
-new_gapminder <- gapminder %>% select(country, year, lifeExp) # BASE R solution:  gapminder[,c(1,2,5)]
-
-head(new_gapminder)
-#       country  year lifeExp
-#         <chr> <int>   <dbl>
-# 1 Afghanistan  1952  28.801
-# 2 Afghanistan  1957  30.332
-# 3 Afghanistan  1962  31.997
-# 4 Afghanistan  1967  34.020
-# 5 Afghanistan  1972  36.088
-# 6 Afghanistan  1977  38.438
-
-new_gapminder %>% select(lifeExp) %>% min()# BASE R solution: min(new_gapminder[,3])
-# [1] 23.599
-
-max(new_gapminder$lifeExp)
-# [1] 82.603
-```
+[Answer](exercises/01_ImportingData_Answers.Rmd)
 
 # Quitting R
 
