@@ -84,3 +84,5 @@ If you want more help, check out the [resource list](https://github.com/gaiusjau
 
 ![](plots/lizB.jpg)
 Elizabeth Bowman
+[Github](https://github.com/eabowman)
+[Research Lab](http://www.arnoldlab.net/) I am a graduate student in.
