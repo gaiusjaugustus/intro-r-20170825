@@ -116,7 +116,7 @@ We can use greater than `>` or less than `<` signs as you would expect.
 
 # MULTIPLE CHOICE
 
-Which of the following will NOT return TRUE?
+Which of the following will NOT return TRUE?    
 A. FALSE == FALSE  
 B. 10-5 == sqrt(25)  
 C. TRUE > FALSE  
@@ -150,8 +150,6 @@ While fine for occasional use, entering every command ‘by hand’ is error-pro
 **An important notice:** From now on, we assume you are using a script editor.
 
 * First-time users tend to be reluctant to switch! – but it’s worth it, ask any experienced user
-* Some code in slides may be formatted for cut-and-paste into scripts – it may not look exactly like what appears in the Console window
-* Exercise ‘solutions’ given as .R files
 * Scripts make it easy to run slightly modified code, without re-typing everything – remember to save them as you work
 * Also remember the Escape key, if e.g. your bracket-matching goes wrong
 
