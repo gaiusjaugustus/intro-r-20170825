@@ -201,7 +201,7 @@ B. [1] 22.4
 C. [1] 20.4   
 D. [1] 5    
 
-[Answer](exercises/01_ImportingData_Answers.R)
+[Answer](exercises/01_ImportingData_Answers.Rmd)
 
 
 Assigning new values to existing objects over-writes the old version – and be aware there is no Ctrl-Z ‘undo’;
@@ -419,7 +419,7 @@ Use `str()` to look at the structure of the dataframe and `summary()` to get inf
 * What is the average life expectancy?
 * What is the largest population?
 
-[Answers](exercises/01_ImportingData_Answers.R)
+[Answers](exercises/01_ImportingData_Answers.Rmd)
 
 
 ```{r}
@@ -779,7 +779,7 @@ Reimport the `gapminder` dataframe:
 Create a new dataframe that contains only country names, years, and life expectancies of the `gapminder` dataset. Use this new dataframe to calculate minimum & maximum expectancies.
 
 
-[Answers](exercises/01_ImportingData_Answers.R)
+[Answers](exercises/01_ImportingData_Answers.Rmd)
 
 
 # Quitting R
