@@ -321,7 +321,7 @@ levels(ratings)
 # [1] "high"   "low"    "medium"
 ```
 
-We can add an order by putting `ordered=TRUE` into the arguments of the `factor()` function.  Then when we run `min()`, it understands that "low" is the minimum value.  Notice that the Levels change to less than symbols, showing there is a hierarchy.
+We can add an order by putting `ordered=TRUE` into the arguments of the `factor()` function.  Then when we run `min()`, it understands that "low" is the minimum value. Notice that the Levels change to less than symbols, showing there is a hierarchy.
 ```{r}
 ratings <- factor(ratings, levels=c("low", "medium", "high"), ordered=TRUE)
 levels(ratings)
