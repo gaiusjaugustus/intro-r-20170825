@@ -47,27 +47,15 @@ An additional method to search for help is using a '?' before the command you ha
 **Errors:** Run each line separately and try to figure out what the error means.
 ```{r}
 read_excel("NonExistantFile.xlsx")
-# Error: could not find function "read_excel"
-# This error is telling us that the readxl package has not been loaded, 
-# therefore it doesn't know this command exists
 
 read_delim("NonExistantFile.txt", delim"\t")
-# Error: unexpected string constant in "read_delim("NonExistantFile.txt", delim"\t""
-# This error is telling you that it didn't expect the string "\t"
-# On closer inspection, that is because the equal sign after delim is missing
 
 read_delim("NonExistantFile.txt", delim="\t")
-# Error: 'NonExistantFile.txt' does not exist in current working directory 
-# ('C:/Users/gaugustus/Documents/Rdocs/r-intro-20170825').
-# This error is telling you that the file doesn't exist.  Either there is a
-# typo or you're pointing to the wrong location.  Don't forget about
-# tab completion!
 
-read_delim("datasets/02_gapminder.txt", delim="\x")
-# Error: '\x' used without hex digits in character string starting ""\x"
-# This error is telling you that you've used an unacceptable option
-# for delim.
+read_delim("datasets/gapminder.txt", delim="\x")
 ```
+
+[Answer](exercises/02_HelpDataTypesFactors_Answers.Rmd)
 
 **Note:** Errors can sometimes be hard to understand and even harder to figure out how to fix.  Most errors have solutions somewhere on the internet, so remember that Google is your friend.  Also note that many errors are simple typing errors!  So always check that your spelling and syntax is correct first.
 
@@ -129,7 +117,7 @@ class(mylist)
 # [1] "list"
 ```
 
-Note: Don't forget that the command str() also lists the class of each column within a data frame. It is good to use to make sure all of your data was imported correctly.
+**Note:** Don't forget that the command str() also lists the class of each column within a data frame. It is good to use to make sure all of your data was imported correctly.
 
 # 4 Data Structures
 
@@ -395,7 +383,7 @@ Let's take another look at the gapminder dataset.
 
 The `year` column is a integer class.  Change the `year` column to a factor and give it levels, such that 1952 < 1957 < 1962 < 1967 and so on.
 
-[Answer]('exercises/02_HelpDataTypesFactors_Answers.R')
+[Answer](exercises/02_HelpDataTypesFactors_Answers.R)
 
 # EXERCISE
 
@@ -420,7 +408,7 @@ Make ‘Day’ a numeric variable, ‘Magnification’ an ordered factor variabl
 
 4. **ADVANCED:** Use dplyr or base R to create a new column that multiplies the Day by 24 giving us hours. 
 
-[Answer]('exercises/02_HelpDataTypesFactors_Answers.R')
+[Answer](exercises/02_HelpDataTypesFactors_Answers.R)
 
 # R Markdown
 
